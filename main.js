@@ -7,7 +7,10 @@ var lastRender = 0;
 window.onload = function(){
 	//Initialize
 	GLOBALS.hasToExit = false;
-	GLOBALS.screenStack.unshift(new MainMenuScreen());
+
+	var canvas = document.getElementById("main_canvas");
+	var ctx = canvas.getContext("2d");
+	GLOBALS.screenStack.unshift(new MainMenuScreen(ctx));
 
 	INPUT.init();
 	document.onkeydown	= function(e){INPUT.keyDown(e.keyCode);}
