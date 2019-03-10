@@ -21,24 +21,43 @@ const INPUT = {
 		for (var key in INPUT.keyboard){
 			if (INPUT.keyboard[key].keyCode == keyCode) INPUT.keyboard[key].keyUp();
 		}
-	}
+	},
+
+	timeToRepeatPress : 20
 };
 
 export default INPUT;
 
 function inputKey(keyCode){
-	this.timePress	= 0.0;
-	this.executed	= false;
-	this.keyCode	= keyCode;
+	this.timePress				= 0.0;
+	this.timeSinceLastExecution	= 0.0;
+	this.keyCode				= keyCode;
 }
-
 
 inputKey.prototype.keyUp = function(){
-	this.timePress = 0.0;
+	this.timePress		= 0.0;
 }
 inputKey.prototype.keyDown = function(){
-	if (this.timePress == 0.0) this.timePress = Date.now();
+	if (this.timePress == 0.0) {
+		this.timePress				= Date.now();
+		this.timeSinceLastExecution	= 0.0;
+	}
 }
 inputKey.prototype.isPressed = function(){
 	return (this.timePress > 0.0);
+}
+inputKey.prototype.execute = function(time){
+	if (this.timeSinceLastExecution == 0.0){
+		this.timeSinceLastExecution += time;
+		return true;
+	}
+	return false;
+}
+inputKey.prototype.executeRepeatedly = function(time){
+	this.timeSinceLastExecution += time;
+	if (this.timeSinceLastExecution > INPUT.timeToRepeatPress){
+		this.timeSinceLastExecution -= INPUT.timeToRepeatPress;
+		return true;
+	}
+	return false;
 }

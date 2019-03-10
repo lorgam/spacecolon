@@ -1,5 +1,5 @@
-import GLOBALS from '../globals.js';
-import INPUT from '../input.js';
+import GLOBALS	from '../globals.js';
+import INPUT	from '../input.js';
 
 function MainMenuScreen(context){
 	this.totalTime		= 0.0;
