@@ -1,23 +1,30 @@
 import GLOBALS from './globals.js';
+import INPUT from './input.js';
 import MainMenuScreen from './main_menu/mainMenuScreen.js';
+
+var lastRender = 0;
 
 window.onload = function(){
 	//Initialize
 	GLOBALS.hasToExit = false;
 	GLOBALS.screenStack.unshift(new MainMenuScreen());
 
-	var elapsedTime, currentTime, previousTime = Date.now();
+	INPUT.init();
+	document.onkeydown	= function(e){INPUT.keyDown(e.keyCode);}
+	document.onkeyup	= function(e){INPUT.keyUp(e.keyCode);}
 
-	while (!GLOBALS.hasToExit && GLOBALS.screenStack.length > 0){
-		currentTime = Date.now();
-		elapsedTime = currentTime - previousTime;
-		if (elapsedTime < 16.0) continue; //Dont kill the browser
-		previousTime = currentTime;
-
-		GLOBALS.screenStack[0].draw();
-		//ReadInput
-		GLOBALS.screenStack[0].update(elapsedTime);
-	}
-	console.log("hasToExit: " + GLOBALS.hasToExit);
-	console.log("GLOBALS.screenStack[0].totalTime: " + GLOBALS.screenStack[0].totalTime);
+	window.requestAnimationFrame(loop);
 };
+
+function loop(timestamp){
+	var elapsedTime = timestamp - lastRender;
+	lastRender = timestamp;
+
+	GLOBALS.screenStack[0].draw();
+	GLOBALS.screenStack[0].update(elapsedTime);
+
+	GLOBALS.hasToExit = INPUT.keyboard.ESC.isPressed();
+
+	if (!GLOBALS.hasToExit && GLOBALS.screenStack.length > 0) window.requestAnimationFrame(loop);
+	else console.log("Game over");
+}
