@@ -15,7 +15,6 @@ window.onload = function(){
 
 	INPUT.init();
 	document.onkeydown	= function(e){INPUT.keyDown(e.keyCode);}
-	document.onkeyup	= function(e){INPUT.keyUp(e.keyCode);}
 
 	window.requestAnimationFrame(loop);
 };
@@ -27,7 +26,7 @@ function loop(timestamp){
 	GLOBALS.screenStack[0].draw();
 	GLOBALS.screenStack[0].update(elapsedTime);
 
-	GLOBALS.hasToExit = INPUT.keyboard.ESC.isPressed();
+	GLOBALS.hasToExit = INPUT.keyboard.ESC.isPressed;
 
 	if (!GLOBALS.hasToExit && GLOBALS.screenStack.length > 0) window.requestAnimationFrame(loop);
 	else console.log("Game over");

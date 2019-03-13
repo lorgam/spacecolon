@@ -13,50 +13,28 @@ const INPUT = {
 
 	keyDown : function(keyCode){
 		for (var key in INPUT.keyboard){
-			if (INPUT.keyboard[key].keyCode == keyCode) INPUT.keyboard[key].keyDown();
+			if (INPUT.keyboard[key].keyCode == keyCode) {
+				INPUT.keyboard[key].keyDown();
+				return;
+			}
 		}
-	},
-
-	keyUp : function(keyCode){
-		for (var key in INPUT.keyboard){
-			if (INPUT.keyboard[key].keyCode == keyCode) INPUT.keyboard[key].keyUp();
-		}
-	},
-
-	timeToRepeatPress : 20
+	}
 };
 
 export default INPUT;
 
 function inputKey(keyCode){
-	this.timePress				= 0.0;
-	this.timeSinceLastExecution	= 0.0;
-	this.keyCode				= keyCode;
+	this.isPressed			= false;
+	this.keyCode			= keyCode;
 }
 
-inputKey.prototype.keyUp = function(){
-	this.timePress		= 0.0;
-}
 inputKey.prototype.keyDown = function(){
-	if (this.timePress == 0.0) {
-		this.timePress				= Date.now();
-		this.timeSinceLastExecution	= 0.0;
-	}
+	this.isPressed = true;
 }
-inputKey.prototype.isPressed = function(){
-	return (this.timePress > 0.0);
-}
-inputKey.prototype.execute = function(time){
-	if (this.timeSinceLastExecution == 0.0){
-		this.timeSinceLastExecution += time;
-		return true;
-	}
-	return false;
-}
-inputKey.prototype.executeRepeatedly = function(time){
-	this.timeSinceLastExecution += time;
-	if (this.timeSinceLastExecution > INPUT.timeToRepeatPress){
-		this.timeSinceLastExecution -= INPUT.timeToRepeatPress;
+
+inputKey.prototype.execute = function(){
+	if (this.isPressed){
+		this.isPressed = false;
 		return true;
 	}
 	return false;
