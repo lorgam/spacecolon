@@ -12,18 +12,16 @@ function MainMenuScreen(context){
 		this.totalTime += timeElapsed;
 
 		if (INPUT.keyboard.ARROW_UP.execute(timeElapsed)) {
-			console.log("UP");
 			this.selectedOption = (this.selectedOption + this.optionArray.length - 1) % this.optionArray.length;
 		}
 		if (INPUT.keyboard.ARROW_DOWN.execute(timeElapsed)) {
-			console.log("DOWN");
 			this.selectedOption = (this.selectedOption + 1) % this.optionArray.length;
 		}
 	}
 
 	this.draw = function(){
-		var normalColor = "#FFFFFF";
-		var highlightColor = "#FF0000";
+		var normalColor			= "#FFFFFF";
+		var highlightColor		= "#FF0000";
 
 		this.context.fillStyle	= "#000000";
 		this.context.fillRect(0, 0, GLOBALS.width, GLOBALS.height);
@@ -40,7 +38,12 @@ function MainMenuScreen(context){
 			width	= this.context.measureText(text).width;
 
 			if (this.selectedOption == i){
-				this.context.fillStyle	= highlightColor;
+				var sin	= (1 + Math.sin(this.totalTime * 0.003)) * 0.5;
+				var r	= 255;
+				var g	= 128 * sin;
+				var b	= g;
+
+				this.context.fillStyle	= 'rgb('+r+','+g+','+b+')';
 				this.context.fillText(text, (GLOBALS.width - width) / 2, top);
 				this.context.fillStyle	= normalColor;
 			}
