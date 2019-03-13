@@ -39,7 +39,7 @@ function MainMenuScreen(context){
 
 			if (this.selectedOption == i){
 				var sin	= (1 + Math.sin(this.totalTime * 0.003)) * 0.5;
-				var r	= 255;
+				var r	= 200;
 				var g	= 128 * sin;
 				var b	= g;
 
