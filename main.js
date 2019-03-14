@@ -1,6 +1,6 @@
 import GLOBALS			from './globals.js';
 import INPUT			from './input.js';
-import MainMenuScreen	from './main_menu/mainMenuScreen.js';
+import MainMenuScreen	from './mainMenuScreen.js';
 
 var lastRender = 0;
 
@@ -25,8 +25,6 @@ function loop(timestamp){
 
 	GLOBALS.screenStack[0].draw();
 	GLOBALS.screenStack[0].update(elapsedTime);
-
-	GLOBALS.hasToExit = INPUT.keyboard.ESC.isPressed;
 
 	if (!GLOBALS.hasToExit && GLOBALS.screenStack.length > 0) window.requestAnimationFrame(loop);
 	else console.log("Game over");

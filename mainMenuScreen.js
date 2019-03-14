@@ -1,5 +1,6 @@
-import GLOBALS	from '../globals.js';
-import INPUT	from '../input.js';
+import GLOBALS		from './globals.js';
+import INPUT		from './input.js';
+import GameScreen	from './gameScreen.js';
 
 function MainMenuScreen(context){
 	this.totalTime		= 0.0;
@@ -16,6 +17,9 @@ function MainMenuScreen(context){
 		}
 		if (INPUT.keyboard.ARROW_DOWN.execute(timeElapsed)) {
 			this.selectedOption = (this.selectedOption + 1) % this.optionArray.length;
+		}
+		if (INPUT.keyboard.ENTER.execute(timeElapsed)) {
+			if (this.selectedOption == 0) GLOBALS.screenStack.unshift(new GameScreen(this.context));
 		}
 	}
 
