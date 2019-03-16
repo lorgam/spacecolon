@@ -1,3 +1,5 @@
+import GLOBALS	from '../globals.js';
+
 function WorldMap(width, height){
 	this.width		= width;
 	this.height		= height;
@@ -17,8 +19,8 @@ function WorldMap(width, height){
 }
 
 WorldMap.prototype.draw = function(context){
-	var horizontalTilesToShow	= screenSize.width  / tileSize;
-	var verticalTilesToShow		= screenSize.height / tileSize;
+	var horizontalTilesToShow	= GLOBALS.mainScreenWidth  / tileSize;
+	var verticalTilesToShow		= GLOBALS.mainScreenHeight / tileSize;
 
 	var w, h, mapTile;
 	for (w = 0; w < horizontalTilesToShow; w++){
@@ -31,6 +33,11 @@ WorldMap.prototype.draw = function(context){
 	}
 }
 
+WorldMap.prototype.mouseClick	= function(x,y){
+	console.log(x);
+	console.log(y);
+}
+
 WorldMap.prototype.moveLeft		= function(){this.topLeftX = (this.width + this.topLeftX - 1) % this.width;}
 WorldMap.prototype.moveRight	= function(){this.topLeftX = (this.topLeftX + 1) % this.width;}
 WorldMap.prototype.moveUp		= function(){this.topLeftY = (this.height + this.topLeftY - 1) % this.height;}
@@ -38,7 +45,6 @@ WorldMap.prototype.moveDown		= function(){this.topLeftY = (this.topLeftY + 1) % 
 
 export default WorldMap;
 
-var screenSize	= {width:800,height:600};
 var tileSize	= 40;
 
 function MapTile(seed){

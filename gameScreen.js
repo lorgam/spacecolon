@@ -9,7 +9,7 @@ function GameScreen(context){
 
 	this.update = function(timeElapsed){
 		this.totalTime += timeElapsed;
-
+		//Keyboard
 		if (INPUT.keyboard.ESC.execute(timeElapsed)) {
 			GLOBALS.screenStack.shift();
 		}
@@ -17,7 +17,15 @@ function GameScreen(context){
 		if (INPUT.keyboard.ARROW_RIGHT.execute(timeElapsed))	this.map.moveRight();
 		if (INPUT.keyboard.ARROW_UP.execute(timeElapsed))		this.map.moveUp();
 		if (INPUT.keyboard.ARROW_DOWN.execute(timeElapsed))		this.map.moveDown();
-
+		//Mouse
+		if (INPUT.isClicked()){
+			if (INPUT.mouse.x < GLOBALS.mainScreenWidth){
+				if (INPUT.mouse.y < GLOBALS.mainScreenHeight){
+					this.map.mouseClick(INPUT.mouse.x, INPUT.mouse.y);
+				}
+			}
+			
+		}
 	}
 
 	this.draw = function(){

@@ -1,6 +1,6 @@
 const INPUT = {
 	keyboard	: {},
-	mouse		: {isClicked:false,x:0,y:0},
+	mouse		: {clicked:false,x:0,y:0},
 	init : function(){
 		INPUT.keyboard.ARROW_LEFT	= new inputKey(37);
 		INPUT.keyboard.ARROW_UP		= new inputKey(38);
@@ -22,9 +22,16 @@ const INPUT = {
 	},
 
 	mouseClick : function(x,y){
-		mouse.isClicked	= true;
-		mouse.x			= x;
-		mouse.y			= y;
+		INPUT.mouse.clicked		= true;
+		INPUT.mouse.x			= x;
+		INPUT.mouse.y			= y;
+	},
+	isClicked : function(){
+		if (INPUT.mouse.clicked){
+			INPUT.mouse.clicked = false;
+			return true;
+		}
+		return false;
 	}
 };
 
