@@ -24,14 +24,11 @@ function MainMenuScreen(context){
 	}
 
 	this.draw = function(){
-		var normalColor			= "#FFFFFF";
-		var highlightColor		= "#FF0000";
-
-		this.context.fillStyle	= "#000000";
+		this.context.fillStyle	= GLOBALS.backgroundColor;
 		this.context.fillRect(0, 0, GLOBALS.width, GLOBALS.height);
 
-		this.context.fillStyle	= normalColor;
-		this.context.font		= "30px Arial";
+		this.context.fillStyle	= GLOBALS.textColor;
+		this.context.font		= GLOBALS.menuFont;
 
 		var fontHeight			= parseInt(this.context.font.match(/\d+/));
 		var totalHeight			= (fontHeight + (2*this.padding)) * this.optionArray.length;
@@ -43,13 +40,13 @@ function MainMenuScreen(context){
 
 			if (this.selectedOption == i){
 				var sin	= (1 + Math.sin(this.totalTime * 0.003)) * 0.5;
-				var r	= 200;
+				var r	= 255;
 				var g	= Math.lerp(0, 128, sin);
 				var b	= g;
 
 				this.context.fillStyle	= 'rgb('+r+','+g+','+b+')';
 				this.context.fillText(text, (GLOBALS.width - width) / 2, top);
-				this.context.fillStyle	= normalColor;
+				this.context.fillStyle	= GLOBALS.textColor;
 			}
 
 			else this.context.fillText(text, (GLOBALS.width - width) / 2, top);

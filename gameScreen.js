@@ -30,7 +30,7 @@ function GameScreen(context){
 	}
 
 	this.draw = function(){
-		this.context.fillStyle	= "#000000";
+		this.context.fillStyle = GLOBALS.backgroundColor;
 		this.context.fillRect(0, 0, GLOBALS.width, GLOBALS.height);
 
 		this.map.draw(this.context);
