@@ -18,6 +18,10 @@ const INPUT = {
 				return;
 			}
 		}
+	},
+
+	mouseClick : function(x,y){
+		
 	}
 };
 

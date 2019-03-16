@@ -14,8 +14,11 @@ window.onload = function(){
 	GLOBALS.screenStack.unshift(new MainMenuScreen(ctx));
 
 	INPUT.init();
-	document.onkeydown	= function(e){INPUT.keyDown(e.keyCode);}
-
+	document.onkeydown	=				function(e){INPUT.keyDown(e.keyCode);}
+	canvas.addEventListener('click',
+										function(e){INPUT.mouseClick(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);},
+							false);
+	//Start the loop
 	window.requestAnimationFrame(loop);
 }
 
