@@ -1,13 +1,14 @@
 import GLOBALS	from '../globals.js';
 
 function WorldMap(width, height){
-	this.width		= width;
-	this.height		= height;
+	this.width			= width;
+	this.height			= height;
+	this.tileClicked	= null;
 	//Tile in the top-left corner of the userview
-	this.topLeftX	= 0;
-	this.topLeftY	= 0;
+	this.topLeftX		= 0;
+	this.topLeftY		= 0;
 	//Generate map
-	this.map		= new Array(this.width);
+	this.map			= new Array(this.width);
 
 	for (var w = 0; w < this.width; w++){
 		this.map[w] = new Array(this.height);
@@ -34,8 +35,11 @@ WorldMap.prototype.draw = function(context){
 }
 
 WorldMap.prototype.mouseClick	= function(x,y){
-	console.log(x);
-	console.log(y);
+	//Calculate tile clicked
+	var tileX			= (~~(x/tileSize) + this.topLeftX) % this.width;
+	var tileY			= (~~(y/tileSize) + this.topLeftY) % this.height;
+	this.tileClicked	= this.map[tileX][tileY];
+	console.log(colors[this.tileClicked.color]);
 }
 
 WorldMap.prototype.moveLeft		= function(){this.topLeftX = (this.width + this.topLeftX - 1) % this.width;}

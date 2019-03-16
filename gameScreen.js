@@ -7,6 +7,7 @@ function GameScreen(context){
 	this.context				= context;
 	this.map					= new WorldMap(20,16);
 
+	INPUT.isClicked(); //Clean clicks
 	this.update = function(timeElapsed){
 		this.totalTime += timeElapsed;
 		//Keyboard
