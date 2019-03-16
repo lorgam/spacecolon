@@ -17,7 +17,7 @@ window.onload = function(){
 	document.onkeydown	= function(e){INPUT.keyDown(e.keyCode);}
 
 	window.requestAnimationFrame(loop);
-};
+}
 
 function loop(timestamp){
 	var elapsedTime = timestamp - lastRender;
@@ -29,3 +29,5 @@ function loop(timestamp){
 	if (!GLOBALS.hasToExit && GLOBALS.screenStack.length > 0) window.requestAnimationFrame(loop);
 	else console.log("Game over");
 }
+
+Math.lerp = function(a,b,x){return a+x*(b-a)};
