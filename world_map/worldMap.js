@@ -38,8 +38,8 @@ WorldMap.prototype.mouseClick	= function(x,y){
 	//Calculate tile clicked
 	var tileX			= (~~(x/GLOBALS.tileSize) + this.topLeftX) % this.width;
 	var tileY			= (~~(y/GLOBALS.tileSize) + this.topLeftY) % this.height;
-	this.tileClicked	= this.map[tileX][tileY];
-	console.log(colors[this.tileClicked.color]);
+	this.tileClicked	= {x:tileX,y:tileY};
+	console.log(colors[this.map[this.tileClicked.x][this.tileClicked.y].color]);
 }
 
 WorldMap.prototype.moveLeft		= function(){this.topLeftX = (this.width + this.topLeftX - 1) % this.width;}
