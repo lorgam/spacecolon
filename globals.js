@@ -6,7 +6,7 @@ const GLOBALS = {
 	height				: 768,
 	mainScreenWidth		: 800,
 	mainScreenHeight	: 600,
-	tileSize			: 20,
+	tileSize			: 10,
 
 	menuFont			: "30px Arial",
 	normalFont			: "14px Arial",
