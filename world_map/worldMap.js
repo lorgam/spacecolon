@@ -20,8 +20,8 @@ function WorldMap(width, height){
 }
 
 WorldMap.prototype.draw = function(context){
-	var horizontalTilesToShow	= GLOBALS.mainScreenWidth  / tileSize;
-	var verticalTilesToShow		= GLOBALS.mainScreenHeight / tileSize;
+	var horizontalTilesToShow	= GLOBALS.mainScreenWidth  / GLOBALS.tileSize;
+	var verticalTilesToShow		= GLOBALS.mainScreenHeight / GLOBALS.tileSize;
 
 	var w, h, mapTile;
 	for (w = 0; w < horizontalTilesToShow; w++){
@@ -29,15 +29,15 @@ WorldMap.prototype.draw = function(context){
 			mapTile = this.map[(this.topLeftX + w) % this.width][(this.topLeftY + h) % this.height];
 
 			context.fillStyle	= colors[mapTile.color];
-			context.fillRect(w * tileSize, h * tileSize, tileSize, tileSize);
+			context.fillRect(w * GLOBALS.tileSize, h * GLOBALS.tileSize, GLOBALS.tileSize, GLOBALS.tileSize);
 		}
 	}
 }
 
 WorldMap.prototype.mouseClick	= function(x,y){
 	//Calculate tile clicked
-	var tileX			= (~~(x/tileSize) + this.topLeftX) % this.width;
-	var tileY			= (~~(y/tileSize) + this.topLeftY) % this.height;
+	var tileX			= (~~(x/GLOBALS.tileSize) + this.topLeftX) % this.width;
+	var tileY			= (~~(y/GLOBALS.tileSize) + this.topLeftY) % this.height;
 	this.tileClicked	= this.map[tileX][tileY];
 	console.log(colors[this.tileClicked.color]);
 }
@@ -48,8 +48,6 @@ WorldMap.prototype.moveUp		= function(){this.topLeftY = (this.height + this.topL
 WorldMap.prototype.moveDown		= function(){this.topLeftY = (this.topLeftY + 1) % this.height;}
 
 export default WorldMap;
-
-var tileSize	= 40;
 
 function MapTile(seed){
 	this.color = seed % colors.length;
