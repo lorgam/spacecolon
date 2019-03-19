@@ -14,8 +14,8 @@ function WorldMap(width, height){
 }
 
 WorldMap.prototype.draw = function(context){
-	var horizontalTilesToShow	= GLOBALS.mainScreenWidth  / GLOBALS.tileSize;
-	var verticalTilesToShow		= GLOBALS.mainScreenHeight / GLOBALS.tileSize;
+	var horizontalTilesToShow	= GLOBALS.horizontalTilesToShow();
+	var verticalTilesToShow		= GLOBALS.verticalTilesToShow();
 
 	var w, h, mapTile;
 	for (w = 0; w < horizontalTilesToShow; w++){
@@ -38,7 +38,7 @@ WorldMap.prototype.mouseClick	= function(x,y){
 
 WorldMap.prototype.moveLeft		= function(){this.topLeftX = (this.width + this.topLeftX - 1) % this.width;}
 WorldMap.prototype.moveRight	= function(){this.topLeftX = (this.topLeftX + 1) % this.width;}
-WorldMap.prototype.moveUp		= function(){this.topLeftY = (this.height + this.topLeftY - 1) % this.height;}
-WorldMap.prototype.moveDown		= function(){this.topLeftY = (this.topLeftY + 1) % this.height;}
+WorldMap.prototype.moveUp		= function(){if (this.topLeftY > 0) this.topLeftY = this.topLeftY - 1;}
+WorldMap.prototype.moveDown		= function(){if (this.topLeftY + GLOBALS.verticalTilesToShow() < this.height) this.topLeftY = this.topLeftY + 1;}
 
 export default WorldMap;
