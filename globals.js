@@ -6,7 +6,7 @@ const GLOBALS = {
 	height					: 768,
 	mainScreenWidth			: 800,
 	mainScreenHeight		: 600,
-	tileSize				: 10,
+	tileSize				: 4,
 
 	horizontalTilesToShow	: function(){return GLOBALS.mainScreenWidth  / GLOBALS.tileSize;},
 	verticalTilesToShow		: function(){return GLOBALS.mainScreenHeight / GLOBALS.tileSize;},

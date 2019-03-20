@@ -4,7 +4,7 @@ const WorldGenerator ={
 	generate : function(width, height){
 		//Noise function for the map height
 		var perlinNoise		= new PerlinNoise();
-		var size			= 4;
+		var size			= 2;
 		var seedX			= 1+Math.random()*250;
 		var seedY			= 1+Math.random()*250;
 		var seedZ			= 1+Math.random()*250; //Displacements of the coordinates for the perlin noise algorithm
@@ -51,8 +51,9 @@ function MapTile(seed){
 	this.height = 0.5+this.seed/2;
 	/*var r = Math.lerp(0,255,this.height);
 	this.color = 'rgb('+r+','+r+','+r+')';*/
-	if (this.height > 0.8) this.color = "#FF0000"
+	if (this.height > 0.85) this.color = "#FFFFFF"
+	else if (this.height > 0.8) this.color = "#FF0000"
 	else if (this.height > 0.7) this.color = "#FFFF00"
-	else if (this.height > 0.45) this.color = "#00FF00"
+	else if (this.height > 0.55) this.color = "#00FF00"
 	else this.color	= "#0000FF"
 }

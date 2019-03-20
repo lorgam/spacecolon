@@ -5,7 +5,7 @@ import WorldMap	from './world_map/worldMap.js';
 function GameScreen(context){
 	this.totalTime				= 0.0;
 	this.context				= context;
-	this.map					= new WorldMap(320,60);
+	this.map					= new WorldMap(300,150);
 
 	INPUT.isClicked(); //Clean clicks
 	this.update = function(timeElapsed){
