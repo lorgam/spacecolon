@@ -54,6 +54,6 @@ function MapTile(seed){
 	if (this.height > 0.85) this.color = "#FFFFFF"
 	else if (this.height > 0.8) this.color = "#FF0000"
 	else if (this.height > 0.7) this.color = "#FFFF00"
-	else if (this.height > 0.55) this.color = "#00FF00"
+	else if (this.height > 0.5) this.color = "#00FF00"
 	else this.color	= "#0000FF"
 }
