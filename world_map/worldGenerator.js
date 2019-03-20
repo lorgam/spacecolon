@@ -4,14 +4,14 @@ const WorldGenerator ={
 	generate : function(width, height){
 		//Noise function for the map height
 		var perlinNoise		= new PerlinNoise();
-		var size			= 2;
-		var seedX			= 1+Math.random()*250;
-		var seedY			= 1+Math.random()*250;
-		var seedZ			= 1+Math.random()*250; //Displacements of the coordinates for the perlin noise algorithm
+		var seedX			= Math.random()*254;
+		var seedY			= Math.random()*254;
+		var seedZ			= Math.random()*254; //Displacements of the coordinates for the perlin noise algorithm
 		//Generate variables to use for the cylindrical projection of the map
 		var faceWidth		= width / 4;
-		var step			= size / faceWidth;
-		var tileHeight, x, y;
+		var step			= 0.05; //steepness of the terrain. Bigger = more steepness. 0.4 Small islands 0.1 Big islands 0.05 Small continents 0.025 Big continents
+		var size			= step*(faceWidth+1);
+		var tileHeight, x = 0, y;
 		//Generate map
 		var map				= new Array(width);
 
@@ -21,12 +21,13 @@ const WorldGenerator ={
 			map[faceWidth*3-w-1]	= new Array(height);
 			map[faceWidth*3+w]		= new Array(height);
 
-			x = w*step;
+			x += step;
+			y = 0;
 
 			for (var h = 0; h < height; h++){
-				y = h*step;
+				y += step;
 
-				tileHeight = perlinNoise.noise(seedX-step,seedY+y,seedZ+x);
+				tileHeight = perlinNoise.noise(seedX,seedY+y,seedZ+x);
 				map[faceWidth-w-1][h] = new MapTile(tileHeight);
 
 				tileHeight = perlinNoise.noise(seedX+x,seedY+y,seedZ);
