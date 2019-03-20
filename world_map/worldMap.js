@@ -1,7 +1,7 @@
 import GLOBALS			from '../globals.js';
 import WorldGenerator	from './worldGenerator.js';
 
-function WorldMap(width, height){
+function WorldMap(width, height){//Width must be a multiple of 4
 	this.width			= width;
 	this.height			= height;
 
@@ -34,6 +34,7 @@ WorldMap.prototype.mouseClick	= function(x,y){
 	var tileY			= (~~(y/GLOBALS.tileSize) + this.topLeftY) % this.height;
 	this.tileClicked	= {x:tileX,y:tileY};
 	console.log(this.tileClicked);
+	console.log(this.map[this.tileClicked.x][this.tileClicked.y]);
 }
 
 WorldMap.prototype.moveLeft		= function(){this.topLeftX = (this.width + this.topLeftX - 1) % this.width;}
