@@ -2,11 +2,10 @@ import GLOBALS		from './globals.js';
 import INPUT		from './input.js';
 import GameScreen	from './gameScreen.js';
 
-function MainMenuScreen(context){
+function MainMenuScreen(){
 	this.totalTime		= 0.0;
 	this.selectedOption	= 0;
 	this.optionArray	= ["Start", "Options", "Exit"];
-	this.context		= context;
 	this.padding		= 2;
 
 	this.update = function(timeElapsed){
@@ -19,24 +18,25 @@ function MainMenuScreen(context){
 			this.selectedOption = (this.selectedOption + 1) % this.optionArray.length;
 		}
 		if (INPUT.keyboard.ENTER.execute(timeElapsed)) {
-			if (this.selectedOption == 0) GLOBALS.screenStack.unshift(new GameScreen(this.context));
+			if (this.selectedOption == 0) GLOBALS.screenStack.unshift(new GameScreen());
 		}
 	}
 
 	this.draw = function(){
-		this.context.fillStyle	= GLOBALS.backgroundColor;
-		this.context.fillRect(0, 0, GLOBALS.width, GLOBALS.height);
+		var context = GLOBALS.context;
+		context.fillStyle	= GLOBALS.backgroundColor;
+		context.fillRect(0, 0, GLOBALS.width, GLOBALS.height);
 
-		this.context.fillStyle	= GLOBALS.textColor;
-		this.context.font		= GLOBALS.menuFont;
+		context.fillStyle	= GLOBALS.textColor;
+		context.font		= GLOBALS.menuFont;
 
-		var fontHeight			= parseInt(this.context.font.match(/\d+/));
+		var fontHeight			= GLOBALS.fontHeight();
 		var totalHeight			= (fontHeight + (2*this.padding)) * this.optionArray.length;
 
 		var text, width, top	= ((GLOBALS.height - totalHeight) / 2.0) + this.padding + fontHeight;
 		for (var i in this.optionArray){
 			text	= this.optionArray[i];
-			width	= this.context.measureText(text).width;
+			width	= context.measureText(text).width;
 
 			if (this.selectedOption == i){
 				var sin	= (1 + Math.sin(this.totalTime * 0.003)) * 0.5;
@@ -44,12 +44,12 @@ function MainMenuScreen(context){
 				var g	= Math.lerp(0, 128, sin);
 				var b	= g;
 
-				this.context.fillStyle	= 'rgb('+r+','+g+','+b+')';
-				this.context.fillText(text, (GLOBALS.width - width) / 2, top);
-				this.context.fillStyle	= GLOBALS.textColor;
+				context.fillStyle	= 'rgb('+r+','+g+','+b+')';
+				context.fillText(text, (GLOBALS.width - width) / 2, top);
+				context.fillStyle	= GLOBALS.textColor;
 			}
 
-			else this.context.fillText(text, (GLOBALS.width - width) / 2, top);
+			else context.fillText(text, (GLOBALS.width - width) / 2, top);
 
 			top += (2 * this.padding) + fontHeight;
 		}

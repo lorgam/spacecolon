@@ -1,11 +1,12 @@
-import GLOBALS	from './globals.js';
-import INPUT	from './input.js';
-import WorldMap	from './world_map/worldMap.js';
+import GLOBALS		from './globals.js';
+import INPUT		from './input.js';
+import WorldMap		from './world_map/worldMap.js';
+import LowerMenu	from './game_menu/lowerMenu.js';
 
-function GameScreen(context){
+function GameScreen(){
 	this.totalTime				= 0.0;
-	this.context				= context;
 	this.map					= new WorldMap(400,150);
+	this.lowerMenu				= new LowerMenu();
 
 	INPUT.isClicked(); //Clean clicks
 	this.update = function(timeElapsed){
@@ -23,8 +24,8 @@ function GameScreen(context){
 		//Mouse
 		if (INPUT.isClicked()){
 			if (INPUT.mouse.x < GLOBALS.mainScreenWidth){
-				if (INPUT.mouse.y < GLOBALS.mainScreenHeight){
-					this.map.mouseClick(INPUT.mouse.x, INPUT.mouse.y);
+				if (INPUT.mouse.y > GLOBALS.topMenuHeight && INPUT.mouse.y < GLOBALS.bottomOfMap()){
+					this.map.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);
 				}
 			}
 			
@@ -32,10 +33,13 @@ function GameScreen(context){
 	}
 
 	this.draw = function(){
-		this.context.fillStyle = GLOBALS.backgroundColor;
-		this.context.fillRect(0, 0, GLOBALS.width, GLOBALS.height);
+		var context = GLOBALS.context;
+		context.fillStyle = GLOBALS.backgroundColor;
+		context.fillRect(0, 0, GLOBALS.width, GLOBALS.height);
 
-		this.map.draw(this.context);
+		this.map.draw();
+
+		this.lowerMenu.draw(this.map.getTileClicked());
 	}
 }
 

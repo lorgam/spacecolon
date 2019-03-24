@@ -9,9 +9,9 @@ window.onload = function(){
 	GLOBALS.hasToExit = false;
 
 	var canvas	= document.getElementById("main_canvas");
-	var ctx		= canvas.getContext("2d");
 
-	GLOBALS.screenStack.unshift(new MainMenuScreen(ctx));
+	GLOBALS.context = canvas.getContext("2d");
+	GLOBALS.screenStack.unshift(new MainMenuScreen());
 
 	INPUT.init();
 	document.onkeydown	=				function(e){INPUT.keyDown(e.keyCode);}
