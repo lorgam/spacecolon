@@ -18,6 +18,8 @@ function GameScreen(context){
 		if (INPUT.keyboard.ARROW_RIGHT.execute(timeElapsed))	this.map.moveRight();
 		if (INPUT.keyboard.ARROW_UP.execute(timeElapsed))		this.map.moveUp();
 		if (INPUT.keyboard.ARROW_DOWN.execute(timeElapsed))		this.map.moveDown();
+
+		if (INPUT.keyboard.V.execute(timeElapsed))				this.map.changeView();
 		//Mouse
 		if (INPUT.isClicked()){
 			if (INPUT.mouse.x < GLOBALS.mainScreenWidth){

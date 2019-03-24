@@ -10,6 +10,8 @@ const INPUT = {
 		INPUT.keyboard.ENTER		= new inputKey(13);
 		INPUT.keyboard.ALT			= new inputKey(18);
 		INPUT.keyboard.ESC			= new inputKey(27);
+
+		INPUT.keyboard.V			= new inputKey(86);
 	},
 
 	keyDown : function(keyCode){
