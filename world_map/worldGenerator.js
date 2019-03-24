@@ -1,43 +1,66 @@
 import PerlinNoise	from '../neuron/perlinNoise.js';
+import MapTile		from './mapTile.js';
 
 const WorldGenerator ={
-	generate : function(width, height){
+	generate : function(parent){
 		//Noise function for the map height
 		var perlinNoise		= new PerlinNoise();
-		var seedX			= Math.random()*254;
-		var seedY			= Math.random()*254;
-		var seedZ			= Math.random()*254; //Displacements of the coordinates for the perlin noise algorithm
-		//Generate variables to use for the cylindrical projection of the map
-		var faceWidth		= width / 4;
-		var step			= 0.05; //steepness of the terrain. Bigger = more steepness. 0.4 Small islands 0.1 Big islands 0.05 Small continents 0.025 Big continents
-		var size			= step*(faceWidth+1);
-		var tileHeight, x = 0, y;
+		//Displacements of the coordinates for the perlin noise algorithm
+		var heightSeedX		= Math.random();
+		var heightSeedY		= Math.random();
+		var heightSeedZ		= Math.random();
+		var humiditySeedX	= Math.random();
+		var humiditySeedY	= Math.random();
+		var humiditySeedZ	= Math.random();
+
+		var faceWidth		= parent.width / 4;
+		var heightStep		= 0.05; //steepness of the terrain. Bigger = more steepness. 0.4 Small islands 0.1 Big islands 0.05 Small continents 0.025 Big continents
+		var heightSize		= heightStep*(faceWidth+1);
+		var xHeightSize		= heightSize+heightSeedX;
+		var zHeightSize		= heightSize+heightSeedZ;
+
+		var humidityStep	= 0.1;
+		var humiditySize	= humidityStep*(faceWidth+1);
+		var xHumiditySize	= humiditySize+humiditySeedX;
+		var zHumiditySize	= humiditySize+humiditySeedZ;
 		//Generate map
-		var map				= new Array(width);
+		var map				= new Array(parent.width);
+		var tileHeight,		xHeight,	yHeight;
+		var tileHumidity,	xHumidity,	yHumidity;
 
+		xHeight		= 0;
+		xHumidity	= 0;
 		for (var w = 0; w < faceWidth; w++){
-			map[faceWidth-w-1]		= new Array(height);
-			map[faceWidth+w]		= new Array(height);
-			map[faceWidth*3-w-1]	= new Array(height);
-			map[faceWidth*3+w]		= new Array(height);
+			map[faceWidth-w-1]		= new Array(parent.height);
+			map[faceWidth+w]		= new Array(parent.height);
+			map[faceWidth*3-w-1]	= new Array(parent.height);
+			map[faceWidth*3+w]		= new Array(parent.height);
 
-			x += step;
-			y = 0;
+			xHeight		+= heightStep;
+			xHumidity	+= humidityStep;
 
-			for (var h = 0; h < height; h++){
-				y += step;
+			yHeight		=  heightSeedY;
+			yHumidity	=  humiditySeedY;
 
-				tileHeight = perlinNoise.noise(seedX,seedY+y,seedZ+x);
-				map[faceWidth-w-1][h] = new MapTile(tileHeight);
+			for (var h = 0; h < parent.height; h++){
+				yHeight += heightStep;
+				yHumidity += humidityStep;
 
-				tileHeight = perlinNoise.noise(seedX+x,seedY+y,seedZ);
-				map[faceWidth+w][h] = new MapTile(tileHeight);
+				tileHeight				= perlinNoise.noise(heightSeedX,	yHeight,	heightSeedZ+xHeight);
+				tileHumidity			= perlinNoise.noise(humiditySeedX,	yHumidity,	humiditySeedZ+xHumidity);
+				map[faceWidth-w-1][h]	= new MapTile(parent, tileHeight, tileHumidity);
 
-				tileHeight = perlinNoise.noise(seedX+size,seedY+y,seedZ+size-x);
-				map[faceWidth*3-w-1][h] = new MapTile(tileHeight);
+				tileHeight				= perlinNoise.noise(heightSeedX+xHeight,		yHeight,	heightSeedZ);
+				tileHumidity			= perlinNoise.noise(humiditySeedX+xHumidity,	yHumidity,	humiditySeedZ);
+				map[faceWidth+w][h]		= new MapTile(parent, tileHeight, tileHumidity);
 
-				tileHeight = perlinNoise.noise(seedX+size-x,seedY+y,seedZ+size);
-				map[faceWidth*3+w][h] = new MapTile(tileHeight);
+				tileHeight				= perlinNoise.noise(xHeightSize,	yHeight,	zHeightSize-xHeight);
+				tileHumidity			= perlinNoise.noise(xHumiditySize,	yHumidity,	zHumiditySize-xHumidity);
+				map[faceWidth*3-w-1][h]	= new MapTile(parent, tileHeight, tileHumidity);
+
+				tileHeight				= perlinNoise.noise(xHeightSize-xHeight,		yHeight,	zHeightSize);
+				tileHumidity			= perlinNoise.noise(xHumiditySize-xHumidity,	yHumidity,	zHumiditySize);
+				map[faceWidth*3+w][h]	= new MapTile(parent, tileHeight, tileHumidity);
 			}
 		}
 
@@ -46,15 +69,3 @@ const WorldGenerator ={
 }
 
 export default WorldGenerator;
-
-function MapTile(seed){
-	this.seed	= seed;
-	this.height = 0.5+this.seed/2;
-	/*var r = Math.lerp(0,255,this.height);
-	this.color = 'rgb('+r+','+r+','+r+')';*/
-	if (this.height > 0.85) this.color = "#FFFFFF"
-	else if (this.height > 0.8) this.color = "#FF0000"
-	else if (this.height > 0.7) this.color = "#FFFF00"
-	else if (this.height > 0.5) this.color = "#00FF00"
-	else this.color	= "#0000FF"
-}
