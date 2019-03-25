@@ -8,7 +8,6 @@ import textureManager	from './texture/textureManager.js';
 function GameScreen(){
 	this.totalTime				= 0.0;
 	this.map					= new WorldMap(400,150);
-	this.lowerMenu				= new LowerMenu();
 
 	textureManager.load(); //Load image data
 	INPUT.isClicked(); //Clean clicks
@@ -43,7 +42,7 @@ function GameScreen(){
 
 		this.map.draw();
 
-		this.lowerMenu.draw(this.map.getTileClicked());
+		LowerMenu.draw(this.map.getTileClicked());
 		MiniMap.draw(this.map.miniMap)
 	}
 }
