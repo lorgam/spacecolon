@@ -1,14 +1,17 @@
-import GLOBALS		from './globals.js';
-import INPUT		from './input.js';
-import WorldMap		from './world_map/worldMap.js';
-import LowerMenu	from './game_menu/lowerMenu.js';
+import GLOBALS			from './globals.js';
+import INPUT			from './input.js';
+import WorldMap			from './world_map/worldMap.js';
+import LowerMenu		from './game_menu/lowerMenu.js';
+import textureManager	from './texture/textureManager.js';
 
 function GameScreen(){
 	this.totalTime				= 0.0;
 	this.map					= new WorldMap(400,150);
 	this.lowerMenu				= new LowerMenu();
 
+	textureManager.load(); //Load image data
 	INPUT.isClicked(); //Clean clicks
+
 	this.update = function(timeElapsed){
 		this.totalTime += timeElapsed;
 		//Keyboard

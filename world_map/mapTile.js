@@ -53,5 +53,8 @@ MapTile.prototype.humidityGray = function(){
 	var r = Math.lerp(0,255,0.5 * this.humiditySeed + 0.5);
 	return 'rgb('+r+','+r+','+r+')';
 }
+MapTile.prototype.texture = function(){
+	return this.tileTypes[this.type].canvas;
+}
 
 export default MapTile;

@@ -24,18 +24,25 @@ WorldMap.prototype.draw = function(){
 	var horizontalTilesToShow	= GLOBALS.horizontalTilesToShow();
 	var verticalTilesToShow		= GLOBALS.verticalTilesToShow();
 
-	var w, h, mapTile;
+	var w, h, mapTile, x, y;
 	for (w = 0; w < horizontalTilesToShow; w++){
+		x = w * GLOBALS.tileSize;
+
 		for (h = 0; h < verticalTilesToShow; h++){
+			y = h * GLOBALS.tileSize + GLOBALS.topMenuHeight;
 			mapTile = this.map[(this.topLeftX + w) % this.width][(this.topLeftY + h) % this.height];
 
-			switch (this.typeOfView){
-				case 1	: context.fillStyle = mapTile.heightGray();		break;
-				case 2	: context.fillStyle = mapTile.humidityGray();	break;
-				default	: context.fillStyle = mapTile.color();
+			if (this.typeOfView == 0){
+				context.drawImage(mapTile.texture(), x, y, GLOBALS.tileSize, GLOBALS.tileSize);
 			}
-
-			context.fillRect(w * GLOBALS.tileSize, h * GLOBALS.tileSize + GLOBALS.topMenuHeight, GLOBALS.tileSize, GLOBALS.tileSize);
+			else {
+				switch (this.typeOfView){
+					case 1	: context.fillStyle = mapTile.heightGray();		break;
+					case 2	: context.fillStyle = mapTile.humidityGray();	break;
+					default	: context.fillStyle = mapTile.color();
+				}
+				context.fillRect(x, y, GLOBALS.tileSize, GLOBALS.tileSize);
+			}
 		}
 	}
 }
@@ -53,7 +60,7 @@ WorldMap.prototype.moveLeft		= function(){this.topLeftX = (this.width + this.top
 WorldMap.prototype.moveRight	= function(){this.topLeftX = (this.topLeftX + 1) % this.width;}
 WorldMap.prototype.moveUp		= function(){if (this.topLeftY > 0) this.topLeftY = this.topLeftY - 1;}
 WorldMap.prototype.moveDown		= function(){if (this.topLeftY + GLOBALS.verticalTilesToShow() < this.height) this.topLeftY = this.topLeftY + 1;}
-WorldMap.prototype.changeView	= function(){this.typeOfView = (this.typeOfView + 1) % 3;}
+WorldMap.prototype.changeView	= function(){this.typeOfView = (this.typeOfView + 1) % 4;}
 
 WorldMap.prototype.getTileClicked = function(){
 	if (this.tileClicked) return this.map[this.tileClicked.x][this.tileClicked.y];
