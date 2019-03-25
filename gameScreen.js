@@ -2,6 +2,7 @@ import GLOBALS			from './globals.js';
 import INPUT			from './input.js';
 import WorldMap			from './world_map/worldMap.js';
 import LowerMenu		from './game_menu/lowerMenu.js';
+import MiniMap			from './game_menu/miniMap.js';
 import textureManager	from './texture/textureManager.js';
 
 function GameScreen(){
@@ -43,6 +44,7 @@ function GameScreen(){
 		this.map.draw();
 
 		this.lowerMenu.draw(this.map.getTileClicked());
+		MiniMap.draw(this.map.miniMap)
 	}
 }
 

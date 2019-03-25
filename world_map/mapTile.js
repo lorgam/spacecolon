@@ -42,7 +42,7 @@ MapTile.prototype.tileType = function(waterHeight){
 	return "forestMountain";
 }
 
-MapTile.prototype.color = function(){
+MapTile.prototype.mapColor = function(){
 	return this.tileTypes[this.type].color;
 }
 MapTile.prototype.heightGray = function(){

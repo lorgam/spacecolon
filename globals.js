@@ -9,6 +9,7 @@ const GLOBALS = {
 	mainScreenHeight		: 600,
 	topMenuHeight			: 25,
 	tileSize				: 4,
+	minTileSize				: 4,
 
 	horizontalTilesToShow	: function(){return GLOBALS.mainScreenWidth  / GLOBALS.tileSize;},
 	verticalTilesToShow		: function(){return GLOBALS.mainScreenHeight / GLOBALS.tileSize;},

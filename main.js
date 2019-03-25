@@ -8,9 +8,9 @@ window.onload = function(){
 	//Initialize
 	GLOBALS.hasToExit = false;
 
-	var canvas	= document.getElementById("main_canvas");
+	var canvas	= document.getElementById('main_canvas');
 
-	GLOBALS.context = canvas.getContext("2d");
+	GLOBALS.context = canvas.getContext('2d');
 	GLOBALS.screenStack.unshift(new MainMenuScreen());
 
 	INPUT.init();

@@ -13,7 +13,7 @@ function WorldMap(width, height){//Width must be a multiple of 4
 	//
 	this.typeOfView		= 0; //0: Normal, 1: Height, 2: Humidity
 
-	this.map			= WorldGenerator.generate(this);
+	WorldGenerator.generate(this);
 
 
 }
@@ -39,7 +39,7 @@ WorldMap.prototype.draw = function(){
 				switch (this.typeOfView){
 					case 1	: context.fillStyle = mapTile.heightGray();		break;
 					case 2	: context.fillStyle = mapTile.humidityGray();	break;
-					default	: context.fillStyle = mapTile.color();
+					default	: context.fillStyle = mapTile.mapColor();
 				}
 				context.fillRect(x, y, GLOBALS.tileSize, GLOBALS.tileSize);
 			}
