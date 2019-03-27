@@ -25,7 +25,20 @@ WorldMap.prototype.draw = function(){
 	var verticalTilesToShow		= GLOBALS.verticalTilesToShow();
 
 	if (this.typeOfView == 0){
-		context.drawImage(this.mapCanvas, this.topLeftX, this.topLeftY, horizontalTilesToShow, verticalTilesToShow, 0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight);
+		context.drawImage(	this.mapCanvas,
+							this.topLeftX * GLOBALS.maxTileSize, this.topLeftY * GLOBALS.maxTileSize, horizontalTilesToShow * GLOBALS.maxTileSize, verticalTilesToShow * GLOBALS.maxTileSize,
+							0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight
+						);
+
+		var horizontalTilesDrawn = this.width - this.topLeftX;
+		if (horizontalTilesDrawn < horizontalTilesToShow){
+			context.drawImage(	this.mapCanvas,
+								0, this.topLeftY * GLOBALS.maxTileSize, horizontalTilesToShow * GLOBALS.maxTileSize, verticalTilesToShow * GLOBALS.maxTileSize,
+								horizontalTilesDrawn * GLOBALS.tileSize, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight
+							);
+			horizontalTilesDrawn +=  this.map.width;
+		}
+
 		return;
 	}
 

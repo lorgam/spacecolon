@@ -4,11 +4,10 @@ import MapTile		from './mapTile.js';
 
 const WorldGenerator ={
 	generate : function(parent){
-		//MiniMap
-		var miniMapCanvas		= document.createElement('canvas');
-		miniMapCanvas.width		= parent.width;
-		miniMapCanvas.height	= parent.height;
-		var miniMapContext		= miniMapCanvas.getContext('2d');
+		var mapCanvas		= document.createElement('canvas');
+		mapCanvas.width		= parent.width * GLOBALS.maxTileSize; //Render the map to the max resolution and double it
+		mapCanvas.height	= parent.height * GLOBALS.maxTileSize;
+		var mapContext		= mapCanvas.getContext('2d');
 		//Noise function for the map height
 		var perlinNoise			= new PerlinNoise();
 		//Displacements of the coordinates for the perlin noise algorithm
@@ -60,8 +59,8 @@ const WorldGenerator ={
 				mapTile						= new MapTile(parent, tileHeight, tileHumidity);
 				map[x][h]					= mapTile;
 
-				miniMapContext.fillStyle	= mapTile.mapColor();
-				miniMapContext.fillRect(x, h, 1, 1);
+				mapContext.fillStyle		= mapTile.mapColor();
+				mapContext.fillRect(x * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
 
 				tileHeight					= perlinNoise.noise(heightSeedX+xHeight,		yHeight,	heightSeedZ);
 				tileHumidity				= perlinNoise.noise(humiditySeedX+xHumidity,	yHumidity,	humiditySeedZ);
@@ -70,8 +69,8 @@ const WorldGenerator ={
 				mapTile						= new MapTile(parent, tileHeight, tileHumidity);
 				map[x][h]					= mapTile;
 
-				miniMapContext.fillStyle	= mapTile.mapColor();
-				miniMapContext.fillRect(x, h, 1, 1);
+				mapContext.fillStyle		= mapTile.mapColor();
+				mapContext.fillRect(x * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
 
 				tileHeight					= perlinNoise.noise(xHeightSize,	yHeight,	zHeightSize-xHeight);
 				tileHumidity				= perlinNoise.noise(xHumiditySize,	yHumidity,	zHumiditySize-xHumidity);
@@ -80,8 +79,8 @@ const WorldGenerator ={
 				mapTile						= new MapTile(parent, tileHeight, tileHumidity);
 				map[x][h]					= mapTile;
 
-				miniMapContext.fillStyle	= mapTile.mapColor();
-				miniMapContext.fillRect(x, h, 1, 1);
+				mapContext.fillStyle		= mapTile.mapColor();
+				mapContext.fillRect(x * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
 
 				tileHeight					= perlinNoise.noise(xHeightSize-xHeight,		yHeight,	zHeightSize);
 				tileHumidity				= perlinNoise.noise(xHumiditySize-xHumidity,	yHumidity,	zHumiditySize);
@@ -90,22 +89,12 @@ const WorldGenerator ={
 				mapTile						= new MapTile(parent, tileHeight, tileHumidity);
 				map[x][h]					= mapTile;
 
-				miniMapContext.fillStyle	= mapTile.mapColor();
-				miniMapContext.fillRect(x, h, 1, 1);
+				mapContext.fillStyle		= mapTile.mapColor();
+				mapContext.fillRect(x * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
 			}
 		}
 
 		parent.map			= map;
-
-		var mapCanvas		= document.createElement('canvas');
-		var mapContext		= mapCanvas.getContext('2d');
-		mapCanvas.width		= miniMapCanvas.width * 2;
-		mapCanvas.height	= miniMapCanvas.height * 2;
-
-		mapContext.drawImage(miniMapCanvas, 0, 0);
-		mapContext.drawImage(miniMapCanvas, miniMapCanvas.width, 0);
-
-		parent.miniMap		= miniMapCanvas;
 		parent.mapCanvas	= mapCanvas;
 	}
 }
