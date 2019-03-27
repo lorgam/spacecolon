@@ -3,7 +3,7 @@ function MapTile(parent, heightSeed, humiditySeed){
 	this.heightSeed		= heightSeed;
 	this.humiditySeed	= humiditySeed;
 	this.height 		= 0.5*this.heightSeed+0.5;
-	this.type			= this.tileType(this.parent.waterHeight);
+	this.type			= this.tileType(this.parent.options.waterHeight);
 }
 
 MapTile.prototype.tileTypes = {
@@ -21,7 +21,6 @@ MapTile.prototype.tileTypes = {
 }
 
 MapTile.prototype.tileType = function(waterHeight){
-	var waterHeight = this.parent.waterHeight;
 	if (this.height < waterHeight - 0.25)	return "deepOcean";
 	if (this.height < waterHeight - 0.05)	return "ocean";
 	if (this.height < waterHeight)			return "shallowWaters";

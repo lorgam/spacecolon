@@ -3,33 +3,26 @@ import PerlinNoise	from '../neuron/perlinNoise.js';
 import MapTile		from './mapTile.js';
 
 const WorldGenerator ={
-	generate : function(parent){
+	generateWorld : function(parent){
 		var mapCanvas		= document.createElement('canvas');
-		mapCanvas.width		= parent.width * GLOBALS.maxTileSize; //Render the map to the max resolution and double it
-		mapCanvas.height	= parent.height * GLOBALS.maxTileSize;
+		mapCanvas.width		= parent.options.width * GLOBALS.maxTileSize; //Render the map to the max resolution and double it
+		mapCanvas.height	= parent.options.height * GLOBALS.maxTileSize;
 		var mapContext		= mapCanvas.getContext('2d');
 		//Noise function for the map height
 		var perlinNoise			= new PerlinNoise();
-		//Displacements of the coordinates for the perlin noise algorithm
-		var heightSeedX			= Math.random();
-		var heightSeedY			= Math.random();
-		var heightSeedZ			= Math.random();
-		var humiditySeedX		= Math.random();
-		var humiditySeedY		= Math.random();
-		var humiditySeedZ		= Math.random();
 
-		var faceWidth			= parent.width / 4;
+		var faceWidth			= parent.options.width / 4;
 		var heightStep			= 0.05; //steepness of the terrain. Bigger = more steepness. 0.4 Small islands 0.1 Big islands 0.05 Small continents 0.025 Big continents
 		var heightSize			= heightStep*(faceWidth+1);
-		var xHeightSize			= heightSize+heightSeedX;
-		var zHeightSize			= heightSize+heightSeedZ;
+		var xHeightSize			= heightSize+parent.options.heightSeedX;
+		var zHeightSize			= heightSize+parent.options.heightSeedZ;
 
 		var humidityStep		= 0.1;
 		var humiditySize		= humidityStep*(faceWidth+1);
-		var xHumiditySize		= humiditySize+humiditySeedX;
-		var zHumiditySize		= humiditySize+humiditySeedZ;
+		var xHumiditySize		= humiditySize+parent.options.humiditySeedX;
+		var zHumiditySize		= humiditySize+parent.options.humiditySeedZ;
 		//Generate map
-		var map					= new Array(parent.width);
+		var map					= new Array(parent.options.width);
 		var tileHeight,		xHeight,	yHeight;
 		var tileHumidity,	xHumidity,	yHumidity;
 		var mapTile, x;
@@ -37,23 +30,23 @@ const WorldGenerator ={
 		xHeight		= 0;
 		xHumidity	= 0;
 		for (var w = 0; w < faceWidth; w++){
-			map[faceWidth-w-1]		= new Array(parent.height);
-			map[faceWidth+w]		= new Array(parent.height);
-			map[faceWidth*3-w-1]	= new Array(parent.height);
-			map[faceWidth*3+w]		= new Array(parent.height);
+			map[faceWidth-w-1]		= new Array(parent.options.height);
+			map[faceWidth+w]		= new Array(parent.options.height);
+			map[faceWidth*3-w-1]	= new Array(parent.options.height);
+			map[faceWidth*3+w]		= new Array(parent.options.height);
 
 			xHeight		+= heightStep;
 			xHumidity	+= humidityStep;
 
-			yHeight		=  heightSeedY;
-			yHumidity	=  humiditySeedY;
+			yHeight		=  parent.options.heightSeedY;
+			yHumidity	=  parent.options.humiditySeedY;
 
-			for (var h = 0; h < parent.height; h++){
+			for (var h = 0; h < parent.options.height; h++){
 				yHeight += heightStep;
 				yHumidity += humidityStep;
 
-				tileHeight					= perlinNoise.noise(heightSeedX,	yHeight,	heightSeedZ+xHeight);
-				tileHumidity				= perlinNoise.noise(humiditySeedX,	yHumidity,	humiditySeedZ+xHumidity);
+				tileHeight					= perlinNoise.noise(parent.options.heightSeedX,		yHeight,	parent.options.heightSeedZ+xHeight);
+				tileHumidity				= perlinNoise.noise(parent.options.humiditySeedX,	yHumidity,	parent.options.humiditySeedZ+xHumidity);
 
 				x = faceWidth-w-1;
 				mapTile						= new MapTile(parent, tileHeight, tileHumidity);
@@ -62,8 +55,8 @@ const WorldGenerator ={
 				mapContext.fillStyle		= mapTile.mapColor();
 				mapContext.fillRect(x * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
 
-				tileHeight					= perlinNoise.noise(heightSeedX+xHeight,		yHeight,	heightSeedZ);
-				tileHumidity				= perlinNoise.noise(humiditySeedX+xHumidity,	yHumidity,	humiditySeedZ);
+				tileHeight					= perlinNoise.noise(parent.options.heightSeedX+xHeight,		yHeight,	parent.options.heightSeedZ);
+				tileHumidity				= perlinNoise.noise(parent.options.humiditySeedX+xHumidity,	yHumidity,	parent.options.humiditySeedZ);
 
 				x = faceWidth+w;
 				mapTile						= new MapTile(parent, tileHeight, tileHumidity);
@@ -96,6 +89,26 @@ const WorldGenerator ={
 
 		parent.map			= map;
 		parent.mapCanvas	= mapCanvas;
+	},
+
+	generateOptions : function(definition){
+		var options 			= {};
+		options.width			= 200;
+		options.height			= 100;
+
+		if (definition.type == 'normal'){
+			options.waterHeight		= 0.35 + Math.random() * 0.3;
+
+			options.heightSeedX		= Math.random();
+			options.heightSeedY		= Math.random();
+			options.heightSeedZ		= Math.random();
+
+			options.humiditySeedX	= Math.random();
+			options.humiditySeedY	= Math.random();
+			options.humiditySeedZ	= Math.random();
+		}
+
+		return options;
 	}
 }
 
