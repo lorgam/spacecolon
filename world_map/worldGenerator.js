@@ -94,8 +94,19 @@ const WorldGenerator ={
 				miniMapContext.fillRect(x, h, 1, 1);
 			}
 		}
-		parent.miniMap	= miniMapCanvas;
-		parent.map		= map;
+
+		parent.map			= map;
+
+		var mapCanvas		= document.createElement('canvas');
+		var mapContext		= mapCanvas.getContext('2d');
+		mapCanvas.width		= miniMapCanvas.width * 2;
+		mapCanvas.height	= miniMapCanvas.height * 2;
+
+		mapContext.drawImage(miniMapCanvas, 0, 0);
+		mapContext.drawImage(miniMapCanvas, miniMapCanvas.width, 0);
+
+		parent.miniMap		= miniMapCanvas;
+		parent.mapCanvas	= mapCanvas;
 	}
 }
 

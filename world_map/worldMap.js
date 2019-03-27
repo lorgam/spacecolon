@@ -24,6 +24,11 @@ WorldMap.prototype.draw = function(){
 	var horizontalTilesToShow	= GLOBALS.horizontalTilesToShow();
 	var verticalTilesToShow		= GLOBALS.verticalTilesToShow();
 
+	if (this.typeOfView == 0){
+		context.drawImage(this.mapCanvas, this.topLeftX, this.topLeftY, horizontalTilesToShow, verticalTilesToShow, 0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight);
+		return;
+	}
+
 	var w, h, mapTile, x, y;
 	for (w = 0; w < horizontalTilesToShow; w++){
 		x = w * GLOBALS.tileSize;
@@ -32,17 +37,12 @@ WorldMap.prototype.draw = function(){
 			y = h * GLOBALS.tileSize + GLOBALS.topMenuHeight;
 			mapTile = this.map[(this.topLeftX + w) % this.width][(this.topLeftY + h) % this.height];
 
-			if (this.typeOfView == 0){
-				context.drawImage(mapTile.texture(), x, y, GLOBALS.tileSize, GLOBALS.tileSize);
+			switch (this.typeOfView){
+				case 1	: context.fillStyle = mapTile.heightGray();		break;
+				case 2	: context.fillStyle = mapTile.humidityGray();	break;
+				default	: context.fillStyle = mapTile.mapColor();
 			}
-			else {
-				switch (this.typeOfView){
-					case 1	: context.fillStyle = mapTile.heightGray();		break;
-					case 2	: context.fillStyle = mapTile.humidityGray();	break;
-					default	: context.fillStyle = mapTile.mapColor();
-				}
-				context.fillRect(x, y, GLOBALS.tileSize, GLOBALS.tileSize);
-			}
+			context.fillRect(x, y, GLOBALS.tileSize, GLOBALS.tileSize);
 		}
 	}
 }
