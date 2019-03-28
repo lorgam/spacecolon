@@ -3,8 +3,8 @@ const GLOBALS = {
 	hasToExit				: false,
 	screenStack				: [],
 
-	width					: 1024,
-	height					: 768,
+	width					: 1000,
+	height					: 750,
 	mainScreenWidth			: 800,
 	mainScreenHeight		: 600,
 	topMenuHeight			: 25,
