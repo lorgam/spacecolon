@@ -7,3 +7,4 @@ Use v to change view from normal to height map to humidity map to blocks view.
 Use Esc to go back to main menu.
 
 Use arrow keys to navigate the map.
+Or click on the minimap

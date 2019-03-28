@@ -15,6 +15,8 @@ const GLOBALS = {
 	horizontalTilesToShow	: function(){return GLOBALS.mainScreenWidth  / GLOBALS.tileSize;},
 	verticalTilesToShow		: function(){return GLOBALS.mainScreenHeight / GLOBALS.tileSize;},
 	bottomOfMap				: function(){return GLOBALS.topMenuHeight + GLOBALS.mainScreenHeight;},
+	rightMenuSize			: function(){return GLOBALS.width - GLOBALS.mainScreenWidth;},
+	lowerMenuSize			: function(){return GLOBALS.height - GLOBALS.bottomOfMap();},
 
 	menuFont				: "30px Arial",
 	normalFont				: "14px Arial",

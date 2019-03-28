@@ -75,4 +75,15 @@ WorldMap.prototype.getTileClicked = function(){
 	return null;
 }
 
+WorldMap.prototype.centerView = function(x,y) {
+	this.topLeftX = (~~(x - GLOBALS.horizontalTilesToShow() / 2) + this.options.width) % this.options.width;
+	this.topLeftY = ~~(y - GLOBALS.verticalTilesToShow() / 2);
+
+	if (this.topLeftY < 0){
+		this.topLeftY = 0;
+		return;
+	}
+	if (this.topLeftY + GLOBALS.verticalTilesToShow() > this.options.height) this.topLeftY = this.options.height - GLOBALS.verticalTilesToShow();
+};
+
 export default WorldMap;

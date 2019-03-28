@@ -36,7 +36,9 @@ GameScreen.prototype.update = function(timeElapsed) {
 				this.worldMap.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);
 			}
 		}
-		
+		else if (INPUT.mouse.y >= GLOBALS.bottomOfMap()){
+			MiniMap.mouseClick(this.worldMap, INPUT.mouse.x - GLOBALS.mainScreenWidth, INPUT.mouse.y - GLOBALS.bottomOfMap());
+		}
 	}
 };
 
