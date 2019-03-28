@@ -15,41 +15,41 @@ function GameScreen(){
 
 	textureManager.load(); //Load image data
 	INPUT.isClicked(); //Clean clicks
-
-	this.update = function(timeElapsed){
-		this.totalTime += timeElapsed;
-		//Keyboard
-		if (INPUT.keyboard.ESC.execute(timeElapsed)) {
-			GLOBALS.screenStack.shift();
-		}
-		if (INPUT.keyboard.ARROW_LEFT.execute(timeElapsed))		this.worldMap.moveLeft();
-		if (INPUT.keyboard.ARROW_RIGHT.execute(timeElapsed))	this.worldMap.moveRight();
-		if (INPUT.keyboard.ARROW_UP.execute(timeElapsed))		this.worldMap.moveUp();
-		if (INPUT.keyboard.ARROW_DOWN.execute(timeElapsed))		this.worldMap.moveDown();
-
-		if (INPUT.keyboard.V.execute(timeElapsed))				this.worldMap.changeView();
-		//Mouse
-		if (INPUT.isClicked()){
-			if (INPUT.mouse.x < GLOBALS.mainScreenWidth){
-				if (INPUT.mouse.y > GLOBALS.topMenuHeight && INPUT.mouse.y < GLOBALS.bottomOfMap()){
-					this.worldMap.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);
-				}
-			}
-			
-		}
-	}
-
-	this.draw = function(){
-		var context = GLOBALS.context;
-		context.fillStyle = GLOBALS.backgroundColor;
-		context.fillRect(0, 0, GLOBALS.width, GLOBALS.height);
-
-		this.worldMap.draw();
-
-		LowerMenu.draw(this.worldMap.getTileClicked());
-		RightMenu.draw();
-		MiniMap.draw(this.worldMap);
-	}
 }
+
+GameScreen.prototype.update = function(timeElapsed) {
+	this.totalTime += timeElapsed;
+	//Keyboard
+	if (INPUT.keyboard.ESC.execute(timeElapsed)) {
+		GLOBALS.screenStack.shift();
+	}
+	if (INPUT.keyboard.ARROW_LEFT.execute(timeElapsed))		this.worldMap.moveLeft();
+	if (INPUT.keyboard.ARROW_RIGHT.execute(timeElapsed))	this.worldMap.moveRight();
+	if (INPUT.keyboard.ARROW_UP.execute(timeElapsed))		this.worldMap.moveUp();
+	if (INPUT.keyboard.ARROW_DOWN.execute(timeElapsed))		this.worldMap.moveDown();
+
+	if (INPUT.keyboard.V.execute(timeElapsed))				this.worldMap.changeView();
+	//Mouse
+	if (INPUT.isClicked()){
+		if (INPUT.mouse.x < GLOBALS.mainScreenWidth){
+			if (INPUT.mouse.y > GLOBALS.topMenuHeight && INPUT.mouse.y < GLOBALS.bottomOfMap()){
+				this.worldMap.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);
+			}
+		}
+		
+	}
+};
+
+GameScreen.prototype.draw = function() {
+	var context = GLOBALS.context;
+	context.fillStyle = GLOBALS.backgroundColor;
+	context.fillRect(0, 0, GLOBALS.width, GLOBALS.height);
+
+	this.worldMap.draw();
+
+	LowerMenu.draw(this.worldMap.getTileClicked());
+	RightMenu.draw();
+	MiniMap.draw(this.worldMap);
+};
 
 export default GameScreen;
