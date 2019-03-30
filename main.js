@@ -26,11 +26,10 @@ function loop(timestamp){
 	var elapsedTime = timestamp - lastRender;
 	lastRender = timestamp;
 
+	aux.updateGradient(timestamp);
 	GLOBALS.screenStack[0].draw();
 	GLOBALS.screenStack[0].update(elapsedTime);
 
 	if (!GLOBALS.hasToExit && GLOBALS.screenStack.length > 0) window.requestAnimationFrame(loop);
 	else console.log("Game over");
 }
-
-Math.lerp = function(a,b,x){return a+x*(b-a)};

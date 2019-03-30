@@ -39,12 +39,9 @@ function MainMenuScreen(){
 			width	= context.measureText(text).width;
 
 			if (this.selectedOption == i){
-				var sin	= (1 + Math.sin(this.totalTime * 0.003)) * 0.5;
-				var r	= 255;
-				var g	= Math.lerp(0, 128, sin);
-				var b	= g;
+				var g	= Math.lerp(0, 128, aux.gradient);
 
-				context.fillStyle	= 'rgb('+r+','+g+','+b+')';
+				context.fillStyle	= 'rgb(255,'+g+','+g+')';
 				context.fillText(text, (GLOBALS.width - width) / 2, top);
 				context.fillStyle	= GLOBALS.textColor;
 			}

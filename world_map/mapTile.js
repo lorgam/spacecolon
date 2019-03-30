@@ -45,11 +45,11 @@ MapTile.prototype.mapColor = function(){
 	return this.tileTypes[this.type].color;
 }
 MapTile.prototype.heightGray = function(){
-	var r = Math.lerp(0,255,this.height);
+	var r = aux.getGrey(this.height);
 	return 'rgb('+r+','+r+','+r+')';
 }
 MapTile.prototype.humidityGray = function(){
-	var r = Math.lerp(0,255,0.5 * this.humiditySeed + 0.5);
+	var r = aux.getGrey(0.5 * this.humiditySeed + 0.5);
 	return 'rgb('+r+','+r+','+r+')';
 }
 MapTile.prototype.texture = function(){
