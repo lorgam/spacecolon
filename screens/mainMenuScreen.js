@@ -1,5 +1,5 @@
-import GLOBALS		from './globals.js';
-import INPUT		from './input.js';
+import GLOBALS		from '../globals.js';
+import INPUT		from '../input.js';
 import GameScreen	from './gameScreen.js';
 
 function MainMenuScreen(){

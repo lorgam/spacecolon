@@ -1,11 +1,11 @@
-import GLOBALS			from './globals.js';
-import INPUT			from './input.js';
-import WorldMap			from './world_map/worldMap.js';
-import WorldGenerator	from './world_map/worldGenerator.js';
-import LowerMenu		from './game_menu/lowerMenu.js';
-import RightMenu		from './game_menu/rightMenu.js';
-import MiniMap			from './game_menu/miniMap.js';
-import textureManager	from './texture/textureManager.js';
+import GLOBALS			from '../globals.js';
+import INPUT			from '../input.js';
+import WorldMap			from '../world_map/worldMap.js';
+import WorldGenerator	from '../world_map/worldGenerator.js';
+import LowerMenu		from '../game_menu/lowerMenu.js';
+import RightMenu		from '../game_menu/rightMenu.js';
+import MiniMap			from '../game_menu/miniMap.js';
+import textureManager	from '../texture/textureManager.js';
 
 function GameScreen(){
 	this.totalTime	= 0.0;

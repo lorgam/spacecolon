@@ -1,6 +1,6 @@
 import GLOBALS			from './globals.js';
 import INPUT			from './input.js';
-import MainMenuScreen	from './mainMenuScreen.js';
+import MainMenuScreen	from './screens/mainMenuScreen.js';
 
 var lastRender = 0;
 
