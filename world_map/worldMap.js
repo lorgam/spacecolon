@@ -1,5 +1,6 @@
 import GLOBALS			from '../globals.js';
 import WorldGenerator	from './worldGenerator.js';
+import WorldMapDrawer	from './worldMapDrawer.js';
 
 function WorldMap(options){//Width must be a multiple of 4
 	this.options		= options;
@@ -14,45 +15,7 @@ function WorldMap(options){//Width must be a multiple of 4
 }
 
 WorldMap.prototype.draw = function(){
-	var context = GLOBALS.context;
-
-	var horizontalTilesToShow	= GLOBALS.horizontalTilesToShow();
-	var verticalTilesToShow		= GLOBALS.verticalTilesToShow();
-
-	if (this.typeOfView == 0){
-		context.drawImage(	this.mapCanvas,
-							this.topLeftX * GLOBALS.maxTileSize, this.topLeftY * GLOBALS.maxTileSize, horizontalTilesToShow * GLOBALS.maxTileSize, verticalTilesToShow * GLOBALS.maxTileSize,
-							0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight
-						);
-
-		var horizontalTilesDrawn = this.options.width - this.topLeftX;
-		if (horizontalTilesDrawn < horizontalTilesToShow){
-			context.drawImage(	this.mapCanvas,
-								0, this.topLeftY * GLOBALS.maxTileSize, horizontalTilesToShow * GLOBALS.maxTileSize, verticalTilesToShow * GLOBALS.maxTileSize,
-								horizontalTilesDrawn * GLOBALS.tileSize, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight
-							);
-			horizontalTilesDrawn +=  this.map.width;
-		}
-
-		return;
-	}
-
-	var w, h, mapTile, x, y;
-	for (w = 0; w < horizontalTilesToShow; w++){
-		x = w * GLOBALS.tileSize;
-
-		for (h = 0; h < verticalTilesToShow; h++){
-			y = h * GLOBALS.tileSize + GLOBALS.topMenuHeight;
-			mapTile = this.map[(this.topLeftX + w) % this.options.width][(this.topLeftY + h) % this.options.height];
-
-			switch (this.typeOfView){
-				case 1	: context.fillStyle = mapTile.heightGray();		break;
-				case 2	: context.fillStyle = mapTile.humidityGray();	break;
-				default	: context.fillStyle = mapTile.mapColor();
-			}
-			context.fillRect(x, y, GLOBALS.tileSize, GLOBALS.tileSize);
-		}
-	}
+	WorldMapDrawer.drawArray[this.typeOfView](this);
 }
 
 WorldMap.prototype.mouseClick	= function(x,y){
@@ -68,7 +31,8 @@ WorldMap.prototype.moveLeft		= function(){this.topLeftX = (this.options.width + 
 WorldMap.prototype.moveRight	= function(){this.topLeftX = (this.topLeftX + 1) % this.options.width;}
 WorldMap.prototype.moveUp		= function(){if (this.topLeftY > 0) this.topLeftY = this.topLeftY - 1;}
 WorldMap.prototype.moveDown		= function(){if (this.topLeftY + GLOBALS.verticalTilesToShow() < this.options.height) this.topLeftY = this.topLeftY + 1;}
-WorldMap.prototype.changeView	= function(){this.typeOfView = (this.typeOfView + 1) % 4;}
+
+WorldMap.prototype.changeView	= function(){this.typeOfView = (this.typeOfView + 1) % WorldMapDrawer.drawArray.length;}
 
 WorldMap.prototype.getTileClicked = function(){
 	if (this.tileClicked) return this.map[this.tileClicked.x][this.tileClicked.y];
