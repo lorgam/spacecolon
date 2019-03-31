@@ -15,6 +15,7 @@ const INPUT = {
 	},
 
 	keyDown : function(keyCode){
+		//@TODO: Replace this with an object that maps the inputKeys with their code
 		for (var key in INPUT.keyboard){
 			if (INPUT.keyboard[key].keyCode == keyCode) {
 				INPUT.keyboard[key].keyDown();
