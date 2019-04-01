@@ -36,7 +36,7 @@ MainMenuScreen.prototype.draw = function(){
 
 	var text, width, top	= ((GLOBALS.height - totalHeight) / 2.0) + this.padding + fontHeight;
 	for (var i in this.optionArray){
-		text	= texts[GLOBALS.language].mainMenu[this.optionArray[i]];
+		text	= texts.getText('mainMenu', this.optionArray[i]);
 		width	= context.measureText(text).width;
 
 		if (this.selectedOption == i){
