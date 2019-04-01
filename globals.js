@@ -3,6 +3,8 @@ const GLOBALS = {
 	hasToExit				: false,
 	screenStack				: [],
 
+	language				: 'en',
+
 	width					: 1000,
 	height					: 750,
 	mainScreenWidth			: 800,

@@ -5,7 +5,7 @@ import GameScreen	from './gameScreen.js';
 function MainMenuScreen(){
 	this.totalTime		= 0.0;
 	this.selectedOption	= 0;
-	this.optionArray	= ["Start", "Options", "Exit"];
+	this.optionArray	= ["start", "options", "exit"];
 	this.padding		= 2;
 }
 
@@ -36,7 +36,7 @@ MainMenuScreen.prototype.draw = function(){
 
 	var text, width, top	= ((GLOBALS.height - totalHeight) / 2.0) + this.padding + fontHeight;
 	for (var i in this.optionArray){
-		text	= this.optionArray[i];
+		text	= texts[GLOBALS.language].mainMenu[this.optionArray[i]];
 		width	= context.measureText(text).width;
 
 		if (this.selectedOption == i){
