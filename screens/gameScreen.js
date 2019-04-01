@@ -5,7 +5,7 @@ import WorldGenerator	from '../world_map/worldGenerator.js';
 import LowerMenu		from '../game_menu/lowerMenu.js';
 import RightMenu		from '../game_menu/rightMenu.js';
 import MiniMap			from '../game_menu/miniMap.js';
-import textureManager	from '../texture/textureManager.js';
+import textureManager	from '../neuron/textureManager.js';
 
 function GameScreen(){
 	this.totalTime	= 0.0;
