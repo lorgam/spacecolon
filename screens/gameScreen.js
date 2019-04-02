@@ -6,6 +6,7 @@ import LowerMenu		from '../game_menu/lowerMenu.js';
 import RightMenu		from '../game_menu/rightMenu.js';
 import MiniMap			from '../game_menu/miniMap.js';
 import textureManager	from '../neuron/textureManager.js';
+import OptionsScreen	from './optionsScreen.js';
 
 function GameScreen(){
 	this.totalTime	= 0.0;
@@ -29,6 +30,7 @@ GameScreen.prototype.update = function(timeElapsed) {
 	if (INPUT.keyboard.ARROW_DOWN.execute())	this.worldMap.moveDown();
 
 	if (INPUT.keyboard.V.execute())				this.worldMap.changeView();
+	if (INPUT.keyboard.O.execute())				GLOBALS.screenStack.unshift(new OptionsScreen());
 	//Mouse
 	if (INPUT.isClicked()){
 		if (INPUT.mouse.x < GLOBALS.mainScreenWidth){

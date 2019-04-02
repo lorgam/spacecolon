@@ -11,6 +11,7 @@ const INPUT = {
 		INPUT.keyboard.ALT			= new inputKey(18);
 		INPUT.keyboard.ESC			= new inputKey(27);
 
+		INPUT.keyboard.O			= new inputKey(79);
 		INPUT.keyboard.V			= new inputKey(86);
 	},
 
