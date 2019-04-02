@@ -8,7 +8,11 @@ const texts = {
 			exit	: "Exit"
 		},
 		optionsMenu : {
-			language	: "Language"
+			language	: "Language",
+			tileSize	: "Tile Size",
+			little		: "Little",
+			medium		: "Medium",
+			big			: "Big"
 		}
 	},
 	es : {
@@ -18,7 +22,11 @@ const texts = {
 			exit	: "Salir"
 		},
 		optionsMenu : {
-			language	: "Idioma"
+			language	: "Idioma",
+			tileSize	: "Tamaño de cuadricula",
+			little		: "Pequeño",
+			medium		: "Mediano",
+			big			: "Grande"
 		}
 	}
 }

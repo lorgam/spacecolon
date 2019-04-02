@@ -1,12 +1,12 @@
 import GLOBALS		from '../globals.js';
 import INPUT		from '../input.js';
-import BaseMenu			from './baseMenu.js';
+import BaseMenu		from './baseMenu.js';
 
 function OptionsScreen(){
 	BaseMenu.call(this);
 	this.section		= "optionsMenu";
 
-	this.addButton("language", function(){GLOBALS.screenStack.unshift(new GameScreen());});
+	this.addSelection("tileSize", [{"value":8,"text":"little"},{"value":16,"text":"medium"},{"value":32,"text":"big"}], "tileSize");
 }
 
 OptionsScreen.prototype = Object.create(BaseMenu.prototype);

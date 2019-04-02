@@ -16,6 +16,8 @@ BaseMenu.prototype.update = function(timeElapsed){
 	if (INPUT.keyboard.ARROW_DOWN.execute()) {
 		this.selectedOption = (this.selectedOption + 1) % this.optionArray.length;
 	}
+	if (INPUT.keyboard.ARROW_RIGHT.execute())	this.optionArray[this.selectedOption].nextOption();
+	if (INPUT.keyboard.ARROW_LEFT.execute())	this.optionArray[this.selectedOption].previousOption();
 }
 
 BaseMenu.prototype.padding = 2;
@@ -52,14 +54,22 @@ BaseMenu.prototype.draw = function(){
 BaseMenu.prototype.addButton = function(text, function_pointer){
 	this.optionArray.push(new MenuOption(text, function_pointer));
 }
+BaseMenu.prototype.addSelection = function(text, options, attribute){
+	var val = GLOBALS[attribute];
+	for (var i in options) if (options[i].value == val){
+		this.optionArray.push(new MenuSelection(text, options, i, attribute));
+	}
+}
 
 export default BaseMenu;
 
 function BaseMenuOption(text){
 	this.text = text;
 }
-BaseMenuOption.prototype.getText = function(section){return texts.getText(section, this.text);}
-BaseMenuOption.prototype.execute = function(){}
+BaseMenuOption.prototype.getText		= function(section){return texts.getText(section, this.text);}
+BaseMenuOption.prototype.execute		= function(){}
+BaseMenuOption.prototype.nextOption		= function(){}
+BaseMenuOption.prototype.previousOption	= function(){}
 
 function MenuOption(text, function_pointer){
 	BaseMenuOption.call(this, text);
@@ -68,4 +78,23 @@ function MenuOption(text, function_pointer){
 MenuOption.prototype = Object.create(BaseMenuOption.prototype);
 MenuOption.prototype.execute = function(){
 	this.function_pointer();
+}
+
+function MenuSelection(text, options, selectedOption, attribute){
+	BaseMenuOption.call(this, text);
+	this.options		= options;
+	this.selectedOption	= selectedOption;
+	this.attribute		= attribute;
+}
+MenuSelection.prototype = Object.create(BaseMenuOption.prototype);
+MenuSelection.prototype.nextOption = function(){
+	this.selectedOption		= (this.selectedOption + 1) % this.options.length;
+	GLOBALS[this.attribute]	= this.options[this.selectedOption].value;
+}
+MenuSelection.prototype.previousOption = function(){
+	this.selectedOption = (this.options.length + this.selectedOption - 1) % this.options.length;
+	GLOBALS[this.attribute]	= this.options[this.selectedOption].value;
+}
+MenuSelection.prototype.getText = function(section){
+	return '<- ' + texts.getText(section, this.text) + ' : ' + texts.getText(section, this.options[this.selectedOption].text) + ' ->';
 }
