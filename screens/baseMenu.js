@@ -58,6 +58,15 @@ BaseMenu.prototype.addSelection = function(text, options, attribute){
 	var val = GLOBALS[attribute];
 	for (var i in options) if (options[i].value == val){
 		this.optionArray.push(new MenuSelection(text, options, i, attribute));
+		return;
+	}
+}
+BaseMenu.prototype.addLanguageSelection = function(){
+	var val = texts.language;
+	var options = [{"value":"en","text":"English"},{"value":"es","text":"Español"}];
+	for (var i in options) if (options[i].value == val){
+		this.optionArray.push(new LanguageMenuSelection(options, i));
+		return;
 	}
 }
 
@@ -87,14 +96,28 @@ function MenuSelection(text, options, selectedOption, attribute){
 	this.attribute		= attribute;
 }
 MenuSelection.prototype = Object.create(BaseMenuOption.prototype);
+MenuSelection.prototype.changeValue = function(){
+	GLOBALS[this.attribute] = this.options[this.selectedOption].value;
+}
 MenuSelection.prototype.nextOption = function(){
-	this.selectedOption		= (this.selectedOption + 1) % this.options.length;
-	GLOBALS[this.attribute]	= this.options[this.selectedOption].value;
+	this.selectedOption = (this.selectedOption + 1) % this.options.length;
+	this.changeValue();
 }
 MenuSelection.prototype.previousOption = function(){
 	this.selectedOption = (this.options.length + this.selectedOption - 1) % this.options.length;
-	GLOBALS[this.attribute]	= this.options[this.selectedOption].value;
+	this.changeValue();
 }
 MenuSelection.prototype.getText = function(section){
 	return '<- ' + texts.getText(section, this.text) + ' : ' + texts.getText(section, this.options[this.selectedOption].text) + ' ->';
+}
+
+function LanguageMenuSelection(options, selectedOption){
+	MenuSelection.call(this, 'language', options, selectedOption);
+}
+LanguageMenuSelection.prototype = Object.create(MenuSelection.prototype);
+LanguageMenuSelection.prototype.changeValue = function(){
+	texts.language = this.options[this.selectedOption].value;
+}
+LanguageMenuSelection.prototype.getText = function(section){
+	return '<- ' + texts.getText(section, this.text) + ' : ' + this.options[this.selectedOption].text + ' ->';
 }
