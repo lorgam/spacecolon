@@ -1,5 +1,5 @@
 const INPUT = {
-	keyboard	: {},
+	keyboard	: {aux:{}},
 	mouse		: {clicked:false,x:0,y:0},
 	init : function(){
 		INPUT.keyboard.ARROW_LEFT	= new inputKey(37);
@@ -15,13 +15,8 @@ const INPUT = {
 	},
 
 	keyDown : function(keyCode){
-		//@TODO: Replace this with an object that maps the inputKeys with their code
-		for (var key in INPUT.keyboard){
-			if (INPUT.keyboard[key].keyCode == keyCode) {
-				INPUT.keyboard[key].keyDown();
-				return;
-			}
-		}
+		var key = INPUT.keyboard.aux[keyCode];
+		if (key) key.keyDown();
 	},
 
 	mouseClick : function(x,y){
@@ -41,8 +36,9 @@ const INPUT = {
 export default INPUT;
 
 function inputKey(keyCode){
-	this.isPressed			= false;
-	this.keyCode			= keyCode;
+	this.isPressed				= false;
+	this.keyCode				= keyCode;
+	INPUT.keyboard.aux[keyCode]	= this;
 }
 
 inputKey.prototype.keyDown = function(){
