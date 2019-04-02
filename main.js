@@ -7,6 +7,7 @@ var lastRender = 0;
 window.onload = function(){
 	//Initialize
 	GLOBALS.hasToExit = false;
+	aux.readUserLanguage();
 
 	var canvas	= document.getElementById('main_canvas');
 
