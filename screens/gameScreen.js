@@ -20,15 +20,15 @@ function GameScreen(){
 GameScreen.prototype.update = function(timeElapsed) {
 	this.totalTime += timeElapsed;
 	//Keyboard
-	if (INPUT.keyboard.ESC.execute(timeElapsed)) {
+	if (INPUT.keyboard.ESC.execute()) {
 		GLOBALS.screenStack.shift();
 	}
-	if (INPUT.keyboard.ARROW_LEFT.execute(timeElapsed))		this.worldMap.moveLeft();
-	if (INPUT.keyboard.ARROW_RIGHT.execute(timeElapsed))	this.worldMap.moveRight();
-	if (INPUT.keyboard.ARROW_UP.execute(timeElapsed))		this.worldMap.moveUp();
-	if (INPUT.keyboard.ARROW_DOWN.execute(timeElapsed))		this.worldMap.moveDown();
+	if (INPUT.keyboard.ARROW_LEFT.execute())	this.worldMap.moveLeft();
+	if (INPUT.keyboard.ARROW_RIGHT.execute())	this.worldMap.moveRight();
+	if (INPUT.keyboard.ARROW_UP.execute())		this.worldMap.moveUp();
+	if (INPUT.keyboard.ARROW_DOWN.execute())	this.worldMap.moveDown();
 
-	if (INPUT.keyboard.V.execute(timeElapsed))				this.worldMap.changeView();
+	if (INPUT.keyboard.V.execute())				this.worldMap.changeView();
 	//Mouse
 	if (INPUT.isClicked()){
 		if (INPUT.mouse.x < GLOBALS.mainScreenWidth){
