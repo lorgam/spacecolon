@@ -6,6 +6,9 @@ const texts = {
 			start	: "Start",
 			options	: "Options",
 			exit	: "Exit"
+		},
+		optionsMenu : {
+			language	: "Language"
 		}
 	},
 	es : {
@@ -13,6 +16,9 @@ const texts = {
 			start	: "Empezar",
 			options	: "Opciones",
 			exit	: "Salir"
+		},
+		optionsMenu : {
+			language	: "Idioma"
 		}
 	}
 }
