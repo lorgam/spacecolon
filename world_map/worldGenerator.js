@@ -12,12 +12,13 @@ const WorldGenerator ={
 		var perlinNoise			= new PerlinNoise();
 
 		var faceWidth			= parent.options.width / 4;
-		var heightStep			= 0.05; //steepness of the terrain. Bigger = more steepness. 0.4 Small islands 0.1 Big islands 0.05 Small continents 0.025 Big continents
+		var heightStep			= 0.04 + Math.random() * 0.025; //steepness of the terrain. Bigger = more steepness. 0.4 Small islands 0.1 Big islands 0.05 Small continents 0.025 Big continents
 		var heightSize			= heightStep*(faceWidth+1);
 		var xHeightSize			= heightSize+parent.options.heightSeedX;
 		var zHeightSize			= heightSize+parent.options.heightSeedZ;
 
-		var humidityStep		= 0.1;
+		var humidityStep		= 0.075 + Math.random() * 0.05 ;
+		console.log(humidityStep);
 		var humiditySize		= humidityStep*(faceWidth+1);
 		var xHumiditySize		= humiditySize+parent.options.humiditySeedX;
 		var zHumiditySize		= humiditySize+parent.options.humiditySeedZ;

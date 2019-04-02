@@ -7,24 +7,24 @@ function MapTile(parent, heightSeed, humiditySeed){
 }
 
 MapTile.prototype.tileTypes = {
-	"deepOcean"			: {"color":"#000044"},
-	"ocean"				: {"color":"#000088"},
-	"shallowWaters"		: {"color":"#0000FF"},
-	"beach"				: {"color":"#FFFF00"},
-	"highMountain"		: {"color":"#FFFFFF"},
-	"desert"			: {"color":"#888800"},
-	"grass"				: {"color":"#00FF00"},
-	"forest"			: {"color":"#008800"},
-	"desertMountain"	: {"color":"#444400"},
-	"grassMountain"		: {"color":"#FF00FF"},
-	"forestMountain"	: {"color":"#880088"},
+	"deepOcean"			: {"color":"#072253"},
+	"ocean"				: {"color":"#12326E"},
+	"shallowWaters"		: {"color":"#1F4487"},
+	"beach"				: {"color":"#FFCF75"},
+	"highMountain"		: {"color":"#F9727C"},
+	"desert"			: {"color":"#E2AB46"},
+	"grass"				: {"color":"#71D361"},
+	"forest"			: {"color":"#1B880A"},
+	"desertMountain"	: {"color":"#7D5100"},
+	"grassMountain"		: {"color":"#4BBB3A"},
+	"forestMountain"	: {"color":"#0E6700"},
 }
 
 MapTile.prototype.tileType = function(waterHeight){
 	if (this.height < waterHeight - 0.25)	return "deepOcean";
 	if (this.height < waterHeight - 0.05)	return "ocean";
 	if (this.height < waterHeight)			return "shallowWaters";
-	if (this.height < waterHeight + 0.02)	return "beach";
+	if (this.height < waterHeight + 0.013)	return "beach";
 	if (this.height > 0.85)					return "highMountain";
 
 	var heightDifference = 0.8 - waterHeight; //Amount of height left between beach and high mountain
