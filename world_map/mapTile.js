@@ -11,7 +11,7 @@ MapTile.prototype.tileTypes = {
 	"ocean"				: {"color":"#12326E"},
 	"shallowWaters"		: {"color":"#1F4487"},
 	"beach"				: {"color":"#FFCF75"},
-	"highMountain"		: {"color":"#F9727C"},
+	"highMountain"		: {"color":"#7A0009"},
 	"desert"			: {"color":"#E2AB46"},
 	"grass"				: {"color":"#71D361"},
 	"forest"			: {"color":"#1B880A"},
