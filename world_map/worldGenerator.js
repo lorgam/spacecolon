@@ -18,7 +18,6 @@ const WorldGenerator ={
 		var zHeightSize			= heightSize+parent.options.heightSeedZ;
 
 		var humidityStep		= 0.075 + Math.random() * 0.05 ;
-		console.log(humidityStep);
 		var humiditySize		= humidityStep*(faceWidth+1);
 		var xHumiditySize		= humiditySize+parent.options.humiditySeedX;
 		var zHumiditySize		= humiditySize+parent.options.humiditySeedZ;
