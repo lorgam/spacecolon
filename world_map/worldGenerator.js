@@ -92,9 +92,10 @@ const WorldGenerator ={
 	},
 
 	generateOptions : function(definition){
+		var sizeSeed			= 40 + ~~(Math.random() * 20)
 		var options 			= {};
-		options.width			= 200;
-		options.height			= 100;
+		options.width			= sizeSeed * 4;
+		options.height			= sizeSeed * 3;
 
 		if (definition.type == 'normal'){
 			options.waterHeight		= 0.35 + Math.random() * 0.3;
