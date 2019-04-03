@@ -8,9 +8,8 @@ const WorldGenerator ={
 		mapCanvas.width		= parent.options.width * GLOBALS.maxTileSize; //Render the map to the max resolution and double it
 		mapCanvas.height	= parent.options.height * GLOBALS.maxTileSize;
 		var mapContext		= mapCanvas.getContext('2d');
-		//Noise function for the map height
+		//Noise function for the map height and humidity
 		var perlinNoise		= new PerlinNoise();
-
 		//steepness of the terrain. Bigger = more steepness
 		var heightStep		= 0.04 + Math.random() * 0.05;
 		var humidityStep	= 0.075 + Math.random() * 0.05;
@@ -18,14 +17,14 @@ const WorldGenerator ={
 		var angularChange	= 2 * Math.PI / parent.options.width;
 		var radius			= parent.options.width / 8;
 		var angle			= 0
+		//Generate map
+		var map				= new Array(parent.options.width);
 
 		var xHeight, zHeight;
 		var xHumidity, zHumidity;
 		var tileHeight, tileHumidity, mapTile;
 		var sin, cos;
 
-		//Generate map
-		var map				= new Array(parent.options.width);
 		for (var w = 0; w < parent.options.width; w++){
 			map[w] = new Array(parent.options.height);
 
