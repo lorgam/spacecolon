@@ -9,82 +9,47 @@ const WorldGenerator ={
 		mapCanvas.height	= parent.options.height * GLOBALS.maxTileSize;
 		var mapContext		= mapCanvas.getContext('2d');
 		//Noise function for the map height
-		var perlinNoise			= new PerlinNoise();
+		var perlinNoise		= new PerlinNoise();
 
-		var faceWidth			= parent.options.width / 4;
-		var heightStep			= 0.04 + Math.random() * 0.025; //steepness of the terrain. Bigger = more steepness. 0.4 Small islands 0.1 Big islands 0.05 Small continents 0.025 Big continents
-		var heightSize			= heightStep*(faceWidth+1);
-		var xHeightSize			= heightSize+parent.options.heightSeedX;
-		var zHeightSize			= heightSize+parent.options.heightSeedZ;
+		//steepness of the terrain. Bigger = more steepness. 0.25 Small islands 0.1 Big islands 0.05 Small continents 0.025 Big continents
+		var heightStep		= 0.05 + Math.random() * 0.03;
+		var humidityStep	= 0.075 + Math.random() * 0.05;
 
-		var humidityStep		= 0.075 + Math.random() * 0.05 ;
-		var humiditySize		= humidityStep*(faceWidth+1);
-		var xHumiditySize		= humiditySize+parent.options.humiditySeedX;
-		var zHumiditySize		= humiditySize+parent.options.humiditySeedZ;
+		var angularChange	= 2 * Math.PI / parent.options.width;
+		var radius			= parent.options.width / 8;
+		var angle			= 0
+
+		var xHeight, zHeight;
+		var xHumidity, zHumidity;
+		var tileHeight, tileHumidity, mapTile;
+		var sin, cos;
+
 		//Generate map
-		var map					= new Array(parent.options.width);
-		var tileHeight,		xHeight,	yHeight;
-		var tileHumidity,	xHumidity,	yHumidity;
-		var mapTile, x;
+		var map				= new Array(parent.options.width);
+		for (var w = 0; w < parent.options.width; w++){
+			map[w] = new Array(parent.options.height);
 
-		xHeight		= 0;
-		xHumidity	= 0;
-		for (var w = 0; w < faceWidth; w++){
-			map[faceWidth-w-1]		= new Array(parent.options.height);
-			map[faceWidth+w]		= new Array(parent.options.height);
-			map[faceWidth*3-w-1]	= new Array(parent.options.height);
-			map[faceWidth*3+w]		= new Array(parent.options.height);
+			sin = radius * Math.sin(angle);
+			cos = radius * Math.cos(angle);
 
-			xHeight		+= heightStep;
-			xHumidity	+= humidityStep;
+			xHeight = heightStep * sin + parent.options.heightSeedX;
+			zHeight = heightStep * cos + parent.options.heightSeedZ;
 
-			yHeight		=  parent.options.heightSeedY;
-			yHumidity	=  parent.options.humiditySeedY;
+			xHumidity = humidityStep * sin + parent.options.humiditySeedX;
+			zHumidity = humidityStep * cos + parent.options.humiditySeedZ;
 
 			for (var h = 0; h < parent.options.height; h++){
-				yHeight += heightStep;
-				yHumidity += humidityStep;
+				tileHeight				= perlinNoise.noise(xHeight, h * heightStep + parent.options.heightSeedY, zHeight);
+				tileHumidity			= perlinNoise.noise(xHumidity, h * humidityStep + parent.options.humiditySeedY, zHumidity);
 
-				tileHeight					= perlinNoise.noise(parent.options.heightSeedX,		yHeight,	parent.options.heightSeedZ+xHeight);
-				tileHumidity				= perlinNoise.noise(parent.options.humiditySeedX,	yHumidity,	parent.options.humiditySeedZ+xHumidity);
+				mapTile					= new MapTile(parent, tileHeight, tileHumidity);
+				map[w][h]				= mapTile;
 
-				x = faceWidth-w-1;
-				mapTile						= new MapTile(parent, tileHeight, tileHumidity);
-				map[x][h]					= mapTile;
-
-				mapContext.fillStyle		= mapTile.mapColor();
-				mapContext.fillRect(x * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
-
-				tileHeight					= perlinNoise.noise(parent.options.heightSeedX+xHeight,		yHeight,	parent.options.heightSeedZ);
-				tileHumidity				= perlinNoise.noise(parent.options.humiditySeedX+xHumidity,	yHumidity,	parent.options.humiditySeedZ);
-
-				x = faceWidth+w;
-				mapTile						= new MapTile(parent, tileHeight, tileHumidity);
-				map[x][h]					= mapTile;
-
-				mapContext.fillStyle		= mapTile.mapColor();
-				mapContext.fillRect(x * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
-
-				tileHeight					= perlinNoise.noise(xHeightSize,	yHeight,	zHeightSize-xHeight);
-				tileHumidity				= perlinNoise.noise(xHumiditySize,	yHumidity,	zHumiditySize-xHumidity);
-
-				x = faceWidth*3-w-1;
-				mapTile						= new MapTile(parent, tileHeight, tileHumidity);
-				map[x][h]					= mapTile;
-
-				mapContext.fillStyle		= mapTile.mapColor();
-				mapContext.fillRect(x * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
-
-				tileHeight					= perlinNoise.noise(xHeightSize-xHeight,		yHeight,	zHeightSize);
-				tileHumidity				= perlinNoise.noise(xHumiditySize-xHumidity,	yHumidity,	zHumiditySize);
-
-				x = faceWidth*3+w;
-				mapTile						= new MapTile(parent, tileHeight, tileHumidity);
-				map[x][h]					= mapTile;
-
-				mapContext.fillStyle		= mapTile.mapColor();
-				mapContext.fillRect(x * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
+				mapContext.fillStyle	= mapTile.mapColor();
+				mapContext.fillRect(w * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
 			}
+
+			angle += angularChange;
 		}
 
 		parent.map			= map;
