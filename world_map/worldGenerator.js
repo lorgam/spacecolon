@@ -77,6 +77,7 @@ WorldGenerator.generateResources = function(parent){
 
 		if (tile.height > parent.options.waterHeight + 0.15){
 			//Can have minerals
+			if (tile.resource) continue;
 			total--;
 			tile.resource = resources.MINERAL;
 
@@ -94,7 +95,8 @@ WorldGenerator.generateResources = function(parent){
 		tile = parent.map[x][y];
 
 		if (tile.height < parent.options.waterHeight + 0.15){
-			//Can have minerals
+			//Can have gas
+			if (tile.resource) continue;
 			total--;
 			tile.resource = resources.GAS;
 
