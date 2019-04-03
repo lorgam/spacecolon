@@ -56,7 +56,7 @@ const WorldGenerator ={
 	},
 
 	generateOptions : function(definition){
-		var sizeSeed			= 40 + ~~(Math.random() * 20)
+		var sizeSeed			= 40 + ~~(Math.random() * 20);
 		var options 			= {};
 		options.width			= sizeSeed * 4;
 		options.height			= sizeSeed * 3;
