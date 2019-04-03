@@ -1,4 +1,4 @@
-import MainMenuScreen	from './screens/mainMenuScreen.js';
+import MainMenuScreen	from '../screens/mainMenuScreen.js';
 
 var lastRender = 0;
 
