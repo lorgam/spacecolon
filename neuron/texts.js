@@ -13,6 +13,10 @@ const texts = {
 			little		: "Little",
 			medium		: "Medium",
 			big			: "Big"
+		},
+		materials : {
+			mineral	: "mineral",
+			gas		: "gas",
 		}
 	},
 	es : {
@@ -27,6 +31,10 @@ const texts = {
 			little		: "Pequeño",
 			medium		: "Mediano",
 			big			: "Grande"
+		},
+		materials : {
+			mineral	: "mineral",
+			gas		: "gas",
 		}
 	}
 }

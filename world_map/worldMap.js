@@ -4,14 +4,14 @@ import WorldMapDrawer	from './worldMapDrawer.js';
 
 function WorldMap(options){//Width must be a multiple of 4
 	this.options		= options;
-	WorldGenerator.generateWorld(this);
+	WorldGenerator.generate(this);
 
 	this.tileClicked	= null;
 	//Tile in the top-left corner of the userview
 	this.topLeftX		= 0;
 	this.topLeftY		= 0;
 	//
-	this.typeOfView		= 0; //0: Normal, 1: Height, 2: Humidity
+	this.typeOfView		= 0; //0: Normal, 1: Height, 2: Humidity, 3: Blocks
 }
 
 WorldMap.prototype.draw = function(){

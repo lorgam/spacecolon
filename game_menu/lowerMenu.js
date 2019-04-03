@@ -23,6 +23,12 @@ const LowerMenu = {
 		top		+= fontHeight;
 		text	=  'Humidity: ' + tile.humiditySeed;
 		context.fillText(text, 15, top);
+
+		if (tile.resource) {
+			top		+= fontHeight;
+			text	=  texts.getText('materials', tile.resource.text);
+			context.fillText(text, 15, top);
+		}
 	}
 }
 export default LowerMenu;

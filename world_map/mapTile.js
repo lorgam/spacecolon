@@ -4,6 +4,7 @@ function MapTile(parent, heightSeed, humiditySeed){
 	this.humiditySeed	= humiditySeed;
 	this.height 		= 0.5*this.heightSeed+0.5;
 	this.type			= this.tileType(this.parent.options.waterHeight);
+	this.resource		= null;
 }
 
 MapTile.prototype.tileTypes = {
@@ -55,5 +56,4 @@ MapTile.prototype.humidityGray = function(){
 MapTile.prototype.texture = function(){
 	return this.tileTypes[this.type].canvas;
 }
-
 export default MapTile;
