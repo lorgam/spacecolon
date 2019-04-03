@@ -1,4 +1,3 @@
-import GLOBALS	from '../globals.js';
 import MapTile	from '../world_map/mapTile.js';
 
 const textureManager = {

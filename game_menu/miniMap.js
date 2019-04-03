@@ -1,5 +1,3 @@
-import GLOBALS	from '../globals.js';
-
 const MiniMap = {}
 
 MiniMap.draw = function(worldMap){

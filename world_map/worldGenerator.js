@@ -1,4 +1,3 @@
-import GLOBALS		from '../globals.js';
 import PerlinNoise	from '../neuron/perlinNoise.js';
 import MapTile		from './mapTile.js';
 import resources	from './resources.js';

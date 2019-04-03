@@ -1,4 +1,3 @@
-import GLOBALS			from '../globals.js';
 import WorldGenerator	from './worldGenerator.js';
 import WorldMapDrawer	from './worldMapDrawer.js';
 

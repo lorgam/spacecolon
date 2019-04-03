@@ -1,5 +1,3 @@
-import GLOBALS			from '../globals.js';
-import INPUT			from '../input.js';
 import BaseMenu			from './baseMenu.js';
 import OptionsScreen	from './optionsScreen.js';
 import GameScreen		from './gameScreen.js';

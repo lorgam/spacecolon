@@ -26,5 +26,3 @@ GLOBALS.bottomOfMap				= function(){return GLOBALS.topMenuHeight + GLOBALS.mainS
 GLOBALS.rightMenuSize			= function(){return GLOBALS.width - GLOBALS.mainScreenWidth;}
 GLOBALS.lowerMenuSize			= function(){return GLOBALS.height - GLOBALS.bottomOfMap();}
 GLOBALS.fontHeight				= function(){return parseInt(GLOBALS.context.font.match(/\d+/));} //Requires the fonts to be specified in px
-
-export default GLOBALS;

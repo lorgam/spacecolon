@@ -34,8 +34,6 @@ const INPUT = {
 	}
 };
 
-export default INPUT;
-
 function inputKey(keyCode){
 	this.isPressed				= false;
 	this.keyCode				= keyCode;

@@ -1,6 +1,3 @@
-import GLOBALS	from '../globals.js';
-import INPUT	from '../input.js';
-
 function BaseMenu(){
 	this.selectedOption	= 0;
 	this.optionArray	= [];

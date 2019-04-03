@@ -1,5 +1,3 @@
-import GLOBALS			from '../globals.js';
-import INPUT			from '../input.js';
 import WorldMap			from '../world_map/worldMap.js';
 import WorldGenerator	from '../world_map/worldGenerator.js';
 import LowerMenu		from '../game_menu/lowerMenu.js';

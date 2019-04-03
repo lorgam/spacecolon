@@ -1,6 +1,3 @@
-import GLOBALS			from '../globals.js';
-
-//Types of view of the map
 const WorldMapDrawer = {}
 
 WorldMapDrawer.normalMapView = function(worldMap){

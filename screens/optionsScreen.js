@@ -1,5 +1,3 @@
-import GLOBALS		from '../globals.js';
-import INPUT		from '../input.js';
 import BaseMenu		from './baseMenu.js';
 
 function OptionsScreen(){
