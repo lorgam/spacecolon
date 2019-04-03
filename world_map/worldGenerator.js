@@ -11,8 +11,8 @@ const WorldGenerator ={
 		//Noise function for the map height
 		var perlinNoise		= new PerlinNoise();
 
-		//steepness of the terrain. Bigger = more steepness. 0.25 Small islands 0.1 Big islands 0.05 Small continents 0.025 Big continents
-		var heightStep		= 0.05 + Math.random() * 0.03;
+		//steepness of the terrain. Bigger = more steepness
+		var heightStep		= 0.04 + Math.random() * 0.05;
 		var humidityStep	= 0.075 + Math.random() * 0.05;
 
 		var angularChange	= 2 * Math.PI / parent.options.width;
@@ -63,7 +63,7 @@ const WorldGenerator ={
 		options.height			= sizeSeed * 3;
 
 		if (definition.type == 'normal'){
-			options.waterHeight		= 0.35 + Math.random() * 0.3;
+			options.waterHeight		= 0.35 + Math.random() * 0.2;
 
 			options.heightSeedX		= Math.random();
 			options.heightSeedY		= Math.random();
