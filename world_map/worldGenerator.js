@@ -1,6 +1,6 @@
 import PerlinNoise	from '../neuron/perlinNoise.js';
 import MapTile		from './mapTile.js';
-import resources	from './resources.js';
+import resources	from '../resources/resources.js';
 
 const WorldGenerator ={}
 
