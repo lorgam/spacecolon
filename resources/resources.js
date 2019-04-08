@@ -6,20 +6,20 @@ const resources = {
 export default resources;
 
 
-resources.generate = function(map){
-	var mapContext	= map.mapCanvas.getContext('2d');
-	var totalSize = map.options.width * map.options.height;
+resources.generate = function(worldMap){
+	var mapContext	= worldMap.mapCanvas.getContext('2d');
+	var totalSize = worldMap.options.width * worldMap.options.height;
 	var x, y, tile, total;
 	//Generate minerals
 	total = ~~(totalSize  * 0.0015);
 
 	while (total > 0){
-		x = ~~(Math.random() * map.options.width);
-		y = ~~(Math.random() * map.options.height);
+		x = ~~(Math.random() * worldMap.options.width);
+		y = ~~(Math.random() * worldMap.options.height);
 
-		tile = map.map[x][y];
+		tile = worldMap.map[x][y];
 
-		if (tile.height > map.options.waterHeight + 0.15){
+		if (tile.height > worldMap.options.waterHeight + 0.15){
 			//Can have minerals
 			if (tile.resource) continue;
 			total--;
@@ -33,12 +33,12 @@ resources.generate = function(map){
 	total = ~~(totalSize  * 0.0005);
 
 	while (total > 0){
-		x = ~~(Math.random() * map.options.width);
-		y = ~~(Math.random() * map.options.height);
+		x = ~~(Math.random() * worldMap.options.width);
+		y = ~~(Math.random() * worldMap.options.height);
 
-		tile = map.map[x][y];
+		tile = worldMap.map[x][y];
 
-		if (tile.height < map.options.waterHeight + 0.15){
+		if (tile.height < worldMap.options.waterHeight + 0.15){
 			//Can have gas
 			if (tile.resource) continue;
 			total--;

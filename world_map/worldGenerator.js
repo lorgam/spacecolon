@@ -4,15 +4,15 @@ import resources	from '../resources/resources.js';
 
 const WorldGenerator ={}
 
-WorldGenerator.generate = function(parent){
-	WorldGenerator.generateWorld(parent);
-	resources.generate(parent);
+WorldGenerator.generate = function(worldMap){
+	WorldGenerator.generateWorld(worldMap);
+	resources.generate(worldMap);
 }
 
-WorldGenerator.generateWorld = function(parent){
+WorldGenerator.generateWorld = function(worldMap){
 	var mapCanvas		= document.createElement('canvas');
-	mapCanvas.width		= parent.options.width * GLOBALS.maxTileSize; //Render the map to the max resolution and double it
-	mapCanvas.height	= parent.options.height * GLOBALS.maxTileSize;
+	mapCanvas.width		= worldMap.options.width * GLOBALS.maxTileSize; //Render the map to the max resolution and double it
+	mapCanvas.height	= worldMap.options.height * GLOBALS.maxTileSize;
 	var mapContext		= mapCanvas.getContext('2d');
 	//Noise function for the map height and humidity
 	var perlinNoise		= new PerlinNoise();
@@ -20,34 +20,34 @@ WorldGenerator.generateWorld = function(parent){
 	var heightStep		= 0.04 + Math.random() * 0.05;
 	var humidityStep	= 0.075 + Math.random() * 0.05;
 
-	var angularChange	= 2 * Math.PI / parent.options.width;
-	var radius			= parent.options.width / 8;
+	var angularChange	= 2 * Math.PI / worldMap.options.width;
+	var radius			= worldMap.options.width / 8;
 	var angle			= 0
 	//Generate map
-	var map				= new Array(parent.options.width);
+	var map				= new Array(worldMap.options.width);
 
 	var xHeight, zHeight;
 	var xHumidity, zHumidity;
 	var tileHeight, tileHumidity, mapTile;
 	var sin, cos;
 
-	for (var w = 0; w < parent.options.width; w++){
-		map[w] = new Array(parent.options.height);
+	for (var w = 0; w < worldMap.options.width; w++){
+		map[w] = new Array(worldMap.options.height);
 
 		sin = radius * Math.sin(angle);
 		cos = radius * Math.cos(angle);
 
-		xHeight = heightStep * sin + parent.options.heightSeedX;
-		zHeight = heightStep * cos + parent.options.heightSeedZ;
+		xHeight = heightStep * sin + worldMap.options.heightSeedX;
+		zHeight = heightStep * cos + worldMap.options.heightSeedZ;
 
-		xHumidity = humidityStep * sin + parent.options.humiditySeedX;
-		zHumidity = humidityStep * cos + parent.options.humiditySeedZ;
+		xHumidity = humidityStep * sin + worldMap.options.humiditySeedX;
+		zHumidity = humidityStep * cos + worldMap.options.humiditySeedZ;
 
-		for (var h = 0; h < parent.options.height; h++){
-			tileHeight				= perlinNoise.noise(xHeight, h * heightStep + parent.options.heightSeedY, zHeight);
-			tileHumidity			= perlinNoise.noise(xHumidity, h * humidityStep + parent.options.humiditySeedY, zHumidity);
+		for (var h = 0; h < worldMap.options.height; h++){
+			tileHeight				= perlinNoise.noise(xHeight, h * heightStep + worldMap.options.heightSeedY, zHeight);
+			tileHumidity			= perlinNoise.noise(xHumidity, h * humidityStep + worldMap.options.humiditySeedY, zHumidity);
 
-			mapTile					= new MapTile(parent, tileHeight, tileHumidity);
+			mapTile					= new MapTile(worldMap, tileHeight, tileHumidity);
 			map[w][h]				= mapTile;
 
 			mapContext.fillStyle	= mapTile.mapColor();
@@ -57,8 +57,8 @@ WorldGenerator.generateWorld = function(parent){
 		angle += angularChange;
 	}
 
-	parent.map			= map;
-	parent.mapCanvas	= mapCanvas;
+	worldMap.map		= map;
+	worldMap.mapCanvas	= mapCanvas;
 }
 
 WorldGenerator.generateOptions = function(definition){
