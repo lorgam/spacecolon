@@ -5,7 +5,8 @@ import RightMenu		from '../game_menu/rightMenu.js';
 import MiniMap			from '../game_menu/miniMap.js';
 import textureManager	from '../neuron/textureManager.js';
 import OptionsScreen	from './optionsScreen.js';
-
+//@Note: Here should be the state of the game
+//The update and draw methods should be mapped to the current state functions
 function GameScreen(){
 	this.totalTime	= 0.0;
 	this.worldMap	= new WorldMap(WorldGenerator.generateOptions(
