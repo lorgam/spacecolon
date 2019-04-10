@@ -10,6 +10,16 @@ WorldGenerator.generate = function(worldMap){
 }
 
 WorldGenerator.generateWorld = function(worldMap){
+	//@Debug: Secondary canvas showing what we have generated
+	var mapSecCanvas		= document.getElementById('sec_canvas');
+	var mapSecContext		= mapSecCanvas.getContext('2d');
+
+	mapSecContext.fillStyle = "#FF0000";
+	mapSecContext.fillRect(0, 0, 1000, 750);
+
+	//@Debug
+
+
 	var mapCanvas		= document.createElement('canvas');
 	mapCanvas.width		= worldMap.options.width * GLOBALS.maxTileSize; //Render the map to the max resolution and double it
 	mapCanvas.height	= worldMap.options.height * GLOBALS.maxTileSize;
@@ -59,6 +69,13 @@ WorldGenerator.generateWorld = function(worldMap){
 
 	worldMap.map		= map;
 	worldMap.mapCanvas	= mapCanvas;
+
+	//@Debug: Secondary canvas showing what we have generated
+
+	mapSecContext.fillStyle = "#FF0000";
+	mapSecContext.drawImage(mapCanvas, 0, 0, 1000, 750);
+
+	//@Debug
 }
 
 WorldGenerator.generateOptions = function(definition){
