@@ -1,5 +1,8 @@
 import WorldGenerator	from './worldGenerator.js';
 import WorldMapDrawer	from './worldMapDrawer.js';
+import LowerMenu		from '../game_menu/lowerMenu.js';
+import RightMenu		from '../game_menu/rightMenu.js';
+import MiniMap			from '../game_menu/miniMap.js';
 
 function WorldMap(options){//Width must be a multiple of 4
 	this.options		= options;
@@ -14,7 +17,39 @@ function WorldMap(options){//Width must be a multiple of 4
 }
 
 WorldMap.prototype.draw = function(){
+	var context = GLOBALS.context;
+	context.fillStyle = GLOBALS.backgroundColor;
+	context.fillRect(0, 0, GLOBALS.width, GLOBALS.height);
+
 	WorldMapDrawer.drawArray[this.typeOfView](this);
+
+	LowerMenu.draw(this.getTileClicked());
+	RightMenu.draw();
+	MiniMap.draw(this);
+}
+
+WorldMap.prototype.update = function(timeElapsed) {
+	//Keyboard
+	if (INPUT.keyboard.ESC.execute()) {
+		GLOBALS.screenStack.shift();
+	}
+	if (INPUT.keyboard.ARROW_LEFT.execute())	this.moveLeft();
+	if (INPUT.keyboard.ARROW_RIGHT.execute())	this.moveRight();
+	if (INPUT.keyboard.ARROW_UP.execute())		this.moveUp();
+	if (INPUT.keyboard.ARROW_DOWN.execute())	this.moveDown();
+
+	if (INPUT.keyboard.V.execute())				this.changeView();
+	//Mouse
+	if (INPUT.isClicked()){
+		if (INPUT.mouse.x < GLOBALS.mainScreenWidth){
+			if (INPUT.mouse.y > GLOBALS.topMenuHeight && INPUT.mouse.y < GLOBALS.bottomOfMap()){
+				this.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);
+			}
+		}
+		else if (INPUT.mouse.y >= GLOBALS.bottomOfMap()){
+			MiniMap.mouseClick(this, INPUT.mouse.x - GLOBALS.mainScreenWidth, INPUT.mouse.y - GLOBALS.bottomOfMap());
+		}
+	}
 }
 
 WorldMap.prototype.mouseClick	= function(x,y){
