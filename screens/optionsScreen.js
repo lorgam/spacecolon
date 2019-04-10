@@ -1,4 +1,4 @@
-import BaseMenu		from './baseMenu.js';
+import BaseMenu		from '../neuron/baseMenu.js';
 
 function OptionsScreen(){
 	BaseMenu.call(this);
