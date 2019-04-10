@@ -8,9 +8,9 @@ const GLOBALS = {
 	mainScreenWidth			: 800,
 	mainScreenHeight		: 600,
 	topMenuHeight			: 25,
-	tileSize				: 8,
-	minTileSize				: 8,
-	maxTileSize				: 32,
+	tileSize				: 16,
+	minTileSize				: 16,
+	maxTileSize				: 64,
 
 	menuFont				: "30px Arial",
 	normalFont				: "14px Arial",
