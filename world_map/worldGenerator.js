@@ -1,12 +1,12 @@
-import PerlinNoise	from '../neuron/perlinNoise.js';
-import MapTile		from './mapTile.js';
-import resources	from '../resources/resources.js';
+import PerlinNoise		from '../neuron/perlinNoise.js';
+import resourceManager	from '../neuron/resourceManager.js';
+import MapTile			from './mapTile.js';
 
 const WorldGenerator ={}
 
 WorldGenerator.generate = function(worldMap){
 	WorldGenerator.generateWorld(worldMap);
-	resources.generate(worldMap);
+	resourceManager.generateResources(worldMap);
 }
 
 WorldGenerator.generateWorld = function(worldMap){

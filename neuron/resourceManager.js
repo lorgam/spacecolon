@@ -1,12 +1,12 @@
-const resources = {
+const resourceManager = {
 	MINERAL	: {id:1,color:"#DC444F",text:"mineral",default:100},
 	GAS		: {id:2,color:"#CB8F1E",text:"gas",default:0}
 }
 
-export default resources;
+export default resourceManager;
 
 
-resources.generate = function(worldMap){
+resourceManager.generateResources = function(worldMap){
 	var mapContext	= worldMap.mapCanvas.getContext('2d');
 	var totalSize = worldMap.options.width * worldMap.options.height;
 	var x, y, tile, total;
@@ -23,9 +23,9 @@ resources.generate = function(worldMap){
 			//Can have minerals
 			if (tile.resource) continue;
 			total--;
-			tile.resource = resources.MINERAL;
+			tile.resource = resourceManager.MINERAL;
 
-			mapContext.fillStyle = resources.MINERAL.color;
+			mapContext.fillStyle = resourceManager.MINERAL.color;
 			mapContext.fillRect(x * GLOBALS.maxTileSize, y * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
 		}
 	}
@@ -42,9 +42,9 @@ resources.generate = function(worldMap){
 			//Can have gas
 			if (tile.resource) continue;
 			total--;
-			tile.resource = resources.GAS;
+			tile.resource = resourceManager.GAS;
 
-			mapContext.fillStyle = resources.GAS.color;
+			mapContext.fillStyle = resourceManager.GAS.color;
 			mapContext.fillRect(x * GLOBALS.maxTileSize, y * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
 		}
 	}
