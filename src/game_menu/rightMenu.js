@@ -1,3 +1,5 @@
+import GLOBALS	from '../globals/globals.js';
+
 const RightMenu = {
 	draw : function(worldMap){
 		var context = GLOBALS.context;

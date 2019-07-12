@@ -1,3 +1,5 @@
+import GLOBALS			from '../globals/globals.js';
+import INPUT			from '../globals/input.js';
 import WorldMap			from '../world_map/worldMap.js';
 import WorldGenerator	from '../world_map/worldGenerator.js';
 import textureManager	from '../neuron/textureManager.js';

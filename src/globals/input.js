@@ -51,3 +51,5 @@ inputKey.prototype.execute = function(){
 	}
 	return false;
 }
+
+export default INPUT;

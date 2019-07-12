@@ -1,3 +1,5 @@
+import aux	from '../globals/auxiliar.js';
+
 function MapTile(parent, heightSeed, humiditySeed){
 	this.parent			= parent;
 	this.heightSeed		= heightSeed;

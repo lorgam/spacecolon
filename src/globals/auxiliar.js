@@ -1,3 +1,5 @@
+import texts	from './texts.js';
+
 const aux = {
 	gradient	: 0
 }
@@ -18,3 +20,5 @@ aux.readUserLanguage	= function(){
 }
 
 Math.lerp				= function(a,b,x){return a+x*(b-a)};
+
+export default aux;

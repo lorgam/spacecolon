@@ -1,3 +1,6 @@
+import GLOBALS			from './globals/globals.js';
+import INPUT			from './globals/input.js';
+import aux				from './globals/auxiliar.js';
 import MainMenuScreen	from './screens/mainMenuScreen.js';
 
 var lastRender = 0;

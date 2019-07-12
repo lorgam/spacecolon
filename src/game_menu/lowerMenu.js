@@ -1,3 +1,6 @@
+import GLOBALS	from '../globals/globals.js';
+import texts	from '../globals/texts.js';
+
 const LowerMenu = {
 	draw : function(tile){
 		if (!tile) return;

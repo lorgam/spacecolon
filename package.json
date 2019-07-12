@@ -1,0 +1,25 @@
+{
+  "name": "spacecolon",
+  "version": "1.0.0",
+  "description": "Javascript game based on Sid Meier's Colonization",
+  "private": true,
+  "dependencies": {
+    "webpack-cli": "^3.3.5",
+    "webpack": "^4.35.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorgam/spacecolon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lorgam/spacecolon/issues"
+  },
+  "homepage": "https://github.com/lorgam/spacecolon#readme"
+}
