@@ -17,6 +17,10 @@ const texts = {
 		materials : {
 			mineral	: "mineral",
 			gas		: "gas",
+		},
+		life : {
+			fish		: "fish",
+			hervibore	: "hervibore",
 		}
 	},
 	es : {
@@ -35,6 +39,10 @@ const texts = {
 		materials : {
 			mineral	: "mineral",
 			gas		: "gas",
+		},
+		life : {
+			fish		: "peces",
+			hervibore	: "hervíboros",
 		}
 	}
 }

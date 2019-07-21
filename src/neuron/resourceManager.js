@@ -7,7 +7,6 @@ const resourceManager = {
 
 export default resourceManager;
 
-
 resourceManager.generateResources = function(worldMap){
 	var mapContext	= worldMap.mapCanvas.getContext('2d');
 	var totalSize = worldMap.options.width * worldMap.options.height;
@@ -25,6 +24,7 @@ resourceManager.generateResources = function(worldMap){
 			//Can have minerals
 			if (tile.resource) continue;
 			total--;
+
 			tile.resource = resourceManager.MINERAL;
 
 			mapContext.fillStyle = resourceManager.MINERAL.color;
@@ -50,5 +50,4 @@ resourceManager.generateResources = function(worldMap){
 			mapContext.fillRect(x * GLOBALS.maxTileSize, y * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
 		}
 	}
-	//Generate life
 }

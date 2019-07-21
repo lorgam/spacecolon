@@ -7,6 +7,7 @@ function MapTile(parent, heightSeed, humiditySeed){
 	this.height 		= 0.5*this.heightSeed+0.5;
 	this.type			= this.tileType(this.parent.options.waterHeight);
 	this.resource		= null;
+	this.life			= null;
 }
 
 MapTile.prototype.tileTypes = {

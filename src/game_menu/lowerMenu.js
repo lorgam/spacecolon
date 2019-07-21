@@ -30,6 +30,12 @@ const LowerMenu = {
 			text	=  texts.getText('materials', tile.resource.text);
 			context.fillText(text, 15, top);
 		}
+
+		if (tile.life) {
+			top		+= fontHeight;
+			text	=  texts.getText('life', tile.life.text);
+			context.fillText(text, 15, top);
+		}
 	}
 }
 export default LowerMenu;
