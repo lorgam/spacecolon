@@ -38,4 +38,5 @@ const LowerMenu = {
 		}
 	}
 }
+
 export default LowerMenu;
