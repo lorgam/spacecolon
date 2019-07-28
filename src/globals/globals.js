@@ -20,8 +20,8 @@ const GLOBALS = {
 	highlightColor			: "#FF0000",
 };
 
-GLOBALS.horizontalTilesToShow	= function(){return GLOBALS.mainScreenWidth  / GLOBALS.tileSize;}
-GLOBALS.verticalTilesToShow		= function(){return GLOBALS.mainScreenHeight / GLOBALS.tileSize;}
+GLOBALS.horizontalTilesToShow	= function(){return ~~(GLOBALS.mainScreenWidth  / GLOBALS.tileSize);}
+GLOBALS.verticalTilesToShow		= function(){return ~~(GLOBALS.mainScreenHeight / GLOBALS.tileSize);}
 GLOBALS.bottomOfMap				= function(){return GLOBALS.topMenuHeight + GLOBALS.mainScreenHeight;}
 GLOBALS.rightMenuSize			= function(){return GLOBALS.width - GLOBALS.mainScreenWidth;}
 GLOBALS.lowerMenuSize			= function(){return GLOBALS.height - GLOBALS.bottomOfMap();}
