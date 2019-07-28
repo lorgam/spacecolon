@@ -1,7 +1,7 @@
 import GLOBALS	from '../globals/globals.js';
 
 const lifeManager = {
-	SEALIFE: {radius:15,color:"#5774AA",text:"fish"},
+	SEALIFE: {radius:15,color:"#FFFFFF",text:"fish"},
 	GRASSLIFE: {radius:15,color:"#5774AA",text:"hervibore"}
 }
 
