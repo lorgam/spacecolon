@@ -10,8 +10,14 @@ export default resourceManager;
 resourceManager.generateResources = function(worldMap){
 	var mapContext	= worldMap.mapCanvas.getContext('2d');
 	var totalSize = worldMap.options.width * worldMap.options.height;
+
+	resourceManager.generateMinerals(worldMap, mapContext, totalSize);
+	resourceManager.generateGas(worldMap, mapContext, totalSize);
+}
+
+resourceManager.generateMinerals = function(worldMap, mapContext, totalSize){
 	var x, y, tile, total;
-	//Generate minerals
+
 	total = ~~(totalSize  * 0.0015);
 
 	while (total > 0){
@@ -31,7 +37,10 @@ resourceManager.generateResources = function(worldMap){
 			mapContext.fillRect(x * GLOBALS.maxTileSize, y * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
 		}
 	}
-	//Generate gas
+}
+
+resourceManager.generateGas = function(worldMap, mapContext, totalSize){
+	var x, y, tile, total;
 	total = ~~(totalSize  * 0.0005);
 
 	while (total > 0){
