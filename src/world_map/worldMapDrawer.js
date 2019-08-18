@@ -8,14 +8,14 @@ WorldMapDrawer.normalMapView = function(worldMap){
 	var verticalTilesToShow		= GLOBALS.verticalTilesToShow();
 
 	context.drawImage(	worldMap.mapCanvas,
-								worldMap.topLeftX * GLOBALS.maxTileSize, worldMap.topLeftY * GLOBALS.maxTileSize, horizontalTilesToShow * GLOBALS.maxTileSize, verticalTilesToShow * GLOBALS.maxTileSize,
+								worldMap.topLeftX * GLOBALS.maxTileSize(), worldMap.topLeftY * GLOBALS.maxTileSize(), horizontalTilesToShow * GLOBALS.maxTileSize(), verticalTilesToShow * GLOBALS.maxTileSize(),
 								0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight
 							);
 
 	var horizontalTilesDrawn = worldMap.options.width - worldMap.topLeftX;
 	if (horizontalTilesDrawn < horizontalTilesToShow){
 		context.drawImage(	worldMap.mapCanvas,
-							0, worldMap.topLeftY * GLOBALS.maxTileSize, horizontalTilesToShow * GLOBALS.maxTileSize, verticalTilesToShow * GLOBALS.maxTileSize,
+							0, worldMap.topLeftY * GLOBALS.maxTileSize(), horizontalTilesToShow * GLOBALS.maxTileSize(), verticalTilesToShow * GLOBALS.maxTileSize(),
 							horizontalTilesDrawn * GLOBALS.tileSize, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight
 						);
 		horizontalTilesDrawn +=  worldMap.map.width;

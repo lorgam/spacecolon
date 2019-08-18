@@ -34,7 +34,7 @@ resourceManager.generateMinerals = function(worldMap, mapContext, totalSize){
 			tile.resource = resourceManager.MINERAL;
 
 			mapContext.fillStyle = resourceManager.MINERAL.color;
-			mapContext.fillRect(x * GLOBALS.maxTileSize, y * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
+			mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 		}
 	}
 }
@@ -56,7 +56,7 @@ resourceManager.generateGas = function(worldMap, mapContext, totalSize){
 			tile.resource = resourceManager.GAS;
 
 			mapContext.fillStyle = resourceManager.GAS.color;
-			mapContext.fillRect(x * GLOBALS.maxTileSize, y * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
+			mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 		}
 	}
 }

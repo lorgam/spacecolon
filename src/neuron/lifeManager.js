@@ -29,7 +29,7 @@ lifeManager.generateLife = function(worldMap){
 		tile.life = lifeManager.SEALIFE;
 
 		mapContext.fillStyle = lifeManager.SEALIFE.color;
-		mapContext.fillRect(x * GLOBALS.maxTileSize, y * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
+		mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 	}
 
 	while (total > 0){
@@ -45,6 +45,6 @@ lifeManager.generateLife = function(worldMap){
 		tile.life = lifeManager.GRASSLIFE;
 
 		mapContext.fillStyle = lifeManager.GRASSLIFE.color;
-		mapContext.fillRect(x * GLOBALS.maxTileSize, y * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
+		mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 	}
 }

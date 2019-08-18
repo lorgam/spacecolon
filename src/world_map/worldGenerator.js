@@ -25,8 +25,8 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 */
 
 	var mapCanvas		= document.createElement('canvas');
-	mapCanvas.width		= worldMap.options.width * GLOBALS.maxTileSize; //Render the map to the max resolution and double it
-	mapCanvas.height	= worldMap.options.height * GLOBALS.maxTileSize;
+	mapCanvas.width		= worldMap.options.width * GLOBALS.maxTileSize(); //Render the map to the max resolution and double it
+	mapCanvas.height	= worldMap.options.height * GLOBALS.maxTileSize();
 	var mapContext		= mapCanvas.getContext('2d');
 	//Noise function for the map height and humidity
 	var perlinNoise		= new PerlinNoise();
@@ -65,7 +65,7 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 			map[w][h]				= mapTile;
 
 			mapContext.fillStyle	= mapTile.mapColor();
-			mapContext.fillRect(w * GLOBALS.maxTileSize, h * GLOBALS.maxTileSize, GLOBALS.maxTileSize, GLOBALS.maxTileSize);
+			mapContext.fillRect(w * GLOBALS.maxTileSize(), h * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 		}
 
 		angle += angularChange;
@@ -84,7 +84,7 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 }
 
 WorldGenerator.generateOptions = function(definition){
-	var sizeSeed			= 20 + ~~(Math.random() * 10);
+	var sizeSeed			= 24 + ~~(Math.random() * 15);
 	var options 			= {};
 	options.width			= sizeSeed * 4;
 	options.height			= sizeSeed * 3;

@@ -3,14 +3,12 @@ const GLOBALS = {
 	hasToExit				: false,
 	screenStack				: [],
 
-	width					: 1000,
-	height					: 750,
-	mainScreenWidth			: 800,
-	mainScreenHeight		: 600,
+	width					: 1024,
+	height					: 25+768,
+	mainScreenWidth			: 896,
+	mainScreenHeight		: 672,
 	topMenuHeight			: 25,
 	tileSize				: 16,
-	minTileSize				: 16,
-	maxTileSize				: 64,
 
 	menuFont				: "30px Arial",
 	normalFont				: "14px Arial",
@@ -20,6 +18,9 @@ const GLOBALS = {
 	highlightColor			: "#FF0000",
 };
 
+GLOBALS.minTileSize				= function(){return 8;}
+GLOBALS.mediumTileSize			= function(){return 16;}
+GLOBALS.maxTileSize				= function(){return 32;}
 GLOBALS.horizontalTilesToShow	= function(){return ~~(GLOBALS.mainScreenWidth  / GLOBALS.tileSize);}
 GLOBALS.verticalTilesToShow		= function(){return ~~(GLOBALS.mainScreenHeight / GLOBALS.tileSize);}
 GLOBALS.bottomOfMap				= function(){return GLOBALS.topMenuHeight + GLOBALS.mainScreenHeight;}
