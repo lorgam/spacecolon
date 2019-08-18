@@ -3,11 +3,14 @@ import PerlinNoise		from '../neuron/perlinNoise.js';
 import resourceManager	from '../neuron/resourceManager.js';
 import lifeManager		from '../neuron/lifeManager.js';
 import MapTile			from './mapTile.js';
+import City				from './city.js';
 
 const WorldGenerator ={}
 
 WorldGenerator.generate = function(worldMap){
 	WorldGenerator.generateWorld(worldMap);
+	WorldGenerator.generateStartingPoint(worldMap);
+	//@TODO: take into account the starting point when generating resources,also center the view on starting point
 	resourceManager.generateResources(worldMap);
 	lifeManager.generateLife(worldMap);
 }
@@ -81,6 +84,23 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 
 	//@Debug
 */
+}
+
+WorldGenerator.generateStartingPoint = function(worldMap){
+	var x,y;
+
+	do {
+		x = ~~(Math.random() * worldMap.options.width);
+		y = 5 + ~~(Math.random() * (worldMap.options.height - 10));
+	} while(worldMap.map[x][y].type != "grass");
+
+	var mapContext		= worldMap.mapCanvas.getContext('2d');
+	mapContext.fillStyle	= "#000000";
+	mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+
+	worldMap.map[x][y].city = new City();
+
+	worldMap.startingPoint = {x:x,y:y};
 }
 
 WorldGenerator.generateOptions = function(definition){

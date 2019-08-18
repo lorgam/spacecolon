@@ -36,6 +36,12 @@ const LowerMenu = {
 			text	=  texts.getText('life', tile.life.text);
 			context.fillText(text, 15, top);
 		}
+
+		if (tile.city) {
+			top		+= fontHeight;
+			text	=  tile.city.text();
+			context.fillText(text, 15, top);
+		}
 	}
 }
 
