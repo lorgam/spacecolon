@@ -10,7 +10,6 @@ const WorldGenerator ={}
 WorldGenerator.generate = function(worldMap){
 	WorldGenerator.generateWorld(worldMap);
 	WorldGenerator.generateStartingPoint(worldMap);
-	//@TODO: take into account the starting point when generating resources,also center the view on starting point
 	resourceManager.generateResources(worldMap);
 	lifeManager.generateLife(worldMap);
 }
@@ -28,7 +27,7 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 */
 
 	var mapCanvas		= document.createElement('canvas');
-	mapCanvas.width		= worldMap.options.width * GLOBALS.maxTileSize(); //Render the map to the max resolution and double it
+	mapCanvas.width		= worldMap.options.width * GLOBALS.maxTileSize(); //Render the map to the max resolution
 	mapCanvas.height	= worldMap.options.height * GLOBALS.maxTileSize();
 	var mapContext		= mapCanvas.getContext('2d');
 	//Noise function for the map height and humidity
@@ -91,7 +90,7 @@ WorldGenerator.generateStartingPoint = function(worldMap){
 
 	do {
 		x = ~~(Math.random() * worldMap.options.width);
-		y = 5 + ~~(Math.random() * (worldMap.options.height - 10));
+		y = 15 + ~~(Math.random() * (worldMap.options.height - 30));
 	} while(worldMap.map[x][y].type != "grass");
 
 	var mapContext		= worldMap.mapCanvas.getContext('2d');
@@ -100,7 +99,9 @@ WorldGenerator.generateStartingPoint = function(worldMap){
 
 	worldMap.map[x][y].city = new City();
 
-	worldMap.startingPoint = {x:x,y:y};
+	worldMap.startingPointX = x;
+	worldMap.startingPointY = y;
+	worldMap.centerViewonStartingPoint();
 }
 
 WorldGenerator.generateOptions = function(definition){
