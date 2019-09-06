@@ -1,6 +1,7 @@
-import GLOBALS	from '../globals/globals.js';
-import INPUT	from '../globals/input.js';
-import texts	from '../globals/texts.js';
+import GLOBALS		from '../globals/globals.js';
+import INPUT		from '../globals/input.js';
+import texts		from '../globals/texts.js';
+import ScreenStack	from '../screens/screenStack.js';
 import aux		from '../globals/auxiliar.js';
 
 function BaseMenu(){
@@ -9,7 +10,7 @@ function BaseMenu(){
 }
 
 BaseMenu.prototype.update = function(timeElapsed){
-	if (INPUT.keyboard.ESC.execute() && GLOBALS.screenStack.length > 1)  GLOBALS.screenStack.shift();
+	if (INPUT.keyboard.ESC.execute() && ScreenStack.screenExists())  ScreenStack.removeScreen();
 	if (INPUT.keyboard.ENTER.execute()) this.optionArray[this.selectedOption].execute();
 
 	if (INPUT.keyboard.ARROW_UP.execute()) {

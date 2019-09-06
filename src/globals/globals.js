@@ -1,7 +1,6 @@
 const GLOBALS = {
 	context					: null,
 	hasToExit				: false,
-	screenStack				: [],
 
 	width					: 1024,
 	height					: 25+768,

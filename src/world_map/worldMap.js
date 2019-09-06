@@ -1,10 +1,11 @@
-import GLOBALS			from '../globals/globals.js';
-import INPUT			from '../globals/input.js';
+import GLOBALS		from '../globals/globals.js';
+import INPUT		from '../globals/input.js';
 import WorldGenerator	from './worldGenerator.js';
 import WorldMapDrawer	from './worldMapDrawer.js';
-import LowerMenu		from '../game_menu/lowerMenu.js';
-import RightMenu		from '../game_menu/rightMenu.js';
-import MiniMap			from '../game_menu/miniMap.js';
+import ScreenStack	from '../screens/screenStack.js';
+import LowerMenu	from '../game_menu/lowerMenu.js';
+import RightMenu	from '../game_menu/rightMenu.js';
+import MiniMap		from '../game_menu/miniMap.js';
 
 function WorldMap(options){//Width must be a multiple of 4
 	this.options		= options;
@@ -28,7 +29,7 @@ WorldMap.prototype.draw = function(){
 WorldMap.prototype.update = function(timeElapsed) {
 	//Keyboard
 	if (INPUT.keyboard.ESC.execute()) {
-		GLOBALS.screenStack.shift();
+		ScreenStack.removeScreen();
 	}
 	if (INPUT.keyboard.ARROW_LEFT.execute())	this.moveLeft();
 	if (INPUT.keyboard.ARROW_RIGHT.execute())	this.moveRight();
