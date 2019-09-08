@@ -37,9 +37,9 @@ const LowerMenu = {
 			context.fillText(text, 15, top);
 		}
 
-		if (tile.city) {
+		if (tile.state) {
 			top		+= fontHeight;
-			text	=  tile.city.text();
+			text	=  tile.state.text();
 			context.fillText(text, 15, top);
 		}
 	}

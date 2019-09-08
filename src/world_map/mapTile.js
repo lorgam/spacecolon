@@ -1,25 +1,25 @@
 import aux	from '../globals/auxiliar.js';
 
 function MapTile(parent, heightSeed, humiditySeed){
-	this.parent			= parent;
+	this.parent		= parent;
 	this.heightSeed		= heightSeed;
 	this.humiditySeed	= humiditySeed;
 	this.height 		= 0.5*this.heightSeed+0.5;
-	this.type			= this.tileType(this.parent.options.waterHeight);
+	this.type		= this.tileType(this.parent.options.waterHeight);
 	this.resource		= null;
-	this.life			= null;
-	this.city			= null;
+	this.life		= null;
+	this.state		= null;
 }
 
 MapTile.prototype.tileTypes = {
-	"deepOcean"			: {"color":"#072253"},
-	"ocean"				: {"color":"#12326E"},
+	"deepOcean"		: {"color":"#072253"},
+	"ocean"			: {"color":"#12326E"},
 	"shallowWaters"		: {"color":"#1F4487"},
-	"beach"				: {"color":"#FFCF75"},
+	"beach"			: {"color":"#FFCF75"},
 	"highMountain"		: {"color":"#7A0009"},
-	"desert"			: {"color":"#E2AB46"},
-	"grass"				: {"color":"#71D361"},
-	"forest"			: {"color":"#1B880A"},
+	"desert"		: {"color":"#E2AB46"},
+	"grass"			: {"color":"#71D361"},
+	"forest"		: {"color":"#1B880A"},
 	"desertMountain"	: {"color":"#7D5100"},
 	"grassMountain"		: {"color":"#4BBB3A"},
 	"forestMountain"	: {"color":"#0E6700"},

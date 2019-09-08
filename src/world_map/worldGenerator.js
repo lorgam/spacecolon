@@ -97,7 +97,7 @@ WorldGenerator.generateStartingPoint = function(worldMap){
 	mapContext.fillStyle	= "#000000";
 	mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 
-	worldMap.map[x][y].city = new City();
+	worldMap.map[x][y].state = new City(worldMap.map[x][y]);
 
 	worldMap.startingPointX = x;
 	worldMap.startingPointY = y;

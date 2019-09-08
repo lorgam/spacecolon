@@ -11,6 +11,7 @@ function WorldMap(options){//Width must be a multiple of 4
 	this.options		= options;
 	WorldGenerator.generate(this);
 	this.tileClicked	= null;
+	this.nextState		= null;
 	this.typeOfView		= 0; //0: Normal, 1: Height, 2: Humidity, 3: Blocks
 }
 
@@ -27,16 +28,13 @@ WorldMap.prototype.draw = function(){
 }
 
 WorldMap.prototype.update = function(timeElapsed) {
-	//Keyboard
-	if (INPUT.keyboard.ESC.execute()) {
-		ScreenStack.removeScreen();
-	}
 	if (INPUT.keyboard.ARROW_LEFT.execute())	this.moveLeft();
 	if (INPUT.keyboard.ARROW_RIGHT.execute())	this.moveRight();
 	if (INPUT.keyboard.ARROW_UP.execute())		this.moveUp();
 	if (INPUT.keyboard.ARROW_DOWN.execute())	this.moveDown();
 
-	if (INPUT.keyboard.V.execute())				this.changeView();
+	if (INPUT.keyboard.V.execute())			this.changeView();
+	if (INPUT.keyboard.C.execute())			this.centerViewonStartingPoint();
 	//Mouse
 	if (INPUT.isClicked()){
 		if (INPUT.mouse.x < GLOBALS.mainScreenWidth){
@@ -55,8 +53,8 @@ WorldMap.prototype.mouseClick	= function(x,y){
 	var tileX			= (~~(x/GLOBALS.tileSize) + this.topLeftX) % this.options.width;
 	var tileY			= (~~(y/GLOBALS.tileSize) + this.topLeftY) % this.options.height;
 
-	if (this.tileClicked && this.tileClicked.x == tileX && this.tileClicked.y == tileY) this.tileClicked = null;
-	else this.tileClicked = {x:tileX,y:tileY};
+	this.tileClicked = {x:tileX,y:tileY};
+	this.nextState = this.getTileClicked().state;
 }
 
 WorldMap.prototype.moveLeft		= function(){this.topLeftX = (this.options.width + this.topLeftX - 1) % this.options.width;}
