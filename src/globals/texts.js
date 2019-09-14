@@ -3,46 +3,52 @@ const texts = {
 
 	en : {
 		mainMenu : {
-			start	: "Start",
-			options	: "Options",
-			exit	: "Exit"
+			start		: "Start",
+			options		: "Options",
+			exit		: "Exit"
 		},
 		optionsMenu : {
 			language	: "Language",
 			tileSize	: "Tile Size",
 			little		: "Little",
 			medium		: "Medium",
-			big			: "Big"
+			big		: "Big"
 		},
 		materials : {
-			mineral	: "mineral",
+			mineral		: "mineral",
 			gas		: "gas",
 		},
 		life : {
 			fish		: "fish",
 			hervibore	: "hervibore",
+		},
+		general : {
+			back		: "back",
 		}
 	},
 	es : {
 		mainMenu : {
-			start	: "Empezar",
-			options	: "Opciones",
-			exit	: "Salir"
+			start		: "Empezar",
+			options		: "Opciones",
+			exit		: "Salir"
 		},
 		optionsMenu : {
 			language	: "Idioma",
 			tileSize	: "Tamaño de cuadricula",
 			little		: "Pequeño",
 			medium		: "Mediano",
-			big			: "Grande"
+			big		: "Grande"
 		},
 		materials : {
-			mineral	: "mineral",
+			mineral		: "mineral",
 			gas		: "gas",
 		},
 		life : {
 			fish		: "peces",
 			hervibore	: "hervíboros",
+		},
+		general : {
+			back		: "volver",
 		}
 	}
 }

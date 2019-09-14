@@ -1,5 +1,6 @@
 import GLOBALS	from '../globals/globals.js';
 import INPUT	from '../globals/input.js';
+import texts	from '../globals/texts.js';
 
 function City(parent){
 	this.parent = parent;
@@ -33,8 +34,15 @@ City.prototype.drawBackground = function() {
 }
 
 City.prototype.drawBackButton = function() {
+	var btnHeight = 44;
 	this.context.fillStyle = "#000088";
-	this.context.fillRect(GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - 100, GLOBALS.rightMenuSize(), 100);
+	this.context.fillRect(GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - btnHeight, GLOBALS.rightMenuSize(), btnHeight);
+
+	this.context.fillStyle = GLOBALS.highlightColor;
+	this.context.font = GLOBALS.buttonFont;
+	var text = '< ' + texts.getText('general', 'back');
+	var width = ~~((GLOBALS.rightMenuSize() - this.context.measureText(text).width) / 2);
+	this.context.fillText(text, GLOBALS.mainScreenWidth + width , GLOBALS.bottomOfMap() - 11);
 }
 
 export default City;
