@@ -16,6 +16,7 @@ City.prototype.update = function() {
 	if (INPUT.isClicked()){
 		if (INPUT.mouse.x > GLOBALS.mainScreenWidth && INPUT.mouse.y < GLOBALS.bottomOfMap() && INPUT.mouse.y > GLOBALS.bottomOfMap() - 100){
 			this.nextState = this.parent.parent;
+			INPUT.resetKeyboard();
 		}
 	}
 }

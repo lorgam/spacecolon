@@ -32,6 +32,9 @@ const INPUT = {
 			return true;
 		}
 		return false;
+	},
+	resetKeyboard : function(){
+		Object.keys(INPUT.keyboard).forEach((k, v) => {if (INPUT.keyboard[k].execute) INPUT.keyboard[k].execute();});
 	}
 };
 

@@ -23,16 +23,19 @@ GameScreen.prototype.update = function(timeElapsed) {
 
 	if (INPUT.keyboard.O.execute()){ //Otions menu
 		ScreenStack.addScreen(new OptionsScreen());
+		INPUT.resetKeyboard();
 		return;
 	}
 	if (INPUT.keyboard.ESC.execute()) { //Go back
 		if (this.currentState == this.defaultState) ScreenStack.removeScreen();
-		else this.currentState.nextState = this.defaultState; 
+		else this.currentState.nextState = this.defaultState;
+		INPUT.resetKeyboard();
 	}
 	if (this.currentState.nextState != null){ //Change the state
 		var aux = this.currentState.nextState;
 		this.currentState.nextState = null;
 		this.currentState = aux;
+		INPUT.resetKeyboard();
 	}
 	this.currentState.update(timeElapsed);
 }
