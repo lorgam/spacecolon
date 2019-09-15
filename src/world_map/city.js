@@ -1,11 +1,13 @@
-import GLOBALS	from '../globals/globals.js';
-import INPUT	from '../globals/input.js';
-import texts	from '../globals/texts.js';
+import GLOBALS		from '../globals/globals.js';
+import INPUT		from '../globals/input.js';
+import texts		from '../globals/texts.js';
+import BaseButton	from '../neuron/interface/baseButton.js';
 
 function City(parent){
 	this.parent = parent;
 	this.context = GLOBALS.context;
 	this.nextState = null;
+	this.btnBack = new BaseButton(this, GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - 44, GLOBALS.rightMenuSize(), 44, "#000088", "general", "back", GLOBALS.highlightColor, function(){this.parent.nextState = this.parent.parent.parent;});
 }
 
 City.prototype.text = function() {
@@ -14,16 +16,13 @@ City.prototype.text = function() {
 
 City.prototype.update = function() {
 	if (INPUT.isClicked()){
-		if (INPUT.mouse.x > GLOBALS.mainScreenWidth && INPUT.mouse.y < GLOBALS.bottomOfMap() && INPUT.mouse.y > GLOBALS.bottomOfMap() - 100){
-			this.nextState = this.parent.parent;
-			INPUT.resetKeyboard();
-		}
+		this.btnBack.isClicked();
 	}
 }
 
 City.prototype.draw = function() {
 	this.drawBackground();
-	this.drawBackButton();
+	this.btnBack.draw();
 }
 
 City.prototype.drawBackground = function() {
@@ -32,18 +31,6 @@ City.prototype.drawBackground = function() {
 	this.context.fillStyle = "#000088"; 
 	this.context.fillRect(0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight);
 	this.context.globalAlpha = 1;
-}
-
-City.prototype.drawBackButton = function() {
-	var btnHeight = 44;
-	this.context.fillStyle = "#000088";
-	this.context.fillRect(GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - btnHeight, GLOBALS.rightMenuSize(), btnHeight);
-
-	this.context.fillStyle = GLOBALS.highlightColor;
-	this.context.font = GLOBALS.buttonFont;
-	var text = '< ' + texts.getText('general', 'back');
-	var width = ~~((GLOBALS.rightMenuSize() - this.context.measureText(text).width) / 2);
-	this.context.fillText(text, GLOBALS.mainScreenWidth + width , GLOBALS.bottomOfMap() - 11);
 }
 
 export default City;
