@@ -15,7 +15,7 @@ City.prototype.text = function() {
 }
 
 City.prototype.update = function() {
-	if (INPUT.isClicked()){
+	if (INPUT.mouse.clicked){
 		this.btnBack.isClicked();
 	}
 }

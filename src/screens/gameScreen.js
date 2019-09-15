@@ -15,7 +15,6 @@ function GameScreen(){
 	this.defaultState	= this.currentState;
 
 	textureManager.load(); //Load image data
-	INPUT.isClicked(); //Clean clicks
 }
 
 GameScreen.prototype.update = function(timeElapsed) {

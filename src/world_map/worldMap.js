@@ -36,7 +36,7 @@ WorldMap.prototype.update = function(timeElapsed) {
 	if (INPUT.keyboard.V.execute())			this.changeView();
 	if (INPUT.keyboard.C.execute())			this.centerViewonStartingPoint();
 	//Mouse
-	if (INPUT.isClicked()){
+	if (INPUT.mouse.clicked){
 		if (INPUT.mouse.x < GLOBALS.mainScreenWidth){
 			if (INPUT.mouse.y > GLOBALS.topMenuHeight && INPUT.mouse.y < GLOBALS.bottomOfMap()){
 				this.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);

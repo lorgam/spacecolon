@@ -32,6 +32,7 @@ function loop(timestamp){
 	aux.updateGradient(timestamp);
 	ScreenStack.draw();
 	ScreenStack.update(elapsedTime);
+	INPUT.mouse.clicked = false; //Reset the mouse
 
 	if (!GLOBALS.hasToExit && ScreenStack.screenExists()) window.requestAnimationFrame(loop);
 	else console.log("Game over");
