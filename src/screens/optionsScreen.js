@@ -1,5 +1,5 @@
 import GLOBALS		from '../globals/globals.js';
-import BaseMenu		from '../neuron/baseMenu.js';
+import BaseMenu		from '../neuron/interface/baseMenu.js';
 
 function OptionsScreen(){
 	BaseMenu.call(this);
