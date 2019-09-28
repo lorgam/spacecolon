@@ -1,21 +1,21 @@
 import GLOBALS	from '../globals/globals.js';
 
-const resourceManager = {
+const naturalResourceManager = {
 	MINERAL	: {id:1,color:"#DC444F",text:"mineral",default:100},
 	GAS		: {id:2,color:"#CB8F1E",text:"gas",default:0}
 }
 
-export default resourceManager;
+export default naturalResourceManager;
 
-resourceManager.generateResources = function(worldMap){
+naturalResourceManager.generateResources = function(worldMap){
 	var mapContext	= worldMap.mapCanvas.getContext('2d');
 	var totalSize = worldMap.options.width * worldMap.options.height;
 
-	resourceManager.generateMinerals(worldMap, mapContext, totalSize);
-	resourceManager.generateGas(worldMap, mapContext, totalSize);
+	naturalResourceManager.generateMinerals(worldMap, mapContext, totalSize);
+	naturalResourceManager.generateGas(worldMap, mapContext, totalSize);
 }
 
-resourceManager.generateMinerals = function(worldMap, mapContext, totalSize){
+naturalResourceManager.generateMinerals = function(worldMap, mapContext, totalSize){
 	var x, y, tile, total;
 
 	total = ~~(totalSize  * 0.0015);
@@ -31,15 +31,15 @@ resourceManager.generateMinerals = function(worldMap, mapContext, totalSize){
 			if (tile.resource) continue;
 			total--;
 
-			tile.resource = resourceManager.MINERAL;
+			tile.resource = naturalResourceManager.MINERAL;
 
-			mapContext.fillStyle = resourceManager.MINERAL.color;
+			mapContext.fillStyle = naturalResourceManager.MINERAL.color;
 			mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 		}
 	}
 }
 
-resourceManager.generateGas = function(worldMap, mapContext, totalSize){
+naturalResourceManager.generateGas = function(worldMap, mapContext, totalSize){
 	var x, y, tile, total;
 	total = ~~(totalSize  * 0.0005);
 
@@ -53,9 +53,9 @@ resourceManager.generateGas = function(worldMap, mapContext, totalSize){
 			//Can have gas
 			if (tile.resource) continue;
 			total--;
-			tile.resource = resourceManager.GAS;
+			tile.resource = naturalResourceManager.GAS;
 
-			mapContext.fillStyle = resourceManager.GAS.color;
+			mapContext.fillStyle = naturalResourceManager.GAS.color;
 			mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 		}
 	}

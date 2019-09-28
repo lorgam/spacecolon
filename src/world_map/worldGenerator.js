@@ -1,6 +1,6 @@
 import GLOBALS			from '../globals/globals.js';
 import PerlinNoise		from '../neuron/perlinNoise.js';
-import resourceManager	from '../resources/resourceManager.js';
+import naturalResourceManager	from '../resources/naturalResourceManager.js';
 import lifeManager		from '../resources/lifeManager.js';
 import MapTile			from './mapTile.js';
 import City				from './city.js';
@@ -10,7 +10,7 @@ const WorldGenerator ={}
 WorldGenerator.generate = function(worldMap){
 	WorldGenerator.generateWorld(worldMap);
 	WorldGenerator.generateStartingPoint(worldMap);
-	resourceManager.generateResources(worldMap);
+	naturalResourceManager.generateResources(worldMap);
 	lifeManager.generateLife(worldMap);
 }
 
