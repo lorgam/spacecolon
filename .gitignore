@@ -5,7 +5,7 @@
 *.png
 
 node_modules
-dist
+dist/main.js
 #Ignore thumbnails created by Windows
 Thumbs.db
 #Ignore files built by Visual Studio
