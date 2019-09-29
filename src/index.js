@@ -1,8 +1,9 @@
-import GLOBALS			from './globals/globals.js';
-import INPUT			from './globals/input.js';
-import aux			from './globals/auxiliar.js';
-import ScreenStack		from './screens/screenStack.js';
-import MainMenuScreen		from './screens/mainMenuScreen.js';
+import GLOBALS		from './globals/globals.js';
+import INPUT		from './globals/input.js';
+import aux		from './globals/auxiliar.js';
+import textureManager 	from './neuron/textureManager.js';
+import ScreenStack	from './screens/screenStack.js';
+import MainMenuScreen	from './screens/mainMenuScreen.js';
 
 var lastRender = 0;
 
@@ -10,6 +11,7 @@ window.onload = function(){
 	//Initialize
 	GLOBALS.hasToExit = false;
 	aux.readUserLanguage();
+	textureManager.load();
 
 	var canvas	= document.getElementById('main_canvas');
 	GLOBALS.context = canvas.getContext('2d');

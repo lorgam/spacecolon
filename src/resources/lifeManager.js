@@ -1,4 +1,5 @@
-import GLOBALS	from '../globals/globals.js';
+import GLOBALS		from '../globals/globals.js';
+import textureManager	from '../neuron/textureManager.js';
 
 const lifeManager = {
 	SEALIFE: {radius:15,color:"#FFFFFF",text:"fish"},
@@ -28,8 +29,7 @@ lifeManager.generateLife = function(worldMap){
 
 		tile.life = lifeManager.SEALIFE;
 
-		mapContext.fillStyle = lifeManager.SEALIFE.color;
-		mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+		mapContext.drawImage(textureManager.textures['wildLife']['SEALIFE'], x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 	}
 
 	while (total > 0){
@@ -44,7 +44,6 @@ lifeManager.generateLife = function(worldMap){
 
 		tile.life = lifeManager.GRASSLIFE;
 
-		mapContext.fillStyle = lifeManager.GRASSLIFE.color;
-		mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+		mapContext.drawImage(textureManager.textures['wildLife']['GRASSLIFE'], x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 	}
 }

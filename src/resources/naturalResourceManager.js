@@ -1,8 +1,9 @@
-import GLOBALS	from '../globals/globals.js';
+import GLOBALS		from '../globals/globals.js';
+import textureManager 	from '../neuron/textureManager.js';
 
 const naturalResourceManager = {
 	MINERAL	: {id:1,color:"#DC444F",text:"mineral",default:100},
-	GAS		: {id:2,color:"#CB8F1E",text:"gas",default:0}
+	GAS	: {id:2,color:"#CB8F1E",text:"gas",default:0}
 }
 
 export default naturalResourceManager;
@@ -33,8 +34,7 @@ naturalResourceManager.generateMinerals = function(worldMap, mapContext, totalSi
 
 			tile.resource = naturalResourceManager.MINERAL;
 
-			mapContext.fillStyle = naturalResourceManager.MINERAL.color;
-			mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+			mapContext.drawImage(textureManager.textures['naturalResources']['MINERAL'], x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 		}
 	}
 }
@@ -55,8 +55,7 @@ naturalResourceManager.generateGas = function(worldMap, mapContext, totalSize){
 			total--;
 			tile.resource = naturalResourceManager.GAS;
 
-			mapContext.fillStyle = naturalResourceManager.GAS.color;
-			mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+			mapContext.drawImage(textureManager.textures['naturalResources']['GAS'], x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 		}
 	}
 }

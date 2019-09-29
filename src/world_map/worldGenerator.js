@@ -1,9 +1,10 @@
 import GLOBALS			from '../globals/globals.js';
+import textureManager 		from '../neuron/textureManager.js';
 import PerlinNoise		from '../neuron/perlinNoise.js';
 import naturalResourceManager	from '../resources/naturalResourceManager.js';
 import lifeManager		from '../resources/lifeManager.js';
 import MapTile			from './mapTile.js';
-import City				from './city.js';
+import City			from './city.js';
 
 const WorldGenerator ={}
 
@@ -37,10 +38,10 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 	var humidityStep	= 0.075 + Math.random() * 0.05;
 
 	var angularChange	= 2 * Math.PI / worldMap.options.width;
-	var radius			= worldMap.options.width / 8;
-	var angle			= 0
+	var radius		= worldMap.options.width / 8;
+	var angle		= 0
 	//Generate map
-	var map				= new Array(worldMap.options.width);
+	var map			= new Array(worldMap.options.width);
 
 	var xHeight, zHeight;
 	var xHumidity, zHumidity;
@@ -60,14 +61,13 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 		zHumidity = humidityStep * cos + worldMap.options.humiditySeedZ;
 
 		for (var h = 0; h < worldMap.options.height; h++){
-			tileHeight				= perlinNoise.noise(xHeight, h * heightStep + worldMap.options.heightSeedY, zHeight);
-			tileHumidity			= perlinNoise.noise(xHumidity, h * humidityStep + worldMap.options.humiditySeedY, zHumidity);
+			tileHeight	= perlinNoise.noise(xHeight, h * heightStep + worldMap.options.heightSeedY, zHeight);
+			tileHumidity	= perlinNoise.noise(xHumidity, h * humidityStep + worldMap.options.humiditySeedY, zHumidity);
 
-			mapTile					= new MapTile(worldMap, tileHeight, tileHumidity);
-			map[w][h]				= mapTile;
+			mapTile		= new MapTile(worldMap, tileHeight, tileHumidity);
+			map[w][h]	= mapTile;
 
-			mapContext.fillStyle	= mapTile.mapColor();
-			mapContext.fillRect(w * GLOBALS.maxTileSize(), h * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+			mapContext.drawImage(textureManager.textures['mapTile'][mapTile.type], w * GLOBALS.maxTileSize(), h * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 		}
 
 		angle += angularChange;
@@ -94,8 +94,7 @@ WorldGenerator.generateStartingPoint = function(worldMap){
 	} while(worldMap.map[x][y].type != "grass");
 
 	var mapContext		= worldMap.mapCanvas.getContext('2d');
-	mapContext.fillStyle	= "#000000";
-	mapContext.fillRect(x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+	mapContext.drawImage(textureManager.textures['general']['city'], x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 
 	worldMap.map[x][y].state = new City(worldMap.map[x][y]);
 

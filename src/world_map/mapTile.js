@@ -1,4 +1,5 @@
-import aux	from '../globals/auxiliar.js';
+import aux		from '../globals/auxiliar.js';
+import textureManager 	from '../neuron/textureManager.js';
 
 function MapTile(parent, heightSeed, humiditySeed){
 	this.parent		= parent;
@@ -28,21 +29,21 @@ MapTile.prototype.tileTypes = {
 MapTile.prototype.tileType = function(waterHeight){
 	if (this.height < waterHeight - 0.25)	return "deepOcean";
 	if (this.height < waterHeight - 0.05)	return "ocean";
-	if (this.height < waterHeight)			return "shallowWaters";
+	if (this.height < waterHeight)		return "shallowWaters";
 	if (this.height < waterHeight + 0.013)	return "beach";
-	if (this.height > 0.85)					return "highMountain";
+	if (this.height > 0.85)			return "highMountain";
 
 	var heightDifference = 0.8 - waterHeight; //Amount of height left between beach and high mountain
 
 	if (this.height < 0.6 * heightDifference + waterHeight){
 		//Not mountain
-		if (this.humiditySeed < -0.4)		return "desert";
-		if (this.humiditySeed < 0.5)		return "grass";
+		if (this.humiditySeed < -0.4)	return "desert";
+		if (this.humiditySeed < 0.5)	return "grass";
 		return "forest";
 	}
 	//Mountain
-	if (this.humiditySeed < -0.4)		return "desertMountain";
-	if (this.humiditySeed < 0.5)		return "grassMountain";
+	if (this.humiditySeed < -0.4)	return "desertMountain";
+	if (this.humiditySeed < 0.5)	return "grassMountain";
 	return "forestMountain";
 }
 
@@ -58,6 +59,6 @@ MapTile.prototype.humidityGray = function(){
 	return 'rgb('+r+','+r+','+r+')';
 }
 MapTile.prototype.texture = function(){
-	return this.tileTypes[this.type].canvas;
+	return textureManager.textures['mapTile'][this.type];
 }
 export default MapTile;
