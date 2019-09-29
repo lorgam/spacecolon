@@ -3,12 +3,14 @@ import INPUT		from '../globals/input.js';
 import WorldGenerator	from './worldGenerator.js';
 import WorldMapDrawer	from './worldMapDrawer.js';
 import ScreenStack	from '../screens/screenStack.js';
+import TopMenu		from '../game_menu/topMenu.js';
 import LowerMenu	from '../game_menu/lowerMenu.js';
 import RightMenu	from '../game_menu/rightMenu.js';
 import MiniMap		from '../game_menu/miniMap.js';
 
-function WorldMap(options){//Width must be a multiple of 4
+function WorldMap(options, parent){
 	this.options		= options;
+	this.parent		= parent;
 	WorldGenerator.generate(this);
 	this.tileClicked	= null;
 	this.nextState		= null;
@@ -23,6 +25,7 @@ WorldMap.prototype.draw = function(){
 	WorldMapDrawer.drawArray[this.typeOfView](this);
 
 	LowerMenu.draw(this.getTileClicked());
+	TopMenu.draw();
 	RightMenu.draw();
 	MiniMap.draw(this);
 }

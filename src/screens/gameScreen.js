@@ -3,18 +3,20 @@ import INPUT		from '../globals/input.js';
 import WorldMap		from '../world_map/worldMap.js';
 import WorldGenerator	from '../world_map/worldGenerator.js';
 import textureManager	from '../neuron/textureManager.js';
+import UserResources	from '../resources/userResources';
 import OptionsScreen	from './optionsScreen.js';
 import ScreenStack	from './screenStack.js';
 
 function GameScreen(){
 	this.totalTime		= 0.0;
-	this.worldMap		= new WorldMap(WorldGenerator.generateOptions(
-																	{type : 'normal'}
-																));
+	UserResources.robots	= 2;
+
+	this.worldMap		= new WorldMap(WorldGenerator.generateOptions({type : 'normal'}), this);
+
 	this.currentState	= this.worldMap;
 	this.defaultState	= this.currentState;
 
-	textureManager.load(); //Load image data
+	textureManager.load();
 }
 
 GameScreen.prototype.update = function(timeElapsed) {
