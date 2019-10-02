@@ -4,7 +4,7 @@ import PerlinNoise		from '../neuron/perlinNoise.js';
 import naturalResourceManager	from '../resources/naturalResourceManager.js';
 import lifeManager		from '../resources/lifeManager.js';
 import MapTile			from './mapTile.js';
-import City			from './city.js';
+import City			from './city/city.js';
 
 const WorldGenerator ={}
 
