@@ -2,8 +2,10 @@ import GLOBALS		from '../globals/globals.js';
 import textureManager 	from '../neuron/textureManager.js';
 
 const naturalResourceManager = {
-	MINERAL	: {id:1,color:"#DC444F",text:"mineral",default:100},
-	GAS	: {id:2,color:"#CB8F1E",text:"gas",default:0}
+	resources : {
+		MINERAL	: {id:1,color:"#DC444F",text:"mineral",default:100},
+		GAS	: {id:2,color:"#CB8F1E",text:"gas",default:0}
+	}
 }
 
 export default naturalResourceManager;
@@ -32,7 +34,7 @@ naturalResourceManager.generateMinerals = function(worldMap, mapContext, totalSi
 			if (tile.resource) continue;
 			total--;
 
-			tile.resource = naturalResourceManager.MINERAL;
+			tile.resource = naturalResourceManager.resources.MINERAL;
 
 			mapContext.drawImage(textureManager.textures['naturalResources']['MINERAL'], x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 		}
@@ -53,7 +55,7 @@ naturalResourceManager.generateGas = function(worldMap, mapContext, totalSize){
 			//Can have gas
 			if (tile.resource) continue;
 			total--;
-			tile.resource = naturalResourceManager.GAS;
+			tile.resource = naturalResourceManager.resources.GAS;
 
 			mapContext.drawImage(textureManager.textures['naturalResources']['GAS'], x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 		}

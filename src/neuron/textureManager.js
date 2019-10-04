@@ -1,6 +1,5 @@
 import GLOBALS			from '../globals/globals.js';
 import MapTile			from '../world_map/mapTile.js';
-import UserResources		from '../resources/userResources.js';
 import lifeManager		from '../resources/lifeManager.js';
 import naturalResourceManager	from '../resources/naturalResourceManager.js';
 
@@ -46,13 +45,10 @@ const textureManager = {
 		// natural resource
 		textures = [];
 
-		for (var res  in naturalResourceManager) {
-			var elem = naturalResourceManager[res];
-			if (elem.color){
-				canvas = createCanvas(size, size);
-				addBackground(canvas, elem.color);
-				textures[res] = canvas;
-			}
+		for (var res  in naturalResourceManager.resources) {
+			canvas = createCanvas(size, size);
+			addDiamond(canvas, size, naturalResourceManager.resources[res].color);
+			textures[res] = canvas;
 		}
 
 		textureManager.textures['naturalResources'] = textures;
@@ -81,6 +77,18 @@ function addBackground(canvas, back){
 	ctx.fillStyle = back;
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+}
+
+function addDiamond(canvas, size, color){
+	var ctx = canvas.getContext('2d');
+	ctx.fillStyle = color;
+	ctx.beginPath();
+	ctx.moveTo(0,size/2);
+	ctx.lineTo(size/2, size);
+	ctx.lineTo(size, size/2);
+	ctx.lineTo(size/2, 0);
+	ctx.closePath();
+	ctx.fill();
 }
 
 function addTriangle(canvas, size, color){

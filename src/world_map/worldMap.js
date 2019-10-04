@@ -25,7 +25,7 @@ WorldMap.prototype.draw = function(){
 	WorldMapDrawer.drawArray[this.typeOfView](this);
 
 	LowerMenu.draw(this.getTileClicked());
-	TopMenu.draw();
+	TopMenu.draw(this);
 	RightMenu.draw();
 	MiniMap.draw(this);
 }

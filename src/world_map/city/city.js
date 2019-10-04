@@ -37,7 +37,7 @@ City.prototype.drawBackground = function() {
 }
 
 City.prototype.addRobots = function(number) {
-	UserResources.robots += number;
+	this.parent.parent.parent.userResources.resources.robots += number;
 	this.robots += number;
 }
 

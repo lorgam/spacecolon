@@ -8,7 +8,7 @@ import ScreenStack	from './screenStack.js';
 
 function GameScreen(){
 	this.totalTime		= 0.0;
-	UserResources.robots	= 2;
+	this.userResources	= new UserResources();
 
 	this.worldMap		= new WorldMap(WorldGenerator.generateOptions({type : 'normal'}), this);
 
