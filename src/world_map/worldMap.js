@@ -2,6 +2,7 @@ import GLOBALS		from '../globals/globals.js';
 import INPUT		from '../globals/input.js';
 import WorldGenerator	from './worldGenerator.js';
 import WorldMapDrawer	from './worldMapDrawer.js';
+import MapTile		from './mapTile.js';
 import ScreenStack	from '../screens/screenStack.js';
 import TopMenu		from '../game_menu/topMenu.js';
 import LowerMenu	from '../game_menu/lowerMenu.js';
@@ -11,7 +12,14 @@ import MiniMap		from '../game_menu/miniMap.js';
 function WorldMap(options, parent){
 	this.options		= options;
 	this.parent		= parent;
+	// Init the stats object
+	this.stats = [];
+	for (var tileType in MapTile.prototype.tileTypes) {
+		this.stats[tileType] = 0;
+	}
+
 	WorldGenerator.generate(this);
+
 	this.tileClicked	= null;
 	this.nextState		= null;
 	this.typeOfView		= 0; //0: Normal, 1: Height, 2: Humidity, 3: Blocks

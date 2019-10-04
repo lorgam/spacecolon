@@ -68,6 +68,8 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 			map[w][h]	= mapTile;
 
 			mapContext.drawImage(textureManager.textures['mapTile'][mapTile.type], w * GLOBALS.maxTileSize(), h * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+
+			worldMap.stats[mapTile.type] += 1;
 		}
 
 		angle += angularChange;
