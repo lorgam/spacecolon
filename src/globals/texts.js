@@ -14,11 +14,9 @@ const texts = {
 			medium		: "Medium",
 			big		: "Big"
 		},
-		materials : {
+		resources : {
 			mineral		: "mineral",
 			gas		: "gas",
-		},
-		life : {
 			fish		: "fish",
 			hervibore	: "hervibore",
 		},
@@ -39,11 +37,9 @@ const texts = {
 			medium		: "Mediano",
 			big		: "Grande"
 		},
-		materials : {
+		resources : {
 			mineral		: "mineral",
 			gas		: "gas",
-		},
-		life : {
 			fish		: "peces",
 			hervibore	: "hervíboros",
 		},

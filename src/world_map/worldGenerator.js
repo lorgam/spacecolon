@@ -2,7 +2,6 @@ import GLOBALS			from '../globals/globals.js';
 import textureManager 		from '../neuron/textureManager.js';
 import PerlinNoise		from '../neuron/perlinNoise.js';
 import naturalResourceManager	from '../resources/naturalResourceManager.js';
-import lifeManager		from '../resources/lifeManager.js';
 import MapTile			from './mapTile.js';
 import City			from './city/city.js';
 
@@ -12,7 +11,6 @@ WorldGenerator.generate = function(worldMap){
 	WorldGenerator.generateWorld(worldMap);
 	WorldGenerator.generateStartingPoint(worldMap);
 	naturalResourceManager.generateResources(worldMap);
-	lifeManager.generateLife(worldMap);
 }
 
 WorldGenerator.generateWorld = function(worldMap){

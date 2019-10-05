@@ -1,6 +1,5 @@
 import GLOBALS			from '../globals/globals.js';
 import MapTile			from '../world_map/mapTile.js';
-import lifeManager		from '../resources/lifeManager.js';
 import naturalResourceManager	from '../resources/naturalResourceManager.js';
 
 const textureManager = {
@@ -18,20 +17,6 @@ const textureManager = {
 		}
 
 		textureManager.textures['mapTile'] = textures;
-
-		// wildlife
-		textures = [];
-
-		for (var life in lifeManager) {
-			var elem = lifeManager[life];
-			if (elem.color){
-				canvas = createCanvas(size, size);
-				addBackground(canvas, elem.color);
-				textures[life] = canvas;
-			}
-		}
-
-		textureManager.textures['wildLife'] = textures;
 
 		// user resources
 		textures = [];

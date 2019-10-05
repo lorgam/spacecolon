@@ -13,33 +13,21 @@ const LowerMenu = {
 
 		var top, text;
 
-		top		= GLOBALS.bottomOfMap() + GLOBALS.topMenuHeight;
+		top	= GLOBALS.bottomOfMap() + GLOBALS.topMenuHeight;
 		text	= tile.type;
 		context.fillText(text, 15, top);
 
-		top		+= fontHeight;
+		top	+= fontHeight;
 		text	=  'Height: ' + tile.height;
 		context.fillText(text, 15, top);
 
-		top		+= fontHeight;
+		top	+= fontHeight;
 		text	=  'Humidity: ' + tile.humiditySeed;
 		context.fillText(text, 15, top);
 
 		if (tile.resource) {
-			top		+= fontHeight;
-			text	=  texts.getText('materials', tile.resource.text);
-			context.fillText(text, 15, top);
-		}
-
-		if (tile.life) {
-			top		+= fontHeight;
-			text	=  texts.getText('life', tile.life.text);
-			context.fillText(text, 15, top);
-		}
-
-		if (tile.state) {
-			top		+= fontHeight;
-			text	=  tile.state.text();
+			top	+= fontHeight;
+			text	=  texts.getText('resources', tile.resource.text);
 			context.fillText(text, 15, top);
 		}
 	}

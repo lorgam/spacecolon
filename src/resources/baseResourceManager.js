@@ -14,14 +14,12 @@ baseResourceManager.generateResource = function(worldMap, manager, resourceType,
 	while (total > 0){
 		x = ~~(Math.random() * worldMap.options.width);
 		y = ~~(Math.random() * worldMap.options.height);
-
 		tile = worldMap.map[x][y];
 
 		if (tile.resource || terrain.indexOf(tile.type) == -1) continue; // Resource not allowed
 		total--;
 
 		tile.resource = manager.resources[type];
-
 		ctx.drawImage(textureManager.textures[resourceType][type], x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 	}
 }
