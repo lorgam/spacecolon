@@ -1,6 +1,7 @@
-import GLOBALS		from '../globals/globals.js';
-import textureManager 	from '../neuron/textureManager.js';
-import MenuControl 	from './menuControl.js';
+import GLOBALS			from '../globals/globals.js';
+import textureManager		from '../neuron/textureManager.js';
+import naturalResourceManager 	from '../resources/naturalResourceManager.js';
+import MenuControl		from './menuControl.js';
 
 const TopMenu = {
 	draw: function(worldMap){
@@ -13,8 +14,9 @@ const TopMenu = {
 		// robots
 		drawMenuItem(worldMap, ctx, control, 'userResources', 'robots');
 		// user resources
-		drawMenuItem(worldMap, ctx, control, 'naturalResources', 'MINERAL');
-		drawMenuItem(worldMap, ctx, control, 'naturalResources', 'GAS');
+		for (var name in naturalResourceManager.resources){
+			drawMenuItem(worldMap, ctx, control, 'naturalResources', name);
+		}
 	}
 }
 
