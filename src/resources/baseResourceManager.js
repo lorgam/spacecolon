@@ -16,7 +16,7 @@ baseResourceManager.generateResource = function(worldMap, manager, resourceType,
 		y = ~~(Math.random() * worldMap.options.height);
 		tile = worldMap.map[x][y];
 
-		if (tile.resource || terrain.indexOf(tile.type) == -1) continue; // Resource not allowed
+		if (tile.resource || terrain.indexOf(tile.type) == -1 || tile.city) continue; // Resource not allowed
 		total--;
 
 		tile.resource = manager.resources[type];
