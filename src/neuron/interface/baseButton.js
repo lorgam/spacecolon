@@ -9,7 +9,7 @@ function BaseButton(parent, control, backColor, section, text, textColor, click)
 	this.section = section;
 	this.text = text;
 	this.textColor = textColor;
-	this.click = click;
+	if (click) this.click = click;
 }
 
 BaseButton.prototype.draw = function(){
