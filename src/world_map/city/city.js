@@ -3,6 +3,7 @@ import INPUT		from '../../globals/input.js';
 import texts		from '../../globals/texts.js';
 import UserResources	from '../../resources/userResources.js';
 import BaseButton	from '../../neuron/interface/baseButton.js';
+import buildingManager	from './buildingManager.js';
 
 function City(parent){
 	this.parent = parent;
