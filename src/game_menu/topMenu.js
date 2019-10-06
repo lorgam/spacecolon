@@ -1,7 +1,7 @@
 import GLOBALS			from '../globals/globals.js';
 import textureManager		from '../neuron/textureManager.js';
+import MenuControl		from '../neuron/interface/menuControl.js';
 import naturalResourceManager 	from '../resources/naturalResourceManager.js';
-import MenuControl		from './menuControl.js';
 
 const TopMenu = {
 	draw: function(worldMap){
