@@ -3,7 +3,7 @@ import INPUT		from '../../globals/input.js';
 import texts		from '../../globals/texts.js';
 import UserResources	from '../../resources/userResources.js';
 import MenuControl	from '../../neuron/interface/menuControl.js';
-import BaseButton	from '../../neuron/interface/baseButton.js';
+import TextButton	from '../../neuron/interface/textButton.js';
 import ButtonPanel	from '../../neuron/interface/buttonPanel.js';
 import buildingManager	from './buildingManager.js';
 
@@ -15,7 +15,7 @@ function City(parent){
 	var ctrl, btn;
 	// back
 	ctrl = new MenuControl(GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - 44, GLOBALS.rightMenuSize(), 44);
-	btn = new BaseButton(this, ctrl, "#000088", "general", "back", GLOBALS.highlightColor, function(){this.parent.nextState = this.parent.parent.parent;});
+	btn = new TextButton(this, ctrl, "#000088", "general", "back", GLOBALS.highlightColor, function(){this.parent.nextState = this.parent.parent.parent;});
 	this.btnBack = btn;
 
 	// right panel
@@ -23,7 +23,7 @@ function City(parent){
 	this.rigthPanel = new ButtonPanel(ctrl, 44, GLOBALS.topMenuHeight, true);
 
 	for (var building in buildingManager.buildings){
-		btn = new BaseButton(this, null, "#008", "buildings", building, GLOBALS.highlightColor, buildingClick);
+		btn = new TextButton(this, null, "#008", "buildings", building, GLOBALS.highlightColor, buildingClick);
 		this.rigthPanel.addButton(btn);
 	}
 

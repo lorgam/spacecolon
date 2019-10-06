@@ -1,32 +1,22 @@
 import GLOBALS		from '../../globals/globals.js';
 import INPUT		from '../../globals/input.js';
-import texts		from '../../globals/texts.js';
 
-function BaseButton(parent, control, backColor, section, text, textColor, click){
+function BaseButton(parent, control, backColor, click){
 	this.parent = parent;
 	this.control = control;
 	this.backColor = backColor;
-	this.section = section;
-	this.text = text;
-	this.textColor = textColor;
 	if (click) this.click = click;
+
+	this.ctx = GLOBALS.context;
 }
 
 BaseButton.prototype.draw = function(){
-	var context = GLOBALS.context;
-	context.fillStyle	= this.backColor;
-	context.fillRect(this.control.left, this.control.top, this.control.width, this.control.height);
+	this.drawBackGround();
+}
 
-	context.fillStyle	= this.textColor;
-	context.font		= GLOBALS.buttonFont;
-
-	var text = this.getText();
-	var textHeight = GLOBALS.fontHeight();
-
-	var marginW = ~~((this.control.width - context.measureText(text).width) / 2);
-	var marginH = ~~((this.control.height - textHeight) / 2) + textHeight;
-
-	context.fillText(text, this.control.left + marginW, this.control.top + marginH);
+BaseButton.prototype.drawBackGround = function(){
+	this.ctx.fillStyle = this.backColor;
+	this.ctx.fillRect(this.control.left, this.control.top, this.control.width, this.control.height);
 }
 
 BaseButton.prototype.isClicked = function(){
@@ -34,6 +24,6 @@ BaseButton.prototype.isClicked = function(){
 }
 
 BaseButton.prototype.click = function(){}
-BaseButton.prototype.getText = function(){return texts.getText(this.section, this.text);}
 
 export default BaseButton;
+
