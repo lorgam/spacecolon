@@ -4,6 +4,7 @@ import texts		from '../../globals/texts.js';
 import UserResources	from '../../resources/userResources.js';
 import MenuControl	from '../../neuron/interface/menuControl.js';
 import BaseButton	from '../../neuron/interface/baseButton.js';
+import ButtonPanel	from '../../neuron/interface/buttonPanel.js';
 import buildingManager	from './buildingManager.js';
 
 function City(parent){
@@ -11,8 +12,22 @@ function City(parent){
 	this.context = GLOBALS.context;
 	this.nextState = null;
 	// buttons
-	var control = new MenuControl(GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - 44, GLOBALS.rightMenuSize(), 44);
-	this.btnBack = new BaseButton(this, control, "#000088", "general", "back", GLOBALS.highlightColor, function(){this.parent.nextState = this.parent.parent.parent;});
+	var ctrl, btn;
+	// back
+	ctrl = new MenuControl(GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - 44, GLOBALS.rightMenuSize(), 44);
+	btn = new BaseButton(this, ctrl, "#000088", "general", "back", GLOBALS.highlightColor, function(){this.parent.nextState = this.parent.parent.parent;});
+	this.btnBack = btn;
+
+	// right panel
+	ctrl = new MenuControl(GLOBALS.mainScreenWidth, GLOBALS.topMenuHeight, GLOBALS.rightMenuSize(), GLOBALS.bottomOfMap() - 44 - GLOBALS.topMenuHeight);
+	this.rigthPanel = new ButtonPanel(ctrl, 44, GLOBALS.topMenuHeight, true);
+
+	for (var building in buildingManager.buildings){
+		btn = new BaseButton(this, null, "#008", "buildings", building, GLOBALS.highlightColor, buildingClick);
+		this.rigthPanel.addButton(btn);
+	}
+
+	// city resources
 	this.robots = 0;
 	this.addRobots(2);
 }
@@ -24,12 +39,14 @@ City.prototype.text = function() {
 City.prototype.update = function() {
 	if (INPUT.mouse.clicked){
 		this.btnBack.isClicked();
+		this.rigthPanel.isClicked();
 	}
 }
 
 City.prototype.draw = function() {
 	this.drawBackground();
 	this.btnBack.draw();
+	this.rigthPanel.draw();
 }
 
 City.prototype.drawBackground = function() {
@@ -45,4 +62,9 @@ City.prototype.addRobots = function(number) {
 	this.robots += number;
 }
 
+function buildingClick(number) {
+	var building = buildingManager.buildings[this.text];
+}
+
 export default City;
+
