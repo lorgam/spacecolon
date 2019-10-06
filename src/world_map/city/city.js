@@ -2,6 +2,7 @@ import GLOBALS		from '../../globals/globals.js';
 import INPUT		from '../../globals/input.js';
 import texts		from '../../globals/texts.js';
 import UserResources	from '../../resources/userResources.js';
+import MenuControl	from '../../neuron/interface/menuControl.js';
 import BaseButton	from '../../neuron/interface/baseButton.js';
 import buildingManager	from './buildingManager.js';
 
@@ -9,7 +10,9 @@ function City(parent){
 	this.parent = parent;
 	this.context = GLOBALS.context;
 	this.nextState = null;
-	this.btnBack = new BaseButton(this, GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - 44, GLOBALS.rightMenuSize(), 44, "#000088", "general", "back", GLOBALS.highlightColor, function(){this.parent.nextState = this.parent.parent.parent;});
+	// buttons
+	var control = new MenuControl(GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - 44, GLOBALS.rightMenuSize(), 44);
+	this.btnBack = new BaseButton(this, control, "#000088", "general", "back", GLOBALS.highlightColor, function(){this.parent.nextState = this.parent.parent.parent;});
 	this.robots = 0;
 	this.addRobots(2);
 }
