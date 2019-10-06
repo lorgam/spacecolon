@@ -20,6 +20,11 @@ const texts = {
 			fish		: "fish",
 			hervibore	: "hervibore",
 		},
+		buildings : {
+			ROBOT_FACTORY	: "Robot factory",
+			FISH_TANK	: "Fish tank",
+			MINE		: "Mine",
+		},
 		general : {
 			back		: "back",
 		}
@@ -42,6 +47,11 @@ const texts = {
 			gas		: "gas",
 			fish		: "peces",
 			hervibore	: "hervíboros",
+		},
+		buildings : {
+			ROBOT_FACTORY	: "Fábrica de robots",
+			FISH_TANK	: "Tanque de pescado",
+			MINE		: "Mina",
 		},
 		general : {
 			back		: "volver",
