@@ -24,13 +24,11 @@ ButtonPanel.prototype.addButton = function(btn){
 }
 
 ButtonPanel.prototype.draw = function(){
-	var i;
-	for (i in this.panel.btn) this.panel.btn[i].draw();
+	this.panel.btn.forEach((e) => {e.draw();});
 }
 
 ButtonPanel.prototype.isClicked = function(){
-	var i;
-	for (i in this.panel.btn) this.panel.btn[i].isClicked();
+	this.panel.btn.forEach((e) => {e.isClicked();});
 }
 
 export default ButtonPanel;
