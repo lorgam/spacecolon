@@ -13,9 +13,9 @@ const GLOBALS = {
 	buttonFont			: "22px Arial",
 	normalFont			: "14px Arial",
 
-	backgroundColor			: "#000000",
-	textColor			: "#FFFFFF",
-	highlightColor			: "#FF0000",
+	backgroundColor			: "#000",
+	textColor			: "#FFF",
+	highlightColor			: "#F00",
 };
 
 GLOBALS.minTileSize			= function(){return 8;}

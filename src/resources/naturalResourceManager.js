@@ -24,7 +24,7 @@ const naturalResourceManager = {
 			terrain:['grass','grassMountain','forest']
 		},
 		SEALIFE		: {
-			color:"#FFFFFF",
+			color:"#FFF",
 			text:"fish",
 			default:50,
 			proportion:0.0075,

@@ -19,7 +19,7 @@ WorldGenerator.generateWorld = function(worldMap){
 var mapSecCanvas		= document.getElementById('sec_canvas');
 var mapSecContext		= mapSecCanvas.getContext('2d');
 
-mapSecContext.fillStyle = "#FF0000";
+mapSecContext.fillStyle = "#F00";
 mapSecContext.fillRect(0, 0, 1000, 750);
 
 //@Debug
@@ -78,7 +78,7 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 /*
 	//@Debug: Secondary canvas showing what we have generated
 
-	mapSecContext.fillStyle = "#FF0000";
+	mapSecContext.fillStyle = "#F00";
 	mapSecContext.drawImage(mapCanvas, 0, 0, 1000, 750);
 
 	//@Debug

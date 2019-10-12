@@ -15,7 +15,7 @@ function City(parent){
 	var ctrl, btn;
 	// back
 	ctrl = new MenuControl(GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - 44, GLOBALS.rightMenuSize(), 44);
-	btn = new TextButton(this, ctrl, "#000088", "general", "back", GLOBALS.highlightColor, function(){this.parent.nextState = this.parent.parent.parent;});
+	btn = new TextButton(this, ctrl, "#008", "general", "back", GLOBALS.highlightColor, function(){this.parent.nextState = this.parent.parent.parent;});
 	this.btnBack = btn;
 
 	// right panel
@@ -52,7 +52,7 @@ City.prototype.draw = function() {
 City.prototype.drawBackground = function() {
 	this.parent.parent.draw();
 	this.context.globalAlpha = 0.5;
-	this.context.fillStyle = "#000088";
+	this.context.fillStyle = "#008";
 	this.context.fillRect(0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight);
 	this.context.globalAlpha = 1;
 }
