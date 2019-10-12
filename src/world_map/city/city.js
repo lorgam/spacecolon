@@ -19,8 +19,9 @@ function City(parent){
 	this.btnBack = btn;
 
 	// right panel
-	ctrl = new MenuControl(GLOBALS.mainScreenWidth, GLOBALS.topMenuHeight, GLOBALS.rightMenuSize(), GLOBALS.bottomOfMap() - 44 - GLOBALS.topMenuHeight);
-	this.rigthPanel = new ButtonPanel(ctrl, 44, GLOBALS.topMenuHeight, true);
+	var top = GLOBALS.topMenuHeight;
+	ctrl = new MenuControl(GLOBALS.mainScreenWidth, top, GLOBALS.rightMenuSize(), GLOBALS.bottomOfMap() - 44 - top);
+	this.rigthPanel = new ButtonPanel(ctrl, 44, true);
 
 	for (var building in buildingManager.buildings){
 		btn = new TextButton(this, null, "#008", "buildings", building, GLOBALS.highlightColor, buildingClick);

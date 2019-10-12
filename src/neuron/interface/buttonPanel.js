@@ -1,6 +1,6 @@
 import MenuControl	from './menuControl.js';
 
-function ButtonPanel(control, size, startingPoint, vertical = false){
+function ButtonPanel(control, size, vertical = false){
 	this.control = control;
 	this.size = size;
 	this.v = vertical;
@@ -10,16 +10,13 @@ function ButtonPanel(control, size, startingPoint, vertical = false){
 		btn : []
 	};
 
-	this.lastPos = startingPoint;
+	this.lastPos = (this.v ? this.control.top : this.control.left);
 }
 
 ButtonPanel.prototype.addButton = function(btn){
 	var control;
-	if (this.v) {
-		control = new MenuControl(this.control.left, this.lastPos, this.control.width, this.size);
-	} else {
-		control = new MenuControl(this.lastPos, this.control.top, this.size, this.control.height);
-	}
+	if (this.v) control = new MenuControl(this.control.left, this.lastPos, this.control.width, this.size);
+	else control = new MenuControl(this.lastPos, this.control.top, this.size, this.control.height);
 
 	btn.control = control;
 	this.lastPos += this.size;
