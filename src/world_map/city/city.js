@@ -13,15 +13,17 @@ function City(parent){
 	this.nextState = null;
 	// buttons
 	var ctrl, btn;
+	var topBackBtn = GLOBALS.bottomOfMap() - GLOBALS.verticalButtonSize;
+	var top = GLOBALS.topMenuHeight;
+
 	// back
-	ctrl = new MenuControl(GLOBALS.mainScreenWidth, GLOBALS.bottomOfMap() - 44, GLOBALS.rightMenuSize(), 44);
+	ctrl = new MenuControl(GLOBALS.mainScreenWidth, topBackBtn, GLOBALS.rightMenuSize(), GLOBALS.verticalButtonSize);
 	btn = new TextButton(this, ctrl, "#008", "general", "back", GLOBALS.highlightColor, function(){this.parent.nextState = this.parent.parent.parent;});
 	this.btnBack = btn;
 
 	// right panel
-	var top = GLOBALS.topMenuHeight;
-	ctrl = new MenuControl(GLOBALS.mainScreenWidth, top, GLOBALS.rightMenuSize(), GLOBALS.bottomOfMap() - 44 - top);
-	this.rigthPanel = new ButtonPanel(ctrl, 44, true);
+	ctrl = new MenuControl(GLOBALS.mainScreenWidth, top, GLOBALS.rightMenuSize(), top - topBackBtn);
+	this.rigthPanel = new ButtonPanel(ctrl, GLOBALS.verticalButtonSize, true);
 
 	for (var building in buildingManager.buildings){
 		btn = new TextButton(this, null, "#008", "buildings", building, GLOBALS.highlightColor, buildingClick);

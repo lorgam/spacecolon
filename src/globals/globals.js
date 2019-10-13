@@ -16,6 +16,8 @@ const GLOBALS = {
 	backgroundColor			: "#000",
 	textColor			: "#FFF",
 	highlightColor			: "#F00",
+
+	verticalButtonSize		: 44
 };
 
 GLOBALS.minTileSize			= function(){return 8;}
