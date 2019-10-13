@@ -15,4 +15,11 @@ MenuControl.prototype.advanceVer = function(){
 	this.top += this.height + this.marginTop;
 }
 
+MenuControl.prototype.getRect = function(){
+	return {
+		x0: this.left, x1: this.left + this.width,
+		y0: this.top, y1: this.top + this.height
+	}
+}
+
 export default MenuControl;

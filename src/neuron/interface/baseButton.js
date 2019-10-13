@@ -1,5 +1,6 @@
 import GLOBALS		from '../../globals/globals.js';
 import INPUT		from '../../globals/input.js';
+import collision2d	from '../physics/collision2d.js';
 
 function BaseButton(parent, control, backColor, click){
 	this.parent = parent;
@@ -20,7 +21,7 @@ BaseButton.prototype.drawBackGround = function(){
 }
 
 BaseButton.prototype.isClicked = function(){
-	if (INPUT.mouse.x > this.control.left && INPUT.mouse.y > this.control.top && INPUT.mouse.x < this.control.left + this.control.width && INPUT.mouse.y < this.control.top + this.control.height) this.click();
+	if (collision2d.pointInRectangle(INPUT.mouse, this.control.getRect())) this.click();
 }
 
 BaseButton.prototype.click = function(){}
