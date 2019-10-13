@@ -1,5 +1,6 @@
 import GLOBALS		from '../globals/globals.js';
 import INPUT		from '../globals/input.js';
+import turnManager	from '../neuron/turnManager.js';
 import WorldMap		from '../world_map/worldMap.js';
 import WorldGenerator	from '../world_map/worldGenerator.js';
 import UserResources	from '../resources/userResources';
@@ -14,6 +15,8 @@ function GameScreen(){
 
 	this.currentState	= this.worldMap;
 	this.defaultState	= this.currentState;
+
+	turnManager.reset();
 }
 
 GameScreen.prototype.update = function(timeElapsed) {

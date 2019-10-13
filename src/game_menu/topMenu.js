@@ -1,4 +1,5 @@
 import GLOBALS			from '../globals/globals.js';
+import turnManager		from '../neuron/turnManager.js';
 import textureManager		from '../neuron/textureManager.js';
 import MenuControl		from '../neuron/interface/menuControl.js';
 import naturalResourceManager 	from '../resources/naturalResourceManager.js';
@@ -17,12 +18,16 @@ const TopMenu = {
 		for (var name in naturalResourceManager.resources){
 			drawMenuItem(worldMap, ctx, control, 'naturalResources', name);
 		}
+		// turn
+		control.left = GLOBALS.mainScreenWidth;
+		writeText('T '+turnManager.turn, ctx, control);
 	}
 }
 
 function drawMenuItem(worldMap, ctx, control, type, resource){
 	drawMenuImage(ctx, control, type, resource);
 	writeText(worldMap.parent.userResources.resources[resource], ctx, control);
+	control.advanceHor();
 }
 
 function drawMenuImage(ctx, control, type, resource){
@@ -32,7 +37,6 @@ function drawMenuImage(ctx, control, type, resource){
 
 function writeText(text, ctx, control){
 	ctx.fillText(text, control.left, control.top + 12);
-	control.advanceHor();
 }
 
 export default TopMenu;

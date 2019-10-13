@@ -26,7 +26,8 @@ const texts = {
 			MINE		: "Mine",
 		},
 		general : {
-			back		: "back",
+			back		: "Back",
+			nextTurn	: "Next turn",
 		}
 	},
 	es : {
@@ -55,6 +56,7 @@ const texts = {
 		},
 		general : {
 			back		: "volver",
+			nextTurn	: "Siguiente turno",
 		}
 	}
 }

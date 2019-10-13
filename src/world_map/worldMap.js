@@ -23,6 +23,9 @@ function WorldMap(options, parent){
 	this.tileClicked	= null;
 	this.nextState		= null;
 	this.typeOfView		= 0; //0: Normal, 1: Height, 2: Humidity, 3: Blocks
+
+	//RigthMenu.init();
+	RightMenu.init();
 }
 
 WorldMap.prototype.draw = function(){
@@ -52,9 +55,12 @@ WorldMap.prototype.update = function(timeElapsed) {
 			if (INPUT.mouse.y > GLOBALS.topMenuHeight && INPUT.mouse.y < GLOBALS.bottomOfMap()){
 				this.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);
 			}
-		}
-		else if (INPUT.mouse.y >= GLOBALS.bottomOfMap()){
-			MiniMap.mouseClick(this, INPUT.mouse.x - GLOBALS.mainScreenWidth, INPUT.mouse.y - GLOBALS.bottomOfMap());
+		} else {
+			if (INPUT.mouse.y >= GLOBALS.bottomOfMap()){
+				MiniMap.mouseClick(this, INPUT.mouse.x - GLOBALS.mainScreenWidth, INPUT.mouse.y - GLOBALS.bottomOfMap());
+			} else {
+				RightMenu.mouseClick();
+			}
 		}
 	}
 }
