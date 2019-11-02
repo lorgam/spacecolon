@@ -62,7 +62,7 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 			tileHeight	= perlinNoise.noise(xHeight, h * heightStep + worldMap.options.heightSeedY, zHeight);
 			tileHumidity	= perlinNoise.noise(xHumidity, h * humidityStep + worldMap.options.humiditySeedY, zHumidity);
 
-			mapTile		= new MapTile(worldMap, tileHeight, tileHumidity);
+			mapTile		= new MapTile(worldMap, tileHeight, tileHumidity, w, h);
 			map[w][h]	= mapTile;
 
 			mapContext.drawImage(textureManager.textures['mapTile'][mapTile.type], w * GLOBALS.maxTileSize(), h * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());

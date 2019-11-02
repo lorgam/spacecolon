@@ -1,7 +1,8 @@
 import aux		from '../globals/auxiliar.js';
 import textureManager 	from '../neuron/textureManager.js';
+import MapPoint2d 	from '../neuron/physics/mapPoint2d.js';
 
-function MapTile(parent, heightSeed, humiditySeed){
+function MapTile(parent, heightSeed, humiditySeed, x, y){
 	this.parent		= parent;
 	this.heightSeed		= heightSeed;
 	this.humiditySeed	= humiditySeed;
@@ -9,6 +10,7 @@ function MapTile(parent, heightSeed, humiditySeed){
 	this.type		= this.tileType(this.parent.options.waterHeight);
 	this.resource		= null;
 	this.state		= null;
+	this.pos		= new MapPoint2d(x, y, parent);
 }
 
 MapTile.prototype.tileTypes = {
