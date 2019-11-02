@@ -3,13 +3,13 @@ import INPUT		from '../globals/input.js';
 import turnManager	from '../neuron/turnManager.js';
 import WorldMap		from '../world_map/worldMap.js';
 import WorldGenerator	from '../world_map/worldGenerator.js';
-import UserResources	from '../resources/userResources';
+import userResources	from '../resources/userResources.js';
 import OptionsScreen	from './optionsScreen.js';
 import ScreenStack	from './screenStack.js';
 
 function GameScreen(){
 	this.totalTime		= 0.0;
-	this.userResources	= new UserResources();
+	userResources.init();
 
 	this.worldMap		= new WorldMap(WorldGenerator.generateOptions({type : 'normal'}), this);
 
@@ -17,6 +17,8 @@ function GameScreen(){
 	this.defaultState	= this.currentState;
 
 	turnManager.reset();
+
+	this.unitSelected	= null;
 }
 
 GameScreen.prototype.update = function(timeElapsed) {

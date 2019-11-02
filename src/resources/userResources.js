@@ -1,13 +1,15 @@
 import naturalResourceManager	from './naturalResourceManager.js';
 
-function UserResources(){
-	var resources = [];
-	resources['robots'] = 0;
-	for (var res in naturalResourceManager.resources){
-		resources[res] = 0;
-	}
-	this.resources = resources;
+const userResources = {
+	resources : {}
 }
 
-export default UserResources;
+userResources.init = function() {
+	userResources.resources['robots'] = 0;
+	for (var res in naturalResourceManager.resources){
+		userResources.resources[res] = 0;
+	}
+}
+
+export default userResources;
 

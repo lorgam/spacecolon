@@ -1,7 +1,7 @@
 import GLOBALS		from '../../globals/globals.js';
 import INPUT		from '../../globals/input.js';
 import texts		from '../../globals/texts.js';
-import UserResources	from '../../resources/userResources.js';
+import unitManager	from '../../resources/unit/unitManager.js';
 import MenuControl	from '../../neuron/interface/menuControl.js';
 import TextButton	from '../../neuron/interface/textButton.js';
 import ButtonPanel	from '../../neuron/interface/buttonPanel.js';
@@ -31,8 +31,7 @@ function City(parent){
 	}
 
 	// city resources
-	this.robots = 0;
-	this.addRobots(2);
+	unitManager.addRobot(this);
 }
 
 City.prototype.text = function() {
@@ -58,11 +57,6 @@ City.prototype.drawBackground = function() {
 	this.context.fillStyle = "#008";
 	this.context.fillRect(0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight);
 	this.context.globalAlpha = 1;
-}
-
-City.prototype.addRobots = function(number) {
-	this.parent.parent.parent.userResources.resources.robots += number;
-	this.robots += number;
 }
 
 function buildingClick(number) {

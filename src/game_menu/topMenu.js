@@ -3,6 +3,7 @@ import turnManager		from '../neuron/turnManager.js';
 import textureManager		from '../neuron/textureManager.js';
 import MenuControl		from '../neuron/interface/menuControl.js';
 import naturalResourceManager 	from '../resources/naturalResourceManager.js';
+import userResources		from '../resources/userResources.js';
 
 const TopMenu = {
 	draw: function(worldMap){
@@ -26,7 +27,7 @@ const TopMenu = {
 
 function drawMenuItem(worldMap, ctx, control, type, resource){
 	drawMenuImage(ctx, control, type, resource);
-	writeText(worldMap.parent.userResources.resources[resource], ctx, control);
+	writeText(userResources.resources[resource], ctx, control);
 	control.advanceHor();
 }
 
