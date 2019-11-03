@@ -28,6 +28,9 @@ const texts = {
 		general : {
 			back		: "Back",
 			nextTurn	: "Next turn",
+		},
+		units : {
+			robots		: "Robot"
 		}
 	},
 	es : {
@@ -57,7 +60,11 @@ const texts = {
 		general : {
 			back		: "volver",
 			nextTurn	: "Siguiente turno",
+		},
+		units : {
+			robots		: "Robot"
 		}
+
 	}
 }
 

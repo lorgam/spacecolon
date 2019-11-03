@@ -1,3 +1,4 @@
+import texts		from '../../globals/texts.js';
 import MapPoint2d	from '../../neuron/physics/mapPoint2d.js';
 import textureManager	from '../../neuron/textureManager.js';
 
@@ -10,6 +11,10 @@ function BaseUnit(city){
 
 
 BaseUnit.prototype.type = null;
+
+BaseUnit.prototype.text = function(){
+	return texts.getText('units', this.type);
+}
 
 BaseUnit.prototype.texture = function(){
 	return textureManager.textures['userResources'][this.type];
