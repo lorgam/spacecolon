@@ -44,7 +44,11 @@ GameScreen.prototype.update = function(timeElapsed) {
 }
 
 GameScreen.prototype.draw = function() {this.currentState.draw();}
-GameScreen.prototype.selectUnit = function(unit) {this.unitSelected = unit;}
+
+GameScreen.prototype.selectUnit = function(unit) {
+	this.unitSelected = unit;
+	this.worldMap.centerView(unit.pos.x, unit.pos.y);
+}
 
 export default GameScreen;
 
