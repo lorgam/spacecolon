@@ -24,7 +24,6 @@ function WorldMap(options, parent){
 	this.nextState		= null;
 	this.typeOfView		= 0; //0: Normal, 1: Height, 2: Humidity, 3: Blocks
 
-	//RigthMenu.init();
 	RightMenu.init();
 }
 
@@ -65,12 +64,12 @@ WorldMap.prototype.update = function(timeElapsed) {
 	}
 }
 
-WorldMap.prototype.mouseClick	= function(x,y){
-	//Calculate tile clicked
-	var tileX			= (~~(x/GLOBALS.tileSize) + this.topLeftX) % this.options.width;
-	var tileY			= (~~(y/GLOBALS.tileSize) + this.topLeftY) % this.options.height;
+WorldMap.prototype.getTile	= function(x,y){
+	return {x:(~~(x/GLOBALS.tileSize) + this.topLeftX) % this.options.width,y:(~~(y/GLOBALS.tileSize) + this.topLeftY) % this.options.height};
+}
 
-	this.tileClicked = {x:tileX,y:tileY};
+WorldMap.prototype.mouseClick	= function(x,y){
+	this.tileClicked = this.getTile(x,y);
 	this.nextState = this.getTileClicked().state;
 }
 
