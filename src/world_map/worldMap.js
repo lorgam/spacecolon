@@ -36,7 +36,7 @@ WorldMap.prototype.draw = function(){
 
 	LowerMenu.draw(this.getTileClicked());
 	TopMenu.draw(this);
-	RightMenu.draw();
+	RightMenu.draw(this);
 	MiniMap.draw(this);
 }
 

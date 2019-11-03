@@ -12,11 +12,21 @@ const RightMenu = {
 	},
 
 	draw : (worldMap) => {
-		var context = GLOBALS.context;
+		var ctx = GLOBALS.context;
 		var top = GLOBALS.topMenuHeight;
+		//Draw background
+		ctx.fillStyle = GLOBALS.backgroundColor;
+		ctx.fillRect(GLOBALS.mainScreenWidth, top, GLOBALS.rightMenuSize(), GLOBALS.bottomOfMap() - top);
 
-		context.fillStyle = GLOBALS.backgroundColor;
-		context.fillRect(GLOBALS.mainScreenWidth, top, GLOBALS.rightMenuSize(), GLOBALS.bottomOfMap() - top);
+		if (worldMap.parent.unitSelected){
+			ctx.fillStyle	=  GLOBALS.textColor;
+			ctx.font	=  GLOBALS.buttonFont;
+			top		+= GLOBALS.fontHeight();
+
+			ctx.fillText(worldMap.parent.unitSelected.text(), GLOBALS.mainScreenWidth, top);
+		}
+
+		top = GLOBALS.topMenuHeight;
 
 		RightMenu.nextTurnBtn.draw();
 	},
