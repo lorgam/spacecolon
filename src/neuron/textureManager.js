@@ -42,7 +42,7 @@ const textureManager = {
 		textures = [];
 
 		canvas = createCanvas(size, size);
-		addTriangle(canvas, size, "#0FF");
+		addTriangleInverse(canvas, size, "#0FF");
 		textures['city'] = canvas;
 
 		textureManager.textures['general'] = textures;
@@ -83,6 +83,17 @@ function addTriangle(canvas, size, color){
 	ctx.moveTo(0,0);
 	ctx.lineTo(size/2, size);
 	ctx.lineTo(size, 0);
+	ctx.closePath();
+	ctx.fill();
+}
+
+function addTriangleInverse(canvas, size, color){
+	var ctx = canvas.getContext('2d');
+	ctx.fillStyle = color;
+	ctx.beginPath();
+	ctx.moveTo(0,size);
+	ctx.lineTo(size/2, 0);
+	ctx.lineTo(size, size);
 	ctx.closePath();
 	ctx.fill();
 }
