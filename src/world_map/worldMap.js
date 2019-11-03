@@ -96,6 +96,7 @@ WorldMap.prototype.centerView = function(x,y) {
 	if (this.topLeftY + GLOBALS.verticalTilesToShow() > this.options.height) this.topLeftY = this.options.height - GLOBALS.verticalTilesToShow();
 };
 
-WorldMap.prototype.centerViewonStartingPoint = function(x,y) {this.centerView(this.startingPointX, this.startingPointY);}
+WorldMap.prototype.centerViewonStartingPoint = function() {this.centerView(this.startingPointX, this.startingPointY);}
 
 export default WorldMap;
+
