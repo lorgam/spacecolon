@@ -16,7 +16,7 @@ function GameScreen(){
 	this.currentState	= this.worldMap;
 	this.defaultState	= this.currentState;
 
-	turnManager.reset();
+	turnManager.reset(this);
 
 	this.unitSelected	= null;
 }
@@ -44,5 +44,7 @@ GameScreen.prototype.update = function(timeElapsed) {
 }
 
 GameScreen.prototype.draw = function() {this.currentState.draw();}
+GameScreen.prototype.selectUnit = function(unit) {this.unitSelected = unit;}
 
 export default GameScreen;
+
