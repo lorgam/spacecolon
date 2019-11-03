@@ -6,5 +6,7 @@ function RobotUnit(city){
 
 RobotUnit.prototype = Object.create(BaseUnit.prototype);
 
+RobotUnit.prototype.type = 'robots';
+
 export default RobotUnit;
 
