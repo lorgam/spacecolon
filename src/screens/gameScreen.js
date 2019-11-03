@@ -4,10 +4,14 @@ import turnManager	from '../neuron/turnManager.js';
 import WorldMap		from '../world_map/worldMap.js';
 import WorldGenerator	from '../world_map/worldGenerator.js';
 import userResources	from '../resources/userResources.js';
+import unitManager	from '../resources/unit/unitManager.js';
 import OptionsScreen	from './optionsScreen.js';
 import ScreenStack	from './screenStack.js';
 
 function GameScreen(){
+	turnManager.reset(this);
+	unitManager.reset();
+
 	this.totalTime		= 0.0;
 	userResources.init();
 
@@ -15,8 +19,6 @@ function GameScreen(){
 
 	this.currentState	= this.worldMap;
 	this.defaultState	= this.currentState;
-
-	turnManager.reset(this);
 
 	this.unitSelected	= null;
 }

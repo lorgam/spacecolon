@@ -15,5 +15,9 @@ unitManager.addRobot = function(city){
 	userResources.resources.robots++;
 }
 
+unitManager.reset = function(){
+	unitManager.list.robot = [];
+}
+
 export default unitManager;
 
