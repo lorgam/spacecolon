@@ -1,4 +1,5 @@
 import GLOBALS	from '../globals/globals.js';
+import aux	from '../globals/auxiliar.js';
 
 const WorldMapDrawer = {}
 
@@ -19,6 +20,18 @@ WorldMapDrawer.normalMapView = function(worldMap){
 							horizontalTilesDrawn * GLOBALS.tileSize, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight
 						);
 		horizontalTilesDrawn +=  worldMap.map.width;
+	}
+
+	var unit = worldMap.parent.unitSelected;
+	if (unit) {
+		var x = (unit.pos.x - worldMap.topLeftX + worldMap.options.width ) % worldMap.options.width;
+		var y = (unit.pos.y - worldMap.topLeftY + worldMap.options.height) % worldMap.options.height;
+		if (x < horizontalTilesToShow && y < verticalTilesToShow) {
+			var alpha = context.globalAlpha;
+			context.globalAlpha = Math.lerp(0.5, 1, aux.gradient);
+			context.drawImage(unit.texture(), x * GLOBALS.tileSize, y * GLOBALS.tileSize + GLOBALS.topMenuHeight, GLOBALS.tileSize, GLOBALS.tileSize);
+			context.globalAlpha = alpha;
+		}
 	}
 }
 WorldMapDrawer.heightMapView = function(worldMap){
@@ -84,3 +97,4 @@ WorldMapDrawer.drawArray = [
 ]
 
 export default WorldMapDrawer;
+
