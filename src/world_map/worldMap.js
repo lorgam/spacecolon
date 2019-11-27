@@ -70,6 +70,8 @@ WorldMap.prototype.getTile	= function(x,y){
 
 WorldMap.prototype.mouseClick	= function(x,y){
 	this.tileClicked = this.getTile(x,y);
+
+	if (this.parent.unitSelected) this.parent.unitSelected.goTo(this.tileClicked.pos);
 	this.nextState = this.getTileClicked().state;
 }
 

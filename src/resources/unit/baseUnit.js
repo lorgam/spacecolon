@@ -24,9 +24,12 @@ BaseUnit.prototype.isWaiting = function(){
 	return this.state == 'WAIT';
 }
 
-BaseUnit.prototype.moveTo = function(pos){
+BaseUnit.prototype.goTo = function(pos){
 	this.goal = pos;
 	this.state = 'MOVE';
+}
+
+BaseUnit.prototype.move = function(){
 }
 
 export default BaseUnit;

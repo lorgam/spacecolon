@@ -11,8 +11,11 @@ const unitManager = {
 unitManager.unitsWaiting = () => unitManager.list.robot.filter(e => e.isWaiting());
 
 unitManager.addRobot = function(city){
-	unitManager.list['robot'].push(unitFactory['robot'](city));
+	var robot = unitFactory['robot'](city);
+	unitManager.list['robot'].push(robot);
 	userResources.resources.robots++;
+
+	city.parent.unit = robot;
 }
 
 unitManager.reset = function(){
