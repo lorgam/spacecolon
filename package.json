@@ -4,8 +4,8 @@
   "description": "Javascript game based on Sid Meier's Colonization",
   "private": true,
   "dependencies": {
-    "webpack": "^4.41.1",
-    "webpack-cli": "^3.3.9"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "devDependencies": {},
   "scripts": {
