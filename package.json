@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Javascript game based on Sid Meier's Colonization",
   "private": true,
-  "dependencies": {
-    "webpack": "^4.41.2",
+  "dependencies": {},
+  "devDependencies": {
+    "serialize-javascript": ">=2.1.1",
+    "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
