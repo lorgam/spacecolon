@@ -4,6 +4,7 @@ import WorldGenerator	from './worldGenerator.js';
 import WorldMapDrawer	from './worldMapDrawer.js';
 import MapTile		from './mapTile.js';
 import ScreenStack	from '../screens/screenStack.js';
+import turnManager	from '../neuron/turnManager.js';
 import TopMenu		from '../game_menu/topMenu.js';
 import LowerMenu	from '../game_menu/lowerMenu.js';
 import RightMenu	from '../game_menu/rightMenu.js';
@@ -48,6 +49,7 @@ WorldMap.prototype.update = function(timeElapsed) {
 
 	if (INPUT.keyboard.V.execute())			this.changeView();
 	if (INPUT.keyboard.C.execute())			this.centerViewonStartingPoint();
+	if (INPUT.keyboard.SPACE.execute())			turnManager.advance();
 	//Mouse
 	if (INPUT.mouse.clicked){
 		if (INPUT.mouse.x < GLOBALS.mainScreenWidth){
@@ -71,7 +73,7 @@ WorldMap.prototype.getTile	= function(x,y){
 WorldMap.prototype.mouseClick	= function(x,y){
 	this.tileClicked = this.getTile(x,y);
 
-	if (this.parent.unitSelected) this.parent.unitSelected.goTo(this.tileClicked.pos);
+	if (this.parent.unitSelected) this.parent.unitSelected.goTo(this.tileClicked);
 	this.nextState = this.getTileClicked().state;
 }
 

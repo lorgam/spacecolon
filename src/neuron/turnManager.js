@@ -8,7 +8,12 @@ const turnManager = {
 turnManager.advance = function(){
 	var unitsWaiting = unitManager.unitsWaiting();
 	if (unitsWaiting.length) turnManager.screen.selectUnit(unitsWaiting[0]);
-	else turnManager.turn++;
+	else {
+			turnManager.turn++;
+			for (let i = 0; i < unitManager.list.robot.length; ++i) {
+					unitManager.list.robot[i].refresh();
+			}
+	}
 }
 
 turnManager.init = function(){

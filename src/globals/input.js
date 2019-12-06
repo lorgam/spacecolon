@@ -10,6 +10,7 @@ const INPUT = {
 		INPUT.keyboard.ENTER		= new inputKey(13);
 		INPUT.keyboard.ALT			= new inputKey(18);
 		INPUT.keyboard.ESC			= new inputKey(27);
+		INPUT.keyboard.SPACE			= new inputKey(32);
 
 		INPUT.keyboard.O			= new inputKey(79);
 		INPUT.keyboard.C			= new inputKey(67);

@@ -28,6 +28,8 @@ Clone the repository and open the file index.html with your browser.
 * ARROW keys to navigate the map or click on the minimap.
 * C to center the view on the starting point.
 * V to change view from normal to height map to humidity map to blocks view.
+* SPACE to advance a turn
+* LEFT CLICK to move a selected unit
 
 ### Options menu
 
@@ -39,4 +41,5 @@ Check the wiki for more info
 
 ## HISTORY
 03/25/2019 For now is just a map generated with perlin noise.
+12/06/2019 Movement and units, something like a city
 
