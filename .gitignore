@@ -6,6 +6,7 @@
 
 node_modules
 dist/main.js
+test-dist
 #Ignore thumbnails created by Windows
 Thumbs.db
 #Ignore files built by Visual Studio
