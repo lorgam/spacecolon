@@ -3,6 +3,7 @@ import Point2d from './point2d.js';
 function MapPoint2d(x, y, worldMap){
 	Point2d.call(this, x, y);
 	this.worldMap = worldMap;
+	this.movementCost = 1;
 }
 
 MapPoint2d.prototype = Object.create(Point2d.prototype);

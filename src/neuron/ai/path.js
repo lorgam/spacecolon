@@ -8,10 +8,7 @@ path.find = function(unit){
 	return aStar(unit.pos, unit.goal, h);
 }
 
-var h = (pos, g) => {
-		//return pos.distance(g);
-		return 0;
-};
+var h = (pos, g) => pos.distance(g);
 
 export default path;
 

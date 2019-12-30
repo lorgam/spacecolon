@@ -6,9 +6,9 @@ function aStar(start, goal, h){
 	var gScore = [];
 	var closedSet = [];
 	var fScore = [];
-	var filtered, i, pos, gScorePos, tentative_gScore, current;
+	var filtered, pos, gScorePos, tentative_gScore, current;
 
-	gScore.push({pos:start,score:0});
+	gScore.push({pos:start,score:start.movementCost});
 	fScore.push({pos:start,score:h(start, goal)});
 
 	while (openSet.length > 0) {
@@ -31,13 +31,12 @@ function aStar(start, goal, h){
 					filtered[0].pos = e;
 				} else cameFrom.push({pos:e,from:current});
 
-				i = gScore.forEach((el, i) => {if (el.pos.equals(e)) return i;}) || -1;
-				if (i == -1) {
+				if (pos == -1) {
 					gScore.push({pos:e,score:tentative_gScore});
 					fScore.push({pos:e,score:tentative_gScore + h(e, goal)});
 				} else {
-					gScore[i].score = tentative_gScore;
-					fScore[i].score = tentative_gScore + h(e, goal);
+					gScore[pos].score = tentative_gScore;
+					fScore[pos].score = tentative_gScore + h(e, goal);
 				}
 
 				if (!findPos(e, openSet)) openSet.push(e);
@@ -59,16 +58,18 @@ var reconstruct_path = (cameFrom, current) => {
 }
 
 var findPos = (pos, arr) => {
-	for (var i = 0; i < arr.length; i++) if (arr[i].x == pos.x && arr[i].y == pos.y) return arr[i];
+	for (let i = 0; i < arr.length; i++) if (pos.equals(arr[i])) return arr[i];
 	return false;
 }
 
-var findInd = (pos, arr) => arr.forEach((e,i) => { if (pos.equals(e)) return i;}) || -1;
+var findInd = (pos, arr) => {
+	for (let i = 0; i < arr.length; i++) if (pos.equals(arr[i].pos)) return i;
+	return -1;
+}
 
 var removePos = (pos, arr) => {
 	arr = arr.filter(e => {
-		for (let i = 0; i < arr.length; i++) if (arr[i].x == pos.x && arr[i].y == pos.y) return false;
-		return true;
+		for (let i = 0; i < arr.length; i++) return !pos.equals(arr[i].pos);
 	});
 }
 
@@ -85,7 +86,7 @@ var lowestFScore = (openSet, fScore) => {
 	return res;
 }
 
-var d = (curr, neig) => 1; // @TODO: Add terrain penalty to movement
+var d = (curr, neig) => neig.movementCost;
 
 export default aStar;
 

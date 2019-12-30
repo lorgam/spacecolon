@@ -36,7 +36,7 @@ BaseUnit.prototype.isWaiting = function(){
 }
 
 BaseUnit.prototype.goTo = function(pos){
-	this.goal = new MapPoint2d(pos.x, pos.y);
+	this.goal = new MapPoint2d(pos.x, pos.y, this.worldMap);
 	this.state = 'MOVE';
 
 	this.route = AI.path.find(this).reverse();
