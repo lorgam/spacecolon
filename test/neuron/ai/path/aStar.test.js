@@ -65,6 +65,50 @@ describe('aStar function', function() {
 				];
 				pathChecker(expected, path);
 		});
+
+		it('is a bigger movement',() => {
+				let map = [
+						[0,1,9,9,9,9,9,9,9,9],
+						[9,1,1,1,1,9,9,9,9,9],
+						[9,9,9,9,1,9,9,9,9,9],
+						[9,9,9,9,1,9,9,9,9,9],
+						[9,9,9,1,1,9,9,9,9,9],
+						[9,9,9,1,9,9,9,9,9,9],
+						[9,9,9,1,1,1,1,9,9,9],
+						[9,9,9,9,9,9,1,9,9,9],
+						[9,9,9,9,9,9,1,1,1,1],
+						[9,9,9,9,9,9,9,9,9,1]
+				];
+
+				let start = new MockMapPoint2d(0,0,map);
+				let goal = new MockMapPoint2d(9,9,map);
+				let path = aStar(start, goal, h).reverse();
+
+				let expected = [
+						{x:0,y:0},
+						{x:0,y:1},
+						{x:1,y:1},
+						{x:1,y:2},
+						{x:1,y:3},
+						{x:1,y:4},
+						{x:2,y:4},
+						{x:3,y:4},
+						{x:4,y:4},
+						{x:4,y:3},
+						{x:5,y:3},
+						{x:6,y:3},
+						{x:6,y:4},
+						{x:6,y:5},
+						{x:6,y:6},
+						{x:7,y:6},
+						{x:8,y:6},
+						{x:8,y:7},
+						{x:8,y:8},
+						{x:8,y:9},
+						{x:9,y:9}
+				];
+				pathChecker(expected, path);
+		});
 });
 
 var h = (pos, g) => pos.distance(g);
