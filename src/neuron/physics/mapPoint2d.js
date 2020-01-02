@@ -8,23 +8,28 @@ function MapPoint2d(x, y, worldMap){
 MapPoint2d.prototype = Object.create(Point2d.prototype);
 
 MapPoint2d.prototype.neighbors = function() {
-	var neighbors = Point2d.prototype.neighbors.call(this);
+	let neighbors = [];
 	var options = this.worldMap.options;
 
-	neighbors = neighbors.filter(e => !(e.y > options.height - 1 || e.y < 0));
+	neighbors.push(new MapPoint2d((this.x + 1 + options.width) % options.width, this.y, this.worldMap));
+	neighbors.push(new MapPoint2d((this.x - 1 + options.width) % options.width, this.y, this.worldMap));
+	if (this.y > 0) neighbors.push(new MapPoint2d(this.x, this.y - 1, this.worldMap));
+	if (this.y < options.height - 1) neighbors.push(new MapPoint2d(this.x, this.y + 1, this.worldMap));
 
-  var res = [];
-  for (let i = 0; i < neighbors.length; ++i) {
-			let e = neighbors[i];
-			res.push(new MapPoint2d((e.x + options.width) % options.width, e.y, this.worldMap));
-	}
-
-  return res;
+  return neighbors;
 }
 
 MapPoint2d.prototype.movementCost = function() {
 	return this.worldMap.map[this.x][this.y].movementCost();
 }
+
+MapPoint2d.prototype.distance = function(p) {
+	let latDistance = Math.abs(p.x - this.x);
+	let invDistance = this.worldMap.options.width - latDistance;
+
+	latDistance = (latDistance > invDistance ? invDistance : latDistance);
+	return latDistance + Math.abs(p.y - this.y);
+};
 
 export default MapPoint2d;
 
