@@ -1,8 +1,6 @@
 import aStar from	'./path/aStar.js';
 
-const path = {
-		worldMap : null
-};
+const path = {};
 
 path.find = function(unit){
 	return aStar(unit.pos, unit.goal, h);

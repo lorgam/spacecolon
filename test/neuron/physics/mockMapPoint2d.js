@@ -3,7 +3,6 @@ import Point2d  from '../../../src/neuron/physics/point2d.js';
 function MockMapPoint2d(x,y,map){
 		Point2d.call(this, x, y);
 		this.map = map;
-		this.movementCost = this.map[this.x][this.y];
 }
 
 MockMapPoint2d.prototype = Object.create(Point2d.prototype);
@@ -17,6 +16,8 @@ MockMapPoint2d.prototype.neighbors = function() {
 
 		return neighbors;
 }
+
+MockMapPoint2d.prototype.movementCost = function() {return this.map[this.x][this.y];}
 
 export default MockMapPoint2d;
 

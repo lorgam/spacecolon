@@ -8,6 +8,7 @@ function MapTile(parent, heightSeed, humiditySeed, x, y){
 	this.humiditySeed	= humiditySeed;
 	this.height 		= 0.5*this.heightSeed+0.5;
 	this.type		= this.tileType(this.parent.options.waterHeight);
+	this.water		= this.height < this.parent.options.waterHeight;
 	this.resource		= null;
 	this.state		= null;
 	this.pos		= new MapPoint2d(x, y, parent);
@@ -61,5 +62,9 @@ MapTile.prototype.humidityGray = function(){
 }
 MapTile.prototype.texture = function(){
 	return textureManager.textures['mapTile'][this.type];
+}
+
+MapTile.prototype.movementCost = function(){
+	return (this.water ? 10 : 1);
 }
 export default MapTile;

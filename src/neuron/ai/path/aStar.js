@@ -8,7 +8,7 @@ function aStar(start, goal, h){
 	var fScore = [];
 	var filtered, pos, gScorePos, tentative_gScore, current;
 
-	gScore.push({pos:start,score:start.movementCost});
+	gScore.push({pos:start,score:start.movementCost()});
 	fScore.push({pos:start,score:h(start, goal)});
 
 	while (openSet.length > 0) {
@@ -86,7 +86,7 @@ var lowestFScore = (openSet, fScore) => {
 	return res;
 }
 
-var d = (curr, neig) => neig.movementCost;
+var d = (curr, neig) => neig.movementCost();
 
 export default aStar;
 
