@@ -1,6 +1,7 @@
 import {expect} from 'chai';
 import aStar from '../../../../src/neuron/ai/path/aStar.js';
 import MockMapPoint2d from '../../physics/mockMapPoint2d.js';
+import MockMapCylindricalPoint2d from '../../physics/mockMapCylindricalPoint2d.js';
 
 describe('aStar function', function() {
 		it('is a simple path (0,0) => (0,2) => (2,2)',() => {
@@ -106,6 +107,24 @@ describe('aStar function', function() {
 						{x:8,y:8},
 						{x:8,y:9},
 						{x:9,y:9}
+				];
+				pathChecker(expected, path);
+		});
+
+		it('is a simple path with a cylindrical movement',() => {
+				let map = [
+						[0, 1, 2],
+						[3, 4, 5],
+						[6, 7, 8]
+				];
+
+				let start = new MockMapCylindricalPoint2d(0,0,map);
+				let goal = new MockMapCylindricalPoint2d(2,0,map);
+				let path = aStar(start, goal, h).reverse();
+
+				let expected = [
+						{x:0,y:0},
+						{x:2,y:0}
 				];
 				pathChecker(expected, path);
 		});
