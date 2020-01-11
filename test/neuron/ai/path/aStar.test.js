@@ -111,7 +111,7 @@ describe('aStar function', function() {
 		pathChecker(expected, path);
 	});
 
-	it('is a simple path with a cylindrical movement',() => {
+	it('is a simple path with cylindrical movement',() => {
 		let map = [
 			[0, 1, 2],
 			[3, 4, 5],
@@ -125,6 +125,46 @@ describe('aStar function', function() {
 		let expected = [
 			{x:0,y:0},
 			{x:2,y:0}
+		];
+		pathChecker(expected, path);
+	});
+
+	it('is a bigger path with cylindrical movement',() => {
+		let map = [
+			[0,0,9,0,0,0,9,0,9,0],
+			[9,9,9,9,9,9,9,0,0,0],
+			[9,9,9,9,9,9,9,9,9,9],
+			[9,9,9,9,9,9,9,9,9,9],
+			[9,9,9,9,9,9,9,9,9,9],
+			[9,9,9,9,9,9,9,9,9,9],
+			[9,9,9,9,9,9,9,9,9,9],
+			[9,9,9,9,9,9,9,9,9,9],
+			[9,9,9,9,9,9,9,9,9,9],
+			[9,0,0,0,9,0,0,0,9,9]
+		];
+
+		let start = new MockMapCylindricalPoint2d(0,0,map);
+		let goal = new MockMapCylindricalPoint2d(9,9,map);
+		let path = aStar(start, goal, h).reverse();
+
+		let expected = [
+			{x:0,y:0},
+			{x:0,y:1},
+			{x:9,y:1},
+			{x:9,y:2},
+			{x:9,y:3},
+			{x:0,y:3},
+			{x:0,y:4},
+			{x:0,y:5},
+			{x:9,y:5},
+			{x:9,y:6},
+			{x:9,y:7},
+			{x:0,y:7},
+			{x:1,y:7},
+			{x:1,y:8},
+			{x:1,y:9},
+			{x:0,y:9},
+			{x:9,y:9}
 		];
 		pathChecker(expected, path);
 	});

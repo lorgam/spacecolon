@@ -19,6 +19,12 @@ MockMapCylindricalPoint2d.prototype.neighbors = function() {
 }
 
 MockMapCylindricalPoint2d.prototype.movementCost = function() {return this.map[this.x][this.y];}
+MockMapCylindricalPoint2d.prototype.distance = function(p) {
+	let dx = Math.abs(p.x - this.x);
+	let ld = (this.map.length - dx) % this.map.length;
+
+	return Math.abs(p.y - this.y) + (dx < ld ? dx : ld);
+}
 
 export default MockMapCylindricalPoint2d;
 
