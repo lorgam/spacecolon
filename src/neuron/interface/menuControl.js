@@ -1,3 +1,6 @@
+/**
+ * Class that integrates all the info needed to place consecutive buttons
+ */
 function MenuControl(left, top, width, height, marginLeft = 5, marginTop = 5){
 	this.left = left;
 	this.top = top;
