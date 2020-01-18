@@ -2,15 +2,16 @@ import GLOBALS		from '../../globals/globals.js';
 import INPUT		from '../../globals/input.js';
 import texts		from '../../globals/texts.js';
 import unitManager	from '../../resources/unit/unitManager.js';
+import BaseState	from '../../neuron/baseState.js';
 import MenuControl	from '../../neuron/interface/menuControl.js';
 import TextButton	from '../../neuron/interface/textButton.js';
 import ButtonPanel	from '../../neuron/interface/buttonPanel.js';
 import buildingManager	from './buildingManager.js';
 
 function City(parent){
+	BaseState.call(this);
 	this.parent = parent;
 	this.context = GLOBALS.context;
-	this.nextState = null;
 	// buttons
 	var ctrl, btn;
 	var topBackBtn = GLOBALS.bottomOfMap() - GLOBALS.verticalButtonSize;
@@ -33,6 +34,8 @@ function City(parent){
 	// city resources
 	unitManager.addRobot(this);
 }
+
+City.prototype = Object.create(BaseState.prototype);
 
 City.prototype.text = function() {
 	return "city";

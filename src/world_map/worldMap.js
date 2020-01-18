@@ -4,6 +4,7 @@ import WorldGenerator	from './worldGenerator.js';
 import WorldMapDrawer	from './worldMapDrawer.js';
 import MapTile		from './mapTile.js';
 import ScreenStack	from '../screens/screenStack.js';
+import BaseState	from '../neuron/baseState.js';
 import turnManager	from '../neuron/turnManager.js';
 import TopMenu		from '../game_menu/topMenu.js';
 import LowerMenu	from '../game_menu/lowerMenu.js';
@@ -11,6 +12,7 @@ import RightMenu	from '../game_menu/rightMenu.js';
 import MiniMap		from '../game_menu/miniMap.js';
 
 function WorldMap(options, parent){
+	BaseState.call(this);
 	this.options		= options;
 	this.parent		= parent;
 	// Init the stats object
@@ -22,11 +24,12 @@ function WorldMap(options, parent){
 	WorldGenerator.generate(this);
 
 	this.tileClicked	= null;
-	this.nextState		= null;
 	this.typeOfView		= 0; //0: Normal, 1: Height, 2: Humidity, 3: Blocks
 
 	RightMenu.init();
 }
+
+WorldMap.prototype = Object.create(BaseState.prototype);
 
 WorldMap.prototype.draw = function(){
 	var context = GLOBALS.context;

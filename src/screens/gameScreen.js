@@ -16,9 +16,7 @@ function GameScreen(){
 	userResources.init();
 
 	this.worldMap		= new WorldMap(WorldGenerator.generateOptions({type : 'normal'}), this);
-
 	this.currentState	= this.worldMap;
-	this.defaultState	= this.currentState;
 
 	this.unitSelected	= null;
 }
@@ -32,16 +30,11 @@ GameScreen.prototype.update = function(timeElapsed) {
 		return;
 	}
 	if (INPUT.keyboard.ESC.execute()) { //Go back
-		if (this.currentState == this.defaultState) ScreenStack.removeScreen();
-		else this.currentState.nextState = this.defaultState;
+		if (this.currentState == this.worldMap) ScreenStack.removeScreen();
+		else this.currentState.nextState = this.worldMap;
 		INPUT.resetKeyboard();
 	}
-	if (this.currentState.nextState != null){ //Change the state
-		var aux = this.currentState.nextState;
-		this.currentState.nextState = null;
-		this.currentState = aux;
-		INPUT.resetKeyboard();
-	}
+	this.currentState.changeState(this);
 	this.currentState.update(timeElapsed);
 }
 
