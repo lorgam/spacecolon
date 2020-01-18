@@ -37,15 +37,15 @@ BaseUnit.prototype.isWaiting = function(){
 
 BaseUnit.prototype.goTo = function(pos){
 	this.goal = new MapPoint2d(pos.x, pos.y, this.worldMap);
-	this.state = 'MOVE';
 
 	this.route = AI.path.find(this).reverse();
+	if (this.route == null || this.route.length < 2) return;
+
+	this.state = 'MOVE';
 	this.move();
 }
 
 BaseUnit.prototype.move = function(){
-	if (this.route == null) return;
-
 	var moves = (this.remainingMoves < this.route.length ? this.remainingMoves : this.route.length);
 	this.route = this.route.slice(moves);
 	this.pos = this.route[0];
