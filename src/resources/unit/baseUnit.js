@@ -46,9 +46,13 @@ BaseUnit.prototype.goTo = function(pos){
 }
 
 BaseUnit.prototype.move = function(){
-	var moves = (this.remainingMoves < this.route.length ? this.remainingMoves : this.route.length);
+	this.worldMap.map[this.pos.x][this.pos.y].unit = null;
+
+	let moves = (this.remainingMoves < this.route.length ? this.remainingMoves : this.route.length);
 	this.route = this.route.slice(moves);
 	this.pos = this.route[0];
+
+	this.worldMap.map[this.pos.x][this.pos.y].unit = this;
 
   if (this.pos.equals(this.goal)) {
 			this.state = 'WAIT';
