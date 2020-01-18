@@ -74,7 +74,7 @@ WorldMap.prototype.mouseClick	= function(x,y){
 	this.tileClicked = this.getTile(x,y);
 
 	if (this.parent.unitSelected) this.parent.unitSelected.goTo(this.tileClicked);
-	this.nextState = this.getTileClicked().state;
+	this.nextState = this.getTileClicked().getState();
 }
 
 WorldMap.prototype.moveLeft		= function(){this.topLeftX = (this.options.width + this.topLeftX - 1) % this.options.width;}

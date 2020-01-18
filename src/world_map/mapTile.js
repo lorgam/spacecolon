@@ -10,7 +10,7 @@ function MapTile(parent, heightSeed, humiditySeed, x, y){
 	this.type		= this.tileType(this.parent.options.waterHeight);
 	this.water		= this.height < this.parent.options.waterHeight;
 	this.resource		= null;
-	this.state		= null;
+	this.city		= null;
 	this.pos		= new MapPoint2d(x, y, parent);
 }
 
@@ -66,5 +66,10 @@ MapTile.prototype.texture = function(){
 
 MapTile.prototype.movementCost = function(){
 	return (this.water ? 10 : 1);
+}
+
+MapTile.prototype.getState = function(){
+	if (this.city) return this.city;
+	return null;
 }
 export default MapTile;
