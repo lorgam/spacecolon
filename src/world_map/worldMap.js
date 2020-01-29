@@ -54,19 +54,9 @@ WorldMap.prototype.update = function(timeElapsed) {
 	if (INPUT.keyboard.C.execute())			this.centerViewonStartingPoint();
 	if (INPUT.keyboard.SPACE.execute())			turnManager.advance();
 	//Mouse
-	if (INPUT.mouse.clicked){
-		if (INPUT.mouse.x < GLOBALS.mainScreenWidth){
-			if (INPUT.mouse.y > GLOBALS.topMenuHeight && INPUT.mouse.y < GLOBALS.bottomOfMap()){
-				this.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);
-			}
-		} else {
-			if (INPUT.mouse.y >= GLOBALS.bottomOfMap()){
-				MiniMap.mouseClick(this, INPUT.mouse.x - GLOBALS.mainScreenWidth, INPUT.mouse.y - GLOBALS.bottomOfMap());
-			} else {
-				RightMenu.mouseClick();
-			}
-		}
-	}
+	if (INPUT.mouse.mainWindowClicked) this.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);
+	if (INPUT.mouse.miniMapClicked) MiniMap.mouseClick(this, INPUT.mouse.x - GLOBALS.mainScreenWidth, INPUT.mouse.y - GLOBALS.bottomOfMap());
+	if (INPUT.mouse.rightMenuClicked) RightMenu.mouseClick();
 }
 
 WorldMap.prototype.getTile	= function(x,y){
