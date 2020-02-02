@@ -1,27 +1,27 @@
-import INPUT			from '../globals/input.js';
+import INPUT from '../globals/input.js';
 
 const ScreenStack = {
-	stack : []
+  stack : []
 }
 
 ScreenStack.screenExists = function(){
-	return this.stack.length > 0;
+  return this.stack.length > 0;
 }
 
 ScreenStack.addScreen = function(screen){
-	INPUT.keyboard.ENTER.execute(); //Clean enter
-	this.stack.unshift(screen);
+  INPUT.keyboard.ENTER.execute(); //Clean enter
+  this.stack.unshift(screen);
 }
 ScreenStack.removeScreen = function(){
-	INPUT.keyboard.ENTER.execute(); //Clean enter
-	return this.stack.shift();
+  INPUT.keyboard.ENTER.execute(); //Clean enter
+  return this.stack.shift();
 }
 
 ScreenStack.draw = function(){
-	this.stack[0].draw();
+  this.stack[0].draw();
 }
 ScreenStack.update = function(elapsedTime){
-	this.stack[0].update(elapsedTime);
+  this.stack[0].update(elapsedTime);
 }
 export default ScreenStack;
 

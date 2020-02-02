@@ -1,7 +1,7 @@
-import path from	'./path.js';
+import path from  './path.js';
 
 const AI = {
-	path : path
+  path : path
 }
 
 export default AI;
