@@ -7,8 +7,6 @@ function BaseButton(parent, control, backColor, click){
   this.control = control;
   this.backColor = backColor;
   if (click) this.click = click;
-
-  this.ctx = GLOBALS.context;
 }
 
 BaseButton.prototype.draw = function(){
@@ -16,8 +14,8 @@ BaseButton.prototype.draw = function(){
 }
 
 BaseButton.prototype.drawBackGround = function(){
-  this.ctx.fillStyle = this.backColor;
-  this.ctx.fillRect(this.control.left, this.control.top, this.control.width, this.control.height);
+  GLOBALS.context.fillStyle = this.backColor;
+  GLOBALS.context.fillRect(this.control.left, this.control.top, this.control.width, this.control.height);
 }
 
 BaseButton.prototype.isClicked = function(){
