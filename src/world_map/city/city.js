@@ -20,6 +20,7 @@ City.prototype.text = function() {
 
 //////////  EVENTS  //////////
 City.prototype.select = function() {
+  this.parent.centerView();
   CityRightMenu.configure(this);
 }
 
@@ -31,7 +32,7 @@ City.prototype.update = function() {
 }
 
 City.prototype.unSelect = function() {
-  this.nextState = this.parent.parent;//this.nextState = this.worldMap;
+  this.nextState = this.parent.parent;
 };
 
 //////////  DRAWING  //////////

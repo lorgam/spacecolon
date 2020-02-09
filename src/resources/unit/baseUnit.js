@@ -86,6 +86,7 @@ BaseUnit.prototype.move = function(){
 
 //////////  EVENTS  //////////
 BaseUnit.prototype.select = function() {
+  this.worldMap.centerView(this.pos.x, this.pos.y);
   UnitRightMenu.configure(this);
 }
 

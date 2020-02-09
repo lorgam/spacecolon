@@ -75,5 +75,7 @@ MapTile.prototype.getState = function(){
   return null;
 }
 
+MapTile.prototype.centerView = function() {this.parent.centerView(this.pos.x, this.pos.y);};
+
 export default MapTile;
 
