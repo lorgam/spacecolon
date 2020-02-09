@@ -70,6 +70,7 @@ MapTile.prototype.movementCost = function(){
 }
 
 MapTile.prototype.getState = function(){
+  if (this.unit !== null && this.city !== null) return (this.parent.superiorSideTile ? this. unit : this.city);
   if (this.unit !== null) return this.unit;
   if (this.city !== null) return this.city;
   return null;

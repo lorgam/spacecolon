@@ -25,6 +25,8 @@ function WorldMap(options, parent){
   WorldGenerator.generate(this);
 
   this.tileClicked  = null;
+  this.superiorSideTile  = null;
+
   this.typeOfView   = 0; //0: Normal, 1: Height, 2: Humidity, 3: Blocks
 
   RightMenu.init();
@@ -74,6 +76,8 @@ WorldMap.prototype.getTile = function(x,y){
 
 WorldMap.prototype.mouseClick = function(x,y){
   this.tileClicked = this.getTile(x,y);
+  //Calculate if the tile has been clicked on its superior part or its inferior
+  this.superiorSideTile = ((y - (this.tileClicked.y - this.topLeftY) * GLOBALS.tileSize) / GLOBALS.tileSize) < 0.5;
 
   this.nextState = this.getTileClicked().getState();
 }
