@@ -31,13 +31,6 @@ BaseUnit.prototype.options = {
       this.parent.state = "FORTIFY";
       this.parent.unSelect();
     }
-  },
-  "CANCEL" : {
-    text:"cancel",
-    click:function(){
-      this.parent.state = "WAIT";
-      this.parent.unSelect();
-    }
   }
 }
 
