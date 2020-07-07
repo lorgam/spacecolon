@@ -23,7 +23,7 @@ const textureManager = {
 
     canvas = createCanvas(size, size);
     addTriangle(canvas, size, "#FF0");
-    textures['robots'] = canvas;
+    textures['construction'] = canvas;
 
     textureManager.textures['userResources'] = textures;
 

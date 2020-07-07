@@ -5,7 +5,7 @@ const userResources = {
 }
 
 userResources.init = function() {
-  userResources.resources['robots'] = 0;
+  userResources.resources['construction'] = 0;
   for (var res in naturalResourceManager.resources){
     userResources.resources[res] = 0;
   }

@@ -9,7 +9,7 @@ function City(parent){
   this.parent = parent;
   this.context = GLOBALS.context;
   // city resources
-  unitManager.addRobot(this);
+  unitManager.addConstructionRobot(this);
 }
 
 City.prototype = Object.create(BaseState.prototype);

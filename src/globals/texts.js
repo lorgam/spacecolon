@@ -33,7 +33,8 @@ const texts = {
       cancel : "Cancel",
     },
     units : {
-      robots : "Robot"
+      robots : "Robot",
+      construction : "Construction robot"
     }
   },
   es : {
@@ -68,7 +69,8 @@ const texts = {
       cancel : "Cancelar",
     },
     units : {
-      robots : "Robot"
+      robots : "Robot",
+      construction : "Robot de construccion"
     }
 
   }

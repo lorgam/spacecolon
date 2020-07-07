@@ -1,8 +1,8 @@
-import RobotUnit	from './robotUnit.js';
+import ConstructionUnit	from './constructionUnit.js';
 
 const unitFactory = {}
 
-unitFactory['robot'] = (city) => new RobotUnit(city);
+unitFactory['constructionRobot'] = (city) => new ConstructionUnit(city);
 
 export default unitFactory;
 

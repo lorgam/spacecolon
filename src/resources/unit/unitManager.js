@@ -10,8 +10,8 @@ const unitManager = {
 
 unitManager.unitsWaiting = () => unitManager.list.robot.filter(e => e.isWaiting());
 
-unitManager.addRobot = function(city){
-  var robot = unitFactory['robot'](city);
+unitManager.addConstructionRobot = function(city){
+  var robot = unitFactory['constructionRobot'](city);
   unitManager.list['robot'].push(robot);
   userResources.resources.robots++;
 

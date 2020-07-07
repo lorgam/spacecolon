@@ -14,7 +14,7 @@ const TopMenu = {
     ctx.font  = GLOBALS.normalFont;
 
     // robots
-    drawMenuItem(worldMap, ctx, control, 'userResources', 'robots');
+    drawMenuItem(worldMap, ctx, control, 'userResources', 'construction');
     // user resources
     for (var name in naturalResourceManager.resources){
       drawMenuItem(worldMap, ctx, control, 'naturalResources', name);
