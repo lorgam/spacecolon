@@ -30,7 +30,8 @@ BaseUnit.prototype.options = {
     click:function(){
       this.parent.state = "FORTIFY";
       this.parent.unSelect();
-    }
+    },
+    isValid:(unit) => {return true;}
   }
 }
 
@@ -75,6 +76,10 @@ BaseUnit.prototype.move = function(){
   if (this.pos.equals(this.goal)) {
       this.state = 'WAIT';
   }
+}
+
+BaseUnit.prototype.getTile = function(){
+  return this.worldMap.map[this.pos.x][this.pos.y];
 }
 
 //////////  EVENTS  //////////

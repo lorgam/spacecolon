@@ -46,7 +46,7 @@ UnitRightMenu.configure = unit => {
 
   Object.keys(unit.options).forEach(key => {
     let option = unit.options[key];
-    UnitRightMenu.panel.addButton(new TextButton(unit, null, "#008", "general", option.text, GLOBALS.highlightColor, option.click));
+    if (option.isValid(unit)) UnitRightMenu.panel.addButton(new TextButton(unit, null, "#008", "general", option.text, GLOBALS.highlightColor, option.click));
   });
 }
 

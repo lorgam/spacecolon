@@ -14,12 +14,6 @@ const buildingManager = {
       specialResources : {
         need : 'SEALIFE',
       }
-    },
-    'MINE': {
-      constructionCost : 1000,
-      produces : {MINERAL: 1, construction:25},
-      productionCost : 1500,
-      robotsNeeded : 1
     }/*,
     '': {
       constructionCost : 1000,

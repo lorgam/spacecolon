@@ -30,6 +30,7 @@ const texts = {
       nextTurn : "Next turn",
       move : "Move",
       fortify : "Fortify",
+      mine : "Mine",
       cancel : "Cancel",
     },
     units : {
@@ -66,6 +67,7 @@ const texts = {
       nextTurn : "Siguiente turno",
       move : "Mover",
       fortify : "Fortificar",
+      mine : "Mina",
       cancel : "Cancelar",
     },
     units : {
