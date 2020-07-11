@@ -70,6 +70,7 @@ BaseUnit.prototype.move = function(){
   let moves = (this.remainingMoves < this.route.length ? this.remainingMoves : this.route.length);
   this.route = this.route.slice(moves);
   this.pos = this.route[0];
+  this.remainingMoves -= moves;
 
   this.worldMap.map[this.pos.x][this.pos.y].unit = this;
 
