@@ -6,6 +6,7 @@ const turnManager = {
 };
 
 turnManager.advance = function(){
+  // @TODO: Process the buildings
   var unitsWaiting = unitManager.unitsWaiting();
   if (unitsWaiting.length) unitsWaiting[0].worldMap.nextState = unitsWaiting[0];
   else {
