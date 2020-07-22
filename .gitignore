@@ -4,6 +4,7 @@
 *.gif
 *.png
 
+tags
 node_modules
 dist/main.js
 test-dist

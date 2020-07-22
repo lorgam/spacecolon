@@ -38,6 +38,15 @@ const textureManager = {
 
     textureManager.textures['naturalResources'] = textures;
 
+    // buildings
+    textures = [];
+
+    canvas = createCanvas(size, size);
+    addCross(canvas, size, "#FFF");
+    textures['mine'] = canvas;
+
+    textureManager.textures['buildings'] = textures;
+
     // general
     textures = [];
 
@@ -62,6 +71,25 @@ function addBackground(canvas, back){
   ctx.fillStyle = back;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+}
+
+function addCross(canvas, size, color){
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(0, size/2 - 10);
+  ctx.lineTo(0, size/2 + 10);
+  ctx.lineTo(size, size/2 + 10);
+  ctx.lineTo(size, size/2 - 10);
+  ctx.closePath();
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(size/2 - 10, 0);
+  ctx.lineTo(size/2 + 10, 0);
+  ctx.lineTo(size/2 + 10, size);
+  ctx.lineTo(size/2 - 10, size);
+  ctx.closePath();
+  ctx.fill();
 }
 
 function addDiamond(canvas, size, color){
