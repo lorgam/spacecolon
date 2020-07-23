@@ -1,4 +1,6 @@
-import unitManager  from '../resources/unit/unitManager.js';
+import unitManager from '../resources/unit/unitManager.js';
+import buildingManager from '../resources/building/buildingManager.js';
+import userResources from '../resources/userResources.js';
 
 const turnManager = {
   turn : 0,
@@ -6,14 +8,20 @@ const turnManager = {
 };
 
 turnManager.advance = function(){
-  // @TODO: Process the buildings
+  // Units
   var unitsWaiting = unitManager.unitsWaiting();
-  if (unitsWaiting.length) unitsWaiting[0].worldMap.nextState = unitsWaiting[0];
-  else {
-      turnManager.turn++;
-      for (let i = 0; i < unitManager.list.robot.length; ++i) {
-          unitManager.list.robot[i].refresh();
-      }
+  if (unitsWaiting.length) {
+    unitsWaiting[0].worldMap.nextState = unitsWaiting[0];
+    return;
+  }
+  turnManager.turn++;
+  for (let i = 0; i < unitManager.list.robot.length; ++i) {
+    unitManager.list.robot[i].refresh();
+  }
+  // Buildings
+  for (let i = 0; i < buildingManager.mines.length; ++i) {
+    // @TODO: Generalize
+    userResources.resources.MINERAL += buildingManager.mines[i].getResources().MINERAL;
   }
 }
 
