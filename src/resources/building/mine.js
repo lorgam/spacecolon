@@ -1,3 +1,4 @@
+// @TODO: Add a base building that extends from BaseState
 function Mine(worldMap, pos){
   this.worldMap = worldMap;
   this.pos = pos;

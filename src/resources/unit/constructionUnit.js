@@ -14,6 +14,7 @@ ConstructionUnit.prototype.options['MINE'] = {
     text:"mine",
     click:function(){
       buildingManager.buildMine(this.parent);
+      this.parent.unSelect();
     },
     isValid:(unit) => {
       var tile = unit.getTile();
