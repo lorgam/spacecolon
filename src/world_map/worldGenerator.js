@@ -96,7 +96,7 @@ WorldGenerator.generateStartingPoint = function(worldMap){
   var mapContext    = worldMap.mapCanvas.getContext('2d');
   mapContext.drawImage(textureManager.textures['general']['city'], x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 
-  worldMap.map[x][y].city = new City(worldMap.map[x][y]);
+  worldMap.map[x][y].building = new City(worldMap.map[x][y]);
 
   worldMap.startingPointX = x;
   worldMap.startingPointY = y;

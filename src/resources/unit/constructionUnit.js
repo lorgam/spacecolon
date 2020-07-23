@@ -15,7 +15,9 @@ ConstructionUnit.prototype.options['MINE'] = {
     click:function(){
       buildingManager.buildMine(this.parent);
     },
-    isValid:(unit) => {return unit.getTile().resource == naturalResourceManager.resources.MINERAL;}
+    isValid:(unit) => {
+      var tile = unit.getTile();
+      return tile.resource == naturalResourceManager.resources.MINERAL && !tile.building;}
   }
 
 export default ConstructionUnit;

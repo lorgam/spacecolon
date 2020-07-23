@@ -10,7 +10,7 @@ function MapTile(parent, heightSeed, humiditySeed, x, y){
   this.type = this.tileType(this.parent.options.waterHeight);
   this.water = this.height < this.parent.options.waterHeight;
   this.resource = null;
-  this.city = null;
+  this.building = null;
   this.unit = null;
   this.pos = new MapPoint2d(x, y, parent);
 }
@@ -70,9 +70,9 @@ MapTile.prototype.movementCost = function(){
 }
 
 MapTile.prototype.getState = function(){
-  if (this.unit !== null && this.city !== null) return (this.parent.superiorSideTile ? this. unit : this.city);
+  if (this.unit !== null && this.building !== null) return (this.parent.superiorSideTile ? this. unit : this.building);
   if (this.unit !== null) return this.unit;
-  if (this.city !== null) return this.city;
+  if (this.building !== null) return this.building;
   return null;
 }
 
