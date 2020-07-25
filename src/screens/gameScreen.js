@@ -5,12 +5,14 @@ import WorldMap   from '../world_map/worldMap.js';
 import WorldGenerator from '../world_map/worldGenerator.js';
 import userResources  from '../resources/userResources.js';
 import unitManager  from '../resources/unit/unitManager.js';
+import buildingManager  from '../resources/building/buildingManager.js';
 import OptionsScreen  from './optionsScreen.js';
 import ScreenStack  from './screenStack.js';
 
 function GameScreen(){
   turnManager.reset(this);
   unitManager.reset();
+  buildingManager.reset();
 
   this.totalTime    = 0.0;
   userResources.init();

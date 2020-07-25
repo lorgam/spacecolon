@@ -16,7 +16,8 @@ buildingManager.buildMine = function(unit){
   mapContext.drawImage(textureManager.textures['buildings']['mine'], unit.pos.x * GLOBALS.maxTileSize(), unit.pos.y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 }
 
-
-// @TODO: Add an init/reset function
+buildingManager.reset = function(){
+  buildingManager.mines = [];
+}
 
 export default buildingManager;
