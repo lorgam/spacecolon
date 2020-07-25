@@ -4,6 +4,8 @@ import MenuControl from '../neuron/interface/menuControl.js';
 import ButtonPanel from '../neuron/interface/buttonPanel.js';
 import TextButton from '../neuron/interface/textButton.js';
 
+// @TODO: Generalize
+
 const UnitRightMenu = {}
 
 UnitRightMenu.control = new MenuControl(GLOBALS.mainScreenWidth, 90, GLOBALS.rightMenuSize());

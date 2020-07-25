@@ -1,9 +1,10 @@
-// @TODO: Add a base building that extends from BaseState
+import BaseBuilding from './baseBuilding.js'
+
 function Mine(worldMap, pos){
-  this.worldMap = worldMap;
-  this.pos = pos;
-  this.level = 1;
+  BaseBuilding.call(this, worldMap, pos);
 }
+
+Mine.prototype = Object.create(BaseBuilding.prototype);
 
 Mine.prototype.getResources = function() {
   return {MINERAL:this.level * 10};
