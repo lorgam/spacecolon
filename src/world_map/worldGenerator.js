@@ -75,6 +75,12 @@ mapSecContext.fillRect(0, 0, 1000, 750);
 
   worldMap.map    = map;
   worldMap.mapCanvas  = mapCanvas;
+
+  // Create the canvas for the resources
+  var resourcesCanvas   = document.createElement('canvas');
+  resourcesCanvas.width   = mapCanvas.width;
+  resourcesCanvas.height  = mapCanvas.height;
+  worldMap.resourcesCanvas  = resourcesCanvas;
 /*
   //@Debug: Secondary canvas showing what we have generated
 

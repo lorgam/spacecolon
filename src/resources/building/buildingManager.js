@@ -10,8 +10,8 @@ buildingManager.buildMine = function(unit){
   var mine = new Mine(unit.worldMap, unit.pos);
   buildingManager.mines.push(mine);
   unit.getTile().building = mine;
-  // Draw the mine on the world map
-  var mapContext = unit.worldMap.mapCanvas.getContext('2d');
+  // Draw the mine on the canvas for the resources of the world map
+  var mapContext = unit.worldMap.resourcesCanvas.getContext('2d');
   mapContext.drawImage(mine.texture(), unit.pos.x * GLOBALS.maxTileSize(), unit.pos.y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 }
 

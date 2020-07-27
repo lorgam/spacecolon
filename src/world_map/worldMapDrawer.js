@@ -6,19 +6,25 @@ WorldMapDrawer.normalMapView = function(worldMap){
   var context = GLOBALS.context;
   var horizontalTilesToShow = GLOBALS.horizontalTilesToShow();
   var verticalTilesToShow   = GLOBALS.verticalTilesToShow();
-
-  context.drawImage(  worldMap.mapCanvas,
-                worldMap.topLeftX * GLOBALS.maxTileSize(), worldMap.topLeftY * GLOBALS.maxTileSize(), horizontalTilesToShow * GLOBALS.maxTileSize(), verticalTilesToShow * GLOBALS.maxTileSize(),
-                0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight
-              );
-
+  // Variables for the drawImage call
+  var sx = worldMap.topLeftX * GLOBALS.maxTileSize();
+  var sy = worldMap.topLeftY * GLOBALS.maxTileSize();
+  var sWidth = horizontalTilesToShow * GLOBALS.maxTileSize();
+  var sHeight = verticalTilesToShow * GLOBALS.maxTileSize();
+  var dx = 0;
+  var dy = GLOBALS.topMenuHeight;
+  var dWidth = GLOBALS.mainScreenWidth;
+  var dHeight = GLOBALS.mainScreenHeight;
   var horizontalTilesDrawn = worldMap.options.width - worldMap.topLeftX;
+
+  context.drawImage(worldMap.mapCanvas, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+  context.drawImage(worldMap.resourcesCanvas, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
   if (horizontalTilesDrawn < horizontalTilesToShow){
-    context.drawImage(  worldMap.mapCanvas,
-              0, worldMap.topLeftY * GLOBALS.maxTileSize(), horizontalTilesToShow * GLOBALS.maxTileSize(), verticalTilesToShow * GLOBALS.maxTileSize(),
-              horizontalTilesDrawn * GLOBALS.tileSize, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight
-            );
-    horizontalTilesDrawn +=  worldMap.map.width;
+    sx = 0;
+    dx = horizontalTilesDrawn * GLOBALS.tileSize;
+
+    context.drawImage(worldMap.mapCanvas, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+    context.drawImage(worldMap.resourcesCanvas, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
   }
 
 }
