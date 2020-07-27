@@ -6,6 +6,8 @@ function Mine(worldMap, pos){
 
 Mine.prototype = Object.create(BaseBuilding.prototype);
 
+Mine.prototype.type = 'mine';
+
 Mine.prototype.getResources = function() {
   return {MINERAL:this.level * 10};
 }

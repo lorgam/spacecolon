@@ -1,5 +1,6 @@
 import INPUT from '../../globals/input.js';
 import BaseState from '../../neuron/baseState.js';
+import textureManager from '../../neuron/textureManager.js'
 
 function BaseBuilding(worldMap, pos){
   BaseState.call(this);
@@ -31,6 +32,10 @@ BaseBuilding.prototype.select = function() {
 BaseBuilding.prototype.unSelect = function() {
   this.nextState = this.worldMap;
 };
+
+BaseBuilding.prototype.texture = function(){
+  return textureManager.textures['buildings'][this.type];
+}
 
 export default BaseBuilding;
 

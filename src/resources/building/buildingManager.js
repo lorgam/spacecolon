@@ -1,6 +1,5 @@
 import Mine from './mine.js'
 import GLOBALS from '../../globals/globals.js'
-import textureManager from '../../neuron/textureManager.js'
 
 const buildingManager = {
   mines : []
@@ -13,7 +12,7 @@ buildingManager.buildMine = function(unit){
   unit.getTile().building = mine;
   // Draw the mine on the world map
   var mapContext = unit.worldMap.mapCanvas.getContext('2d');
-  mapContext.drawImage(textureManager.textures['buildings']['mine'], unit.pos.x * GLOBALS.maxTileSize(), unit.pos.y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+  mapContext.drawImage(mine.texture(), unit.pos.x * GLOBALS.maxTileSize(), unit.pos.y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
 }
 
 buildingManager.reset = function(){
