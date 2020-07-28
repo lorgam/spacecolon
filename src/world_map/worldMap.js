@@ -9,7 +9,7 @@ import BaseState from '../neuron/baseState.js';
 import turnManager from '../neuron/turnManager.js';
 import TopMenu from '../game_menu/topMenu.js';
 import LowerMenu from '../game_menu/lowerMenu.js';
-import RightMenu from '../game_menu/rightMenu.js';
+import WorldRightMenu from '../game_menu/worldRightMenu.js';
 import MiniMap from '../game_menu/miniMap.js';
 
 function WorldMap(options, parent){
@@ -29,7 +29,7 @@ function WorldMap(options, parent){
 
   this.typeOfView   = 0; //0: Normal, 1: Height, 2: Humidity, 3: Blocks
 
-  RightMenu.init();
+  WorldRightMenu.init();
 }
 
 WorldMap.prototype = Object.create(BaseState.prototype);
@@ -43,7 +43,7 @@ WorldMap.prototype.draw = function(){
   this.drawUnits();
   LowerMenu.draw(this.getTileClicked());
   TopMenu.draw(this);
-  RightMenu.draw(this);
+  WorldRightMenu.draw(this);
   MiniMap.draw(this);
 }
 
@@ -67,7 +67,7 @@ WorldMap.prototype.update = function(timeElapsed){
   //Mouse
   if (INPUT.mouse.mainWindowClicked) this.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);
   if (INPUT.mouse.miniMapClicked) MiniMap.mouseClick(this, INPUT.mouse.x - GLOBALS.mainScreenWidth, INPUT.mouse.y - GLOBALS.bottomOfMap());
-  if (INPUT.mouse.rightMenuClicked) RightMenu.mouseClick();
+  if (INPUT.mouse.rightMenuClicked) WorldRightMenu.mouseClick();
 }
 
 WorldMap.prototype.getTile = function(x,y){

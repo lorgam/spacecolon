@@ -3,11 +3,11 @@ import turnManager from '../neuron/turnManager.js';
 import MenuControl from '../neuron/interface/menuControl.js';
 import TextButton from '../neuron/interface/textButton.js';
 
-const RightMenu = {
+const WorldRightMenu = {
   init : () => {
     var topNxtTrnBtn = GLOBALS.bottomOfMap() - GLOBALS.verticalButtonSize;
     var ctrl = new MenuControl(GLOBALS.mainScreenWidth, topNxtTrnBtn, GLOBALS.rightMenuSize(), GLOBALS.verticalButtonSize);
-    RightMenu.nextTurnBtn = new TextButton(RightMenu, ctrl, "#008", "general", "nextTurn", GLOBALS.highlightColor, () => {turnManager.advance();} );
+    WorldRightMenu.nextTurnBtn = new TextButton(WorldRightMenu, ctrl, "#008", "general", "nextTurn", GLOBALS.highlightColor, () => {turnManager.advance();} );
   },
 
   draw : (worldMap) => {
@@ -19,13 +19,13 @@ const RightMenu = {
 
     top = GLOBALS.topMenuHeight;
 
-    RightMenu.nextTurnBtn.draw();
+    WorldRightMenu.nextTurnBtn.draw();
   },
 
   mouseClick : () => {
-    RightMenu.nextTurnBtn.isClicked();
+    WorldRightMenu.nextTurnBtn.isClicked();
   }
 }
 
-export default RightMenu;
+export default WorldRightMenu;
 
