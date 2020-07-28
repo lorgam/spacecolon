@@ -6,7 +6,7 @@ import MapPoint2d from '../../neuron/physics/mapPoint2d.js';
 import textureManager from '../../neuron/textureManager.js';
 import AI from '../../neuron/ai/ai.js';
 import BaseState from '../../neuron/baseState.js';
-import UnitRightMenu from '../../game_menu/unitRightMenu.js';
+import InnerRightMenu from '../../game_menu/innerRightMenu.js';
 
 function BaseUnit(city){
   BaseState.call(this);
@@ -86,7 +86,7 @@ BaseUnit.prototype.getTile = function(){
 //////////  EVENTS  //////////
 BaseUnit.prototype.select = function() {
   this.worldMap.centerView(this.pos.x, this.pos.y);
-  UnitRightMenu.configure(this);
+  InnerRightMenu.configure(this);
 }
 
 //////////  DRAWING  //////////
@@ -94,7 +94,7 @@ BaseUnit.prototype.select = function() {
 BaseUnit.prototype.draw = function() {
   this.worldMap.drawBackground();
   this.worldMap.drawUnits(this);
-  UnitRightMenu.draw(this);
+  InnerRightMenu.draw(this);
 }
 
 BaseUnit.prototype.drawUnit = function() {
@@ -118,7 +118,7 @@ BaseUnit.prototype.update = function(timeElapsed) {
     this.goTo(this.worldMap.getTile(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight));
     this.unSelect();
   }
-  UnitRightMenu.click(this);
+  InnerRightMenu.click(this);
 };
 
 BaseUnit.prototype.unSelect = function() {

@@ -20,11 +20,6 @@ const texts = {
       fish : "fish",
       hervibore : "hervibore",
     },
-    buildings : {
-      ROBOT_FACTORY : "Robot factory",
-      FISH_TANK : "Fish tank",
-      MINE : "Mine",
-    },
     general : {
       back : "Back",
       nextTurn : "Next turn",
@@ -32,8 +27,6 @@ const texts = {
       fortify : "Fortify",
       mine : "Mine",
       cancel : "Cancel",
-    },
-    units : {
       robots : "Robot",
       construction : "Construction robot"
     }
@@ -57,11 +50,6 @@ const texts = {
       fish : "peces",
       hervibore : "hervíboros",
     },
-    buildings : {
-      ROBOT_FACTORY : "Fábrica de robots",
-      FISH_TANK : "Tanque de pescado",
-      MINE : "Mina",
-    },
     general : {
       back : "volver",
       nextTurn : "Siguiente turno",
@@ -69,8 +57,6 @@ const texts = {
       fortify : "Fortificar",
       mine : "Mina",
       cancel : "Cancelar",
-    },
-    units : {
       robots : "Robot",
       construction : "Robot de construccion"
     }

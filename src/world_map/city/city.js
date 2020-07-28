@@ -1,6 +1,6 @@
 import GLOBALS  from '../../globals/globals.js';
 import INPUT  from '../../globals/input.js';
-import CityRightMenu  from '../../game_menu/cityRightMenu.js';
+import InnerRightMenu  from '../../game_menu/innerRightMenu.js';
 import unitManager from '../../resources/unit/unitManager.js';
 import BaseState from '../../neuron/baseState.js';
 
@@ -14,6 +14,17 @@ function City(parent){
 
 City.prototype = Object.create(BaseState.prototype);
 
+City.prototype.options = {
+  "ROBOT" : {
+    text:"construction",
+    click:function(){
+      // @TODO: Implement
+      this.parent.unSelect();
+    },
+    isValid:(city) => {return true;}
+  }
+}
+
 City.prototype.text = function() {
   return "city";
 }
@@ -21,14 +32,14 @@ City.prototype.text = function() {
 //////////  EVENTS  //////////
 City.prototype.select = function() {
   this.parent.centerView();
-  CityRightMenu.configure(this);
+  InnerRightMenu.configure(this);
 }
 
 //////////  UPDATING  //////////
 
 City.prototype.update = function() {
   if (INPUT.mouse.mainWindowClicked) this.unSelect();
-  CityRightMenu.click(this);
+  InnerRightMenu.click(this);
 }
 
 City.prototype.unSelect = function() {
@@ -39,7 +50,7 @@ City.prototype.unSelect = function() {
 
 City.prototype.draw = function() {
   this.drawBackground();
-  CityRightMenu.draw();
+  InnerRightMenu.draw();
 }
 
 City.prototype.drawBackground = function() {
