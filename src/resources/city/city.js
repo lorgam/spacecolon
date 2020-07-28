@@ -1,7 +1,7 @@
 import GLOBALS  from '../../globals/globals.js';
 import INPUT  from '../../globals/input.js';
 import InnerRightMenu  from '../../game_menu/innerRightMenu.js';
-import unitManager from '../../resources/unit/unitManager.js';
+import unitManager from '../unit/unitManager.js';
 import BaseState from '../../neuron/baseState.js';
 
 function City(parent){
