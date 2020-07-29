@@ -3,6 +3,7 @@
 *.jpeg
 *.gif
 *.png
+*.swp
 
 tags
 node_modules
