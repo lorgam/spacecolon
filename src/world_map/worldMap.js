@@ -14,8 +14,8 @@ import MiniMap from '../game_menu/miniMap.js';
 
 function WorldMap(options, parent){
   BaseState.call(this);
-  this.options    = options;
-  this.parent   = parent;
+  this.options = options;
+  this.parent = parent;
   // Init the stats object
   this.stats = [];
   for (var tileType in MapTile.prototype.tileTypes) {

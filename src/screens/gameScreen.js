@@ -11,11 +11,11 @@ import ScreenStack  from './screenStack.js';
 
 function GameScreen(){
   turnManager.reset(this);
+  userResources.init();
   unitManager.reset();
   buildingManager.reset();
 
   this.totalTime    = 0.0;
-  userResources.init();
 
   this.worldMap   = new WorldMap(WorldGenerator.generateOptions({type : 'normal'}), this);
   this.currentState = this.worldMap;

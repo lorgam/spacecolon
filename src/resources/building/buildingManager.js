@@ -7,6 +7,10 @@ const buildingManager = {
 }
 
 buildingManager.buildMine = function(unit){
+  // Check cost
+  let cost = Mine.prototype.getCost(), i;
+  for (i in cost) if (cost[i] > userResources.resources[i]) return;
+  for (i in cost) userResources.resources[i] -= cost[i];
   // @TODO: Add a construction queue
   var mine = new Mine(unit.worldMap, unit.pos);
   buildingManager.mines.push(mine);
