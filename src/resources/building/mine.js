@@ -8,8 +8,7 @@ Mine.prototype = Object.create(BaseBuilding.prototype);
 
 Mine.prototype.type = 'mine';
 
-Mine.prototype.getResources = function() {
-  return {MINERAL:this.level * 10};
-}
+Mine.prototype.getResources = () => Object.assign(BaseBuilding.prototype.getResources.call(this), {MINERAL:10})
+Mine.prototype.getCost = () => Object.assign(BaseBuilding.prototype.getResources.call(this), {MINERAL:100})
 
 export default Mine;

@@ -1,4 +1,5 @@
 import Mine from './mine.js'
+import userResources from '../userResources.js';
 import GLOBALS from '../../globals/globals.js'
 
 const buildingManager = {

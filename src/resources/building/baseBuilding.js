@@ -1,6 +1,7 @@
 import INPUT from '../../globals/input.js';
 import BaseState from '../../neuron/baseState.js';
 import textureManager from '../../neuron/textureManager.js'
+import userResources from '../userResources.js'
 
 function BaseBuilding(worldMap, pos){
   BaseState.call(this);
@@ -10,6 +11,9 @@ function BaseBuilding(worldMap, pos){
 }
 
 BaseBuilding.prototype = Object.create(BaseState.prototype);
+
+BaseBuilding.prototype.getResources = userResources.getResourcesObject;
+BaseBuilding.prototype.getCost = userResources.getResourcesObject;
 
 BaseBuilding.prototype.draw = function() {
   this.worldMap.drawBackground();

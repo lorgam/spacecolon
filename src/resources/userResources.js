@@ -4,11 +4,12 @@ const userResources = {
   resources : {}
 }
 
-userResources.init = function() {
-  userResources.resources['construction'] = 0;
-  for (var res in naturalResourceManager.resources){
-    userResources.resources[res] = 0;
-  }
+userResources.init = () => {userResources.resources = userResources.getResourcesObject();}
+
+userResources.getResourcesObject = () => {
+  let obj = {'construction':0};
+  for (var res in naturalResourceManager.resources) obj[res] = 0;
+  return obj;
 }
 
 export default userResources;
