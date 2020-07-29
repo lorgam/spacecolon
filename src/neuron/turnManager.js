@@ -14,15 +14,15 @@ turnManager.advance = function(){
     unitsWaiting[0].worldMap.nextState = unitsWaiting[0];
     return;
   }
-  turnManager.turn++;
-  for (let i = 0; i < unitManager.list.robot.length; ++i) {
-    unitManager.list.robot[i].refresh();
-  }
+
+  unitManager.list.robot.forEach(robot => robot.refresh());
   // Buildings
-  for (let i = 0; i < buildingManager.buildings.length; ++i) {
-    let res = buildingManager.buildings[i].getResources();
-    for (let j in res) userResources.resources[j] += res[j];
-  }
+  buildingManager.buildings.forEach(building => {
+    let res = building.getResources();
+    for (let i in res) userResources.resources[i] += res[i];
+  });
+
+  turnManager.turn++;
 }
 
 turnManager.init = function(){
