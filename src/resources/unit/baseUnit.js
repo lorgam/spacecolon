@@ -127,9 +127,3 @@ BaseUnit.prototype.unSelect = function() {
 
 export default BaseUnit;
 
-const states = {
-  'WAIT':{id:0},
-  'SLEEP':{id:1},
-  'MOVE':{id:2}
-};
-

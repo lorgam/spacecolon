@@ -1,27 +1,25 @@
 import Mine from './mine.js'
 import userResources from '../userResources.js';
-import GLOBALS from '../../globals/globals.js'
 
 const buildingManager = {
-  buildings : []
+  buildings : [],
+  queue : []
 }
 
 buildingManager.buildMine = function(unit){
   // Check cost
   let cost = Mine.prototype.getCost(), i;
-  for (i in cost) if (cost[i] > userResources.resources[i]) return;
+  for (i in cost) if (cost[i] > userResources.resources[i]) return; // @TODO: Move this to the option of the menu, possibly create an enabled option for the buttons
   for (i in cost) userResources.resources[i] -= cost[i];
-  // @TODO: Add a construction queue
-  var mine = new Mine(unit.worldMap, unit.pos);
-  buildingManager.buildings.push(mine);
-  unit.getTile().building = mine;
-  // Draw the mine on the canvas for the resources of the world map
-  var mapContext = unit.worldMap.resourcesCanvas.getContext('2d');
-  mapContext.drawImage(mine.texture(), unit.pos.x * GLOBALS.maxTileSize(), unit.pos.y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+
+  unit.state = 'BUILD';
+  var mine = new Mine(unit.worldMap, unit.pos, unit.getTile());
+  buildingManager.queue.push(mine);
 }
 
 buildingManager.reset = function(){
   buildingManager.buildings = [];
+  buildingManager.queue = [];
 }
 
 export default buildingManager;

@@ -3,17 +3,22 @@ import BaseState from '../../neuron/baseState.js';
 import textureManager from '../../neuron/textureManager.js'
 import userResources from '../userResources.js'
 
-function BaseBuilding(worldMap, pos){
+function BaseBuilding(worldMap, pos, tile){
   BaseState.call(this);
   this.worldMap = worldMap;
   this.pos = pos;
+  this.tile = tile;
+
+  this.tile.building = this;
   this.level = 1;
+  this.turnsBuilt = 0;
 }
 
 BaseBuilding.prototype = Object.create(BaseState.prototype);
 
 BaseBuilding.prototype.getResources = userResources.getResourcesObject;
 BaseBuilding.prototype.getCost = userResources.getResourcesObject;
+BaseBuilding.prototype.turnsToBuild = null;
 
 BaseBuilding.prototype.draw = function() {
   this.worldMap.drawBackground();
