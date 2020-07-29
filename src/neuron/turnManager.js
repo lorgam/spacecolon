@@ -19,9 +19,9 @@ turnManager.advance = function(){
     unitManager.list.robot[i].refresh();
   }
   // Buildings
-  for (let i = 0; i < buildingManager.mines.length; ++i) {
-    // @TODO: Generalize
-    userResources.resources.MINERAL += buildingManager.mines[i].getResources().MINERAL;
+  for (let i = 0; i < buildingManager.buildings.length; ++i) {
+    let res = buildingManager.buildings[i].getResources();
+    for (let j in res) userResources.resources[j] += res[j];
   }
 }
 

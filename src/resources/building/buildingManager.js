@@ -3,7 +3,7 @@ import userResources from '../userResources.js';
 import GLOBALS from '../../globals/globals.js'
 
 const buildingManager = {
-  mines : []
+  buildings : []
 }
 
 buildingManager.buildMine = function(unit){
@@ -13,7 +13,7 @@ buildingManager.buildMine = function(unit){
   for (i in cost) userResources.resources[i] -= cost[i];
   // @TODO: Add a construction queue
   var mine = new Mine(unit.worldMap, unit.pos);
-  buildingManager.mines.push(mine);
+  buildingManager.buildings.push(mine);
   unit.getTile().building = mine;
   // Draw the mine on the canvas for the resources of the world map
   var mapContext = unit.worldMap.resourcesCanvas.getContext('2d');
@@ -21,7 +21,8 @@ buildingManager.buildMine = function(unit){
 }
 
 buildingManager.reset = function(){
-  buildingManager.mines = [];
+  buildingManager.buildings = [];
 }
 
 export default buildingManager;
+
