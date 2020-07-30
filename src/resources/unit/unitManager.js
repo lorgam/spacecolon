@@ -13,7 +13,7 @@ unitManager.unitsWaiting = () => unitManager.list.robot.filter(e => e.isWaiting(
 unitManager.addConstructionRobot = function(city){
   var robot = unitFactory['constructionRobot'](city);
   unitManager.list['robot'].push(robot);
-  userResources.resources.robots++;
+  userResources.resources.construction++;
 
   city.parent.unit = robot;
 }
