@@ -2,8 +2,8 @@ import BaseButton from './baseButton.js';
 import GLOBALS from '../../globals/globals.js';
 import texts from '../../globals/texts.js';
 
-function TextButton(parent, control, backColor, section, text, textColor, click){
-  BaseButton.call(this, parent, control, backColor, click);
+function TextButton(parent, control, backColor, section, text, textColor, click, enabled = true){
+  BaseButton.call(this, parent, control, backColor, click, enabled);
   this.section = section;
   this.text = text;
   this.textColor = textColor;
@@ -27,8 +27,9 @@ TextButton.prototype.drawText = function(){
 }
 
 TextButton.prototype.draw = function(){
-  BaseButton.prototype.draw.call(this);
+  BaseButton.prototype.drawBackGround.call(this);
   this.drawText();
+  BaseButton.prototype.drawEnabled.call(this);
 }
 
 export default TextButton;
