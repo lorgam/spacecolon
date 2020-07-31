@@ -31,7 +31,8 @@ BaseUnit.prototype.options = {
       this.parent.state = "FORTIFY";
       this.parent.unSelect();
     },
-    isValid:(unit) => {return true;}
+    isValid : unit => {return true;},
+    isEnabled : unit => {return true;}
   }
 }
 

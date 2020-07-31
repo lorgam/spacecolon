@@ -12,5 +12,10 @@ userResources.getResourcesObject = () => {
   return obj;
 }
 
+userResources.checkAvailable = resObj => {
+  for (var res in resObj) if (resObj[res] > userResources.resources[res]) return false;
+  return true;
+}
+
 export default userResources;
 

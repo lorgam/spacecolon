@@ -37,7 +37,7 @@ InnerRightMenu.configure = object => {
 
   Object.keys(object.options).forEach(key => {
     let option = object.options[key];
-    if (option.isValid(object)) InnerRightMenu.panel.addButton(new TextButton(object, null, "#008", "general", option.text, GLOBALS.highlightColor, option.click));
+    if (option.isValid(object)) InnerRightMenu.panel.addButton(new TextButton(object, null, "#008", "general", option.text, GLOBALS.highlightColor, option.click, option.isEnabled()));
   });
 }
 
