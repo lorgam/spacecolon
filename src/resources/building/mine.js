@@ -10,6 +10,6 @@ Mine.prototype.type = 'mine';
 
 Mine.prototype.getResources = () => Object.assign(BaseBuilding.prototype.getResources.call(this), {MINERAL:10})
 Mine.prototype.getCost = () => Object.assign(BaseBuilding.prototype.getResources.call(this), {MINERAL:100})
-BaseBuilding.prototype.turnsToBuild = 2;
+BaseBuilding.prototype.turnsToBuild = 4;
 
 export default Mine;

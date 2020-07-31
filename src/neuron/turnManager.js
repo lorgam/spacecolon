@@ -24,15 +24,17 @@ turnManager.advance = function(){
   buildingManager.queue.forEach(building => {
     if (building.tile.unit.state == 'BUILD') {
       building.tile.unit.remainingMoves = 0;
+      building.turnsBuilt++;
+      
+      var mapContext = building.worldMap.resourcesCanvas.getContext('2d');
+      mapContext.globalAlpha = building.turnsBuilt / building.turnsToBuild;
+      mapContext.clearRect(building.pos.x * GLOBALS.maxTileSize(), building.pos.y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+      mapContext.drawImage(building.texture(), building.pos.x * GLOBALS.maxTileSize(), building.pos.y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
+      mapContext.globalAlpha = 1;
 
-      if (++building.turnsBuilt == building.turnsToBuild) {
+      if (building.turnsBuilt == building.turnsToBuild) {
         buildingManager.buildings.push(building);
         building.tile.unit.state = 'WAIT'
-
-        var mapContext = building.worldMap.resourcesCanvas.getContext('2d');
-        mapContext.drawImage(building.texture(), building.pos.x * GLOBALS.maxTileSize(), building.pos.y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
-      } else {
-        // @TODO: draw the sprite with transparency
       }
     }
   });
