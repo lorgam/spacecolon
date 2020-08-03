@@ -12,6 +12,10 @@ userResources.getResourcesObject = () => {
   return obj;
 }
 
+userResources.addResources = resObj => {
+    for (let i in resObj) userResources.resources[i] += resObj[i];
+}
+
 userResources.checkAvailable = resObj => {
   for (var res in resObj) if (resObj[res] > userResources.resources[res]) return false;
   return true;

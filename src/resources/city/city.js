@@ -2,12 +2,14 @@ import GLOBALS  from '../../globals/globals.js';
 import INPUT  from '../../globals/input.js';
 import InnerRightMenu  from '../../game_menu/innerRightMenu.js';
 import unitManager from '../unit/unitManager.js';
+import userResources from '../userResources.js';
 import BaseState from '../../neuron/baseState.js';
 
 function City(parent){
   BaseState.call(this);
   this.parent = parent;
   this.context = GLOBALS.context;
+  this.queue = [];
   // city resources
   unitManager.addConstructionRobot(this);
 }
@@ -18,7 +20,7 @@ City.prototype.options = {
   "ROBOT" : {
     text:"construction",
     click:function(){
-      // @TODO: Implement
+      // @TODO: Implement a construction queue
       this.parent.unSelect();
     },
     isValid:(city) => {return true;}
@@ -27,6 +29,10 @@ City.prototype.options = {
 
 City.prototype.text = function() {
   return "city";
+}
+
+City.prototype.getResources = function() {
+  return Object.assign(userResources.getResourcesObject(), {MINERAL:5});
 }
 
 //////////  EVENTS  //////////

@@ -3,7 +3,7 @@ import textureManager from '../neuron/textureManager.js';
 import PerlinNoise from '../neuron/perlinNoise.js';
 import naturalResourceManager from '../resources/naturalResourceManager.js';
 import MapTile from './mapTile.js';
-import City from '../resources/city/city.js';
+import cityManager from '../resources/city/cityManager.js';
 
 const WorldGenerator ={}
 
@@ -99,10 +99,7 @@ WorldGenerator.generateStartingPoint = function(worldMap){
     y = 15 + ~~(Math.random() * (worldMap.options.height - 30));
   } while(worldMap.map[x][y].type != "grass");
 
-  var mapContext    = worldMap.mapCanvas.getContext('2d');
-  mapContext.drawImage(textureManager.textures['general']['city'], x * GLOBALS.maxTileSize(), y * GLOBALS.maxTileSize(), GLOBALS.maxTileSize(), GLOBALS.maxTileSize());
-
-  worldMap.map[x][y].building = new City(worldMap.map[x][y]);
+  cityManager.addCity(worldMap, x, y);
 
   worldMap.startingPointX = x;
   worldMap.startingPointY = y;
