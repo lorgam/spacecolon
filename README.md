@@ -1,21 +1,10 @@
 # spacecolon
 Prototype of a Javascript game inspired on Sid Meier's Colonization in space with multiple endings.
 
-## INSTALLATION
+Available at [`lorgam.github.io/spacecolon`](https://lorgam.github.io/spacecolon/)
 
 ### Requirements
 * browser that supports HTML5.
-
-### Installation
-Clone the repository and open the file index.html with your browser.
-If you want to use other options as generating distribution files or executing tests execute `npm install`.
-
-### Development options
-
-#### Production version
-Execute `npm run build`, the distribution files are in the dist folder, either copy this files into your server or open index.html with your browser.
-#### Testing
-Execute `npm run test`
 
 ## NAVIGATION
 
@@ -39,6 +28,17 @@ Execute `npm run test`
 
 ## DEVELOPMENT
 Check the wiki for more info 
+
+### Development options
+For debugging the project clone the repository and open the file index.html with your browser.
+If you want to use other options as generating distribution files or executing tests execute `npm install`.
+
+### Development options
+
+#### Production version
+Execute `npm run build`, the distribution files are in the dist folder, either copy this files into your server or open index.html with your browser.
+#### Testing
+Execute `npm run test`
 
 ## HISTORY
 03/25/2019 For now is just a map generated with perlin noise.
