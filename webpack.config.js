@@ -5,7 +5,7 @@ let mode = 'production';
 let entry = './src/index.js';
 let filename = 'main.js';
 let filepath = path.resolve(__dirname, 'dist');
-let devtool = '';
+let devtool = false;
 
 if (process.env.TESTBUILD) {
 		entry = glob.sync(__dirname + '/test/**/*.test.js');
