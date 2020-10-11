@@ -7,6 +7,7 @@
 
 tags
 node_modules
+.vagrant
 dist/main.js
 test-dist
 #Ignore thumbnails created by Windows

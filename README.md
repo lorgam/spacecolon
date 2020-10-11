@@ -3,7 +3,7 @@ Prototype of a Javascript game inspired on Sid Meier's Colonization in space wit
 
 Available at [`lorgam.github.io/spacecolon`](https://lorgam.github.io/spacecolon/)
 
-### Requirements
+## Requirements
 * browser that supports HTML5.
 
 ## NAVIGATION
@@ -27,17 +27,16 @@ Available at [`lorgam.github.io/spacecolon`](https://lorgam.github.io/spacecolon
 * `ENTER` to use the selected menu option.
 
 ## DEVELOPMENT
-Check the wiki for more info 
 
-### Development options
-For debugging the project clone the repository and open the file index.html with your browser.
-If you want to use other options as generating distribution files or executing tests execute `npm install`.
+### Vagrant
+There is a vagrant machine ready to use, execute `vagrant up` on the root of the project and you can access the development version on `http://localhost:8080/`.
+The root of the project is mounted on the `/var/www/html` folder of the guest machine.
 
-### Development options
-
-#### Production version
+### Production version
 Execute `npm run build`, the distribution files are in the dist folder, either copy this files into your server or open index.html with your browser.
-#### Testing
+You can also use the `dist` branch to get the distribution files.
+
+### Testing
 Execute `npm run test`
 
 ## HISTORY
