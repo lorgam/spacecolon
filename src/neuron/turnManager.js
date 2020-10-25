@@ -22,7 +22,7 @@ turnManager.advance = function(){
   buildingManager.buildings.forEach(building => userResources.addResources(building.getResources()));
   //Construction queue
   buildingManager.queue.forEach(building => {
-    if (building.tile.unit.state == 'BUILD') {
+    if (building.tile.unit.state == 'BUILD' && building.tile.unit.remainingMoves > 0) {
       building.tile.unit.remainingMoves = 0;
       building.turnsBuilt++;
 
