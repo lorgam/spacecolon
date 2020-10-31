@@ -17,12 +17,16 @@ function BaseUnit(city){
   this.pos = new MapPoint2d(city.parent.pos.x, city.parent.pos.y, this.worldMap);
   this.route = null;
   this.remainingMoves = this.moveRange;
+  this.remainingTurnsToBuild = this.turnsToBuild;
+
+  city.parent.unit = this;
 }
 
 BaseUnit.prototype = Object.create(BaseState.prototype);
 
 BaseUnit.prototype.type = null;
 BaseUnit.prototype.moveRange = 1;
+BaseUnit.prototype.turnsToBuild = 5;
 
 BaseUnit.prototype.options = {
   "FORTIFY" : {

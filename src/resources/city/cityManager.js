@@ -13,6 +13,8 @@ cityManager.addCity = (worldMap, x, y) => {
   var city = new City(worldMap.map[x][y]);
   worldMap.map[x][y].building = city;
   cityManager.cities.push(city);
+
+  return city;
 }
 
 cityManager.reset = () => {

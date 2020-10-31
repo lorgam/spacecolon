@@ -17,7 +17,7 @@ turnManager.advance = function(){
     return;
   }
   //Cities
-  cityManager.cities.forEach(city => userResources.addResources(city.getResources()));
+  cityManager.cities.forEach(city => city.processTurn());
   // Buildings
   buildingManager.buildings.forEach(building => userResources.addResources(building.getResources()));
   //Construction queue

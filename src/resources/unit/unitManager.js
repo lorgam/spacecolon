@@ -1,8 +1,6 @@
-import unitFactory from './unitFactory.js';
 import userResources from '../userResources.js';
 
 const unitManager = {
-  factory : unitFactory,
   list : {
     robot : []
   }
@@ -10,12 +8,9 @@ const unitManager = {
 
 unitManager.unitsWaiting = () => unitManager.list.robot.filter(e => e.isWaiting());
 
-unitManager.addConstructionRobot = function(city){
-  var robot = unitFactory['constructionRobot'](city);
+unitManager.addRobot = function(robot){
   unitManager.list['robot'].push(robot);
   userResources.resources.construction++;
-
-  city.parent.unit = robot;
 }
 
 unitManager.reset = function(){

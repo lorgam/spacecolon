@@ -2,6 +2,7 @@ import GLOBALS  from '../../globals/globals.js';
 import INPUT  from '../../globals/input.js';
 import InnerRightMenu  from '../../game_menu/innerRightMenu.js';
 import unitManager from '../unit/unitManager.js';
+import unitFactory from '../unit/unitFactory.js';
 import userResources from '../userResources.js';
 import BaseState from '../../neuron/baseState.js';
 
@@ -10,8 +11,6 @@ function City(parent){
   this.parent = parent;
   this.context = GLOBALS.context;
   this.queue = [];
-  // city resources
-  unitManager.addConstructionRobot(this);
 }
 
 City.prototype = Object.create(BaseState.prototype);
@@ -20,10 +19,12 @@ City.prototype.options = {
   "ROBOT" : {
     text:"construction",
     click:function(){
-      // @TODO: Implement a construction queue
+      // TODO: Resources cost and showing in the menu that ypu are building something
+      this.parent.queue.push(unitFactory['constructionRobot'](this.parent));
       this.parent.unSelect();
     },
-    isValid:(city) => {return true;}
+    isValid:(city) => {return true;},
+    isEnabled : unit => {return true;}
   }
 }
 
@@ -41,16 +42,26 @@ City.prototype.select = function() {
   InnerRightMenu.configure(this);
 }
 
-//////////  UPDATING  //////////
+City.prototype.unSelect = function() {
+  this.nextState = this.parent.parent;
+};
 
+//////////  UPDATING  //////////
 City.prototype.update = function() {
   if (INPUT.mouse.mainWindowClicked) this.unSelect();
   InnerRightMenu.click(this);
 }
 
-City.prototype.unSelect = function() {
-  this.nextState = this.parent.parent;
-};
+City.prototype.processTurn = function() {
+  userResources.addResources(this.getResources());
+  if (this.queue.length) {
+    this.queue[0].remainingTurnsToBuild--;
+    if (this.queue[0].remainingTurnsToBuild <= 0) {
+      // @TODO: Check for conflicts with other units at the same position
+      unitManager.addRobot(this.queue.shift());
+    }
+  }
+}
 
 //////////  DRAWING  //////////
 

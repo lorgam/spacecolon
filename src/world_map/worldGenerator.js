@@ -4,6 +4,8 @@ import PerlinNoise from '../neuron/perlinNoise.js';
 import naturalResourceManager from '../resources/naturalResourceManager.js';
 import MapTile from './mapTile.js';
 import cityManager from '../resources/city/cityManager.js';
+import unitManager from '../resources/unit/unitManager.js';
+import unitFactory from '../resources/unit/unitFactory.js';
 
 const WorldGenerator ={}
 
@@ -99,7 +101,8 @@ WorldGenerator.generateStartingPoint = function(worldMap){
     y = 15 + ~~(Math.random() * (worldMap.options.height - 30));
   } while(worldMap.map[x][y].type != "grass");
 
-  cityManager.addCity(worldMap, x, y);
+  let city = cityManager.addCity(worldMap, x, y);
+  unitManager.addRobot(unitFactory['constructionRobot'](city));
 
   worldMap.startingPointX = x;
   worldMap.startingPointY = y;
