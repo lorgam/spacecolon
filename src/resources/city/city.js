@@ -57,7 +57,7 @@ City.prototype.processTurn = function() {
   if (this.queue.length) {
     this.queue[0].remainingTurnsToBuild--;
     if (this.queue[0].remainingTurnsToBuild <= 0) {
-      // @TODO: Check for conflicts with other units at the same position
+      // TODO: Check for conflicts with other units at the same position
       unitManager.addRobot(this.queue.shift());
     }
   }
