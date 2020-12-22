@@ -4,7 +4,7 @@ const userResources = {
   resources : {}
 }
 
-userResources.init = () => {userResources.resources = Object.assign(userResources.getResourcesObject(), {MINERAL:1000});}
+userResources.init = () => {userResources.resources = Object.assign(userResources.getResourcesObject(), {MINERAL:100});}
 
 userResources.getResourcesObject = () => {
   let obj = {'construction':0};

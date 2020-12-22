@@ -13,4 +13,4 @@
 ## General
 
 * Support for touch screen
-
+* Better menus
