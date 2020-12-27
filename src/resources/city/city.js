@@ -19,9 +19,8 @@ City.prototype.options = {
   "ROBOT" : {
     text:"construction",
     click:function(){
-      // TODO: Resources cost and showing in the menu that ypu are building something
-      this.parent.queue.push(unitFactory['constructionRobot'](this.parent));
-      this.parent.unSelect();
+      // TODO: showing in the menu that you are building something
+      this.parent.addToConstructionQueue(unitFactory['constructionRobot'](this.parent));
     },
     isValid:(city) => {return true;},
     isEnabled : unit => {return true;}
@@ -46,12 +45,6 @@ City.prototype.unSelect = function() {
   this.nextState = this.parent.parent;
 };
 
-//////////  UPDATING  //////////
-City.prototype.update = function() {
-  if (INPUT.mouse.mainWindowClicked) this.unSelect();
-  InnerRightMenu.click(this);
-}
-
 City.prototype.processTurn = function() {
   userResources.addResources(this.getResources());
   if (this.queue.length) {
@@ -61,6 +54,26 @@ City.prototype.processTurn = function() {
       unitManager.addRobot(this.queue.shift());
     }
   }
+}
+
+//////////  CPNSTRUCTION QUEUE  //////////
+City.prototype.addToConstructionQueue = function(obj) {
+  if (userResources.checkAvailable(obj.cost)) {
+    userResources.removeResources(obj.cost)
+    this.queue.push(obj);
+    this.unSelect();
+  }
+}
+
+City.prototype.removeFromConstructionQueue = function() {
+  let obj = this.parent.queue.pop();
+  userResources.addResources(obj.cost);
+}
+
+//////////  UPDATING  //////////
+City.prototype.update = function() {
+  if (INPUT.mouse.mainWindowClicked) this.unSelect();
+  InnerRightMenu.click(this);
 }
 
 //////////  DRAWING  //////////

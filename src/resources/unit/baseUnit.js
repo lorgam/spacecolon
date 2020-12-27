@@ -40,6 +40,10 @@ BaseUnit.prototype.options = {
   }
 }
 
+BaseUnit.prototype.cost = {
+  MINERAL : 50
+}
+
 BaseUnit.prototype.refresh = function() {
   this.remainingMoves = this.moveRange;
 }
