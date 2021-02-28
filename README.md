@@ -28,11 +28,14 @@ Available at [`lorgam.github.io/spacecolon`](https://lorgam.github.io/spacecolon
 
 ## DEVELOPMENT
 
-### Vagrant
-There is a vagrant machine ready to use, execute `vagrant up` on the root of the project and you can access the development version on `http://localhost:8080/`.
-The root of the project is mounted on the `/var/www/html` folder of the guest machine.
+There is an `index.html` file on the root of the project which is the entrypoint of the game, all the source code is on the `src` folder.
+Simply run `docker-compose up -d` and you will have the development version running in `http://spacecolon.docker.localhost/`.
+Or you can just put this repository inside of a web server.
 
 ### Production version
+The production version is created with webpack through an npm command.
+If you are using the Docker Compose you can execute the commands without installing node just use `docker-compose run node <command>`.
+Execute `npm i` to install the node packages.
 Execute `npm run build`, the distribution files are in the dist folder, either copy this files into your server or open index.html with your browser.
 You can also use the `dist` branch to get the distribution files.
 

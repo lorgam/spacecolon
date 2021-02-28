@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Javascript game based on Sid Meier's Colonization",
   "private": true,
-  "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
