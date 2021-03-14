@@ -1,6 +1,7 @@
 import GLOBALS  from '../../globals/globals.js';
 import INPUT  from '../../globals/input.js';
 import InnerRightMenu  from '../../game_menu/innerRightMenu.js';
+import CityLowerMenu from '../../game_menu/cityLowerMenu.js';
 import unitManager from '../unit/unitManager.js';
 import unitFactory from '../unit/unitFactory.js';
 import userResources from '../userResources.js';
@@ -19,7 +20,6 @@ City.prototype.options = {
   "ROBOT" : {
     text:"construction",
     click:function(){
-      // TODO: showing in the menu that you are building something
       this.parent.addToConstructionQueue(unitFactory['constructionRobot'](this.parent));
     },
     isValid:(city) => {return true;},
@@ -56,7 +56,7 @@ City.prototype.processTurn = function() {
   }
 }
 
-//////////  CPNSTRUCTION QUEUE  //////////
+//////////  CONSTRUCTION QUEUE  //////////
 City.prototype.addToConstructionQueue = function(obj) {
   if (userResources.checkAvailable(obj.cost)) {
     userResources.removeResources(obj.cost)
@@ -81,6 +81,7 @@ City.prototype.update = function() {
 City.prototype.draw = function() {
   this.drawBackground();
   InnerRightMenu.draw();
+  CityLowerMenu.draw(this);
 }
 
 City.prototype.drawBackground = function() {
