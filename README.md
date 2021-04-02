@@ -27,20 +27,18 @@ Available at [`lorgam.github.io/spacecolon`](https://lorgam.github.io/spacecolon
 * `ENTER` to use the selected menu option.
 
 ## DEVELOPMENT
+The development of the game is configured through `docker compose`, but it's easy to manually do what you want.
 
-There is an `index.html` file on the root of the project which is the entrypoint of the game, all the source code is on the `src` folder.
+There is an `index.html` file on the root of the project which is the entrypoint of the development version of the game, all the source code is on the `src` folder.
 Simply run `docker-compose up -d` and you will have the development version running in `http://spacecolon.docker.localhost/`.
-Or you can just put this repository inside of a web server.
 
 ### Production version
-The production version is created with webpack through an npm command.
-If you are using the Docker Compose you can execute the commands without installing node just use `docker-compose run node <command>`.
-Execute `npm i` to install the node packages.
-Execute `npm run build`, the distribution files are in the dist folder, either copy this files into your server or open index.html with your browser.
-You can also use the `dist` branch to get the distribution files.
+The production version is created with webpack through an npm command. If you have docker compose installed on your machine you can run the `make` commands without installing anything.
+Execute `npm i` or `make install` to install the node packages.
+Execute `npm run build` or `make build` the distribution files are in the dist folder.
 
 ### Testing
-Execute `npm run test`
+Execute `npm run test` or `make test`
 
 ## HISTORY
 03/25/2019 For now is just a map generated with perlin noise.
