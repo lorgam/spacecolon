@@ -2,13 +2,14 @@
 
 ## Game core
 
-* Construction queue
+* Construction queue X
 * Research
 * Empire
 * Combat
 * Economy
 * Neutral inhabitants
 * Win conditions
+* Scenes
 
 ## General
 
