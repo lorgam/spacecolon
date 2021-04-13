@@ -8,7 +8,7 @@ services:
     ports:
       - 80:80
   node:
-    image: node:15-alpine
+    image: node:lts-alpine
     volumes:
        - ./:/node
     working_dir: /node

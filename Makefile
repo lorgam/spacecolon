@@ -10,6 +10,10 @@ stop:
 install:
 	docker-compose run node npm install
 
+.PHONY: update
+update:
+	docker-compose run node npm update
+
 .PHONY: build
 build:
 	docker-compose run node npm run build
