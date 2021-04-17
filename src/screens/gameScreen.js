@@ -6,6 +6,7 @@ import WorldGenerator from '../world_map/worldGenerator.js';
 import userResources  from '../resources/userResources.js';
 import unitManager  from '../resources/unit/unitManager.js';
 import buildingManager  from '../resources/building/buildingManager.js';
+import researchTree  from '../research/researchTree.js';
 import OptionsScreen  from './optionsScreen.js';
 import ScreenStack  from './screenStack.js';
 
@@ -14,6 +15,7 @@ function GameScreen(){
   userResources.init();
   unitManager.reset();
   buildingManager.reset();
+  researchTree.reset();
 
   this.totalTime    = 0.0;
 
