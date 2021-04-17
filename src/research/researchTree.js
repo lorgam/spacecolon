@@ -36,6 +36,13 @@ const mineralTechnology = {
   parents: [firstTechnology]
 }
 
+const advancedmineralTechnology = {
+  name: "adv_mineral_technology",
+  cost: 50,
+  completed: () => {console.log("advanced mineral technology", this);},
+  parents: [mineralTechnology]
+}
+
 const robotsTechnology = {
   name: "robots_technology",
   cost: 50,
@@ -47,7 +54,7 @@ const finalTechnology = {
   name: "final_technology",
   cost: 100,
   completed: () => {console.log("final technology", this);},
-  parents: [mineralTechnology, robotsTechnology]
+  parents: [advancedmineralTechnology, robotsTechnology]
 }
 
 researchTree.root = firstTechnology;
@@ -57,21 +64,28 @@ researchTree.end = finalTechnology;
 
 let endTree = researchTree.end;
 endTree.children = [];
+endTree.level = 0; // Maximum generations till the end, useful for positioning the nodes
 let pending = [endTree];
-let visited = [];
-let current, idx, parent;
+let current, idx, parent, pos;
 
 while (pending.length > 0) {
   current = pending.shift();
 
   for (idx in current.parents) {
     parent = current.parents[idx];
+    pos = current.position + 1;
 
-    if (!visited.includes(parent)) pending.push(parent);
-    if (!parent.children) parent.children = [];
-    parent.children.push(current);
+    if (!parent.children) {
+      parent.children = [current];
+      parent.level = current.level + 1;
+
+      pending.push(parent);
+    } else {
+      parent.children.push(current);
+      if (parent.level < current.level + 1) parent.level = current.level + 1;
+    }
   }
 
-  visited.push(current);
 }
 
+console.log(researchTree.root);
