@@ -34,6 +34,7 @@ const INPUT = {
     INPUT.keyboard.O      = new inputKey(79);
     INPUT.keyboard.C      = new inputKey(67);
     INPUT.keyboard.V      = new inputKey(86);
+    INPUT.keyboard.T      = new inputKey(84);
   },
 
   keyDown : function(keyCode){

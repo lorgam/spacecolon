@@ -11,6 +11,7 @@ import TopMenu from '../game_menu/topMenu.js';
 import LowerMenu from '../game_menu/lowerMenu.js';
 import WorldRightMenu from '../game_menu/worldRightMenu.js';
 import MiniMap from '../game_menu/miniMap.js';
+import researchTreeDrawer from '../research/researchTreeDrawer.js';
 
 function WorldMap(options, parent){
   BaseState.call(this);
@@ -63,6 +64,7 @@ WorldMap.prototype.update = function(timeElapsed){
 
   if (INPUT.keyboard.V.execute())     this.changeView();
   if (INPUT.keyboard.C.execute())     this.centerViewonStartingPoint();
+  if (INPUT.keyboard.T.execute())     this.nextState = new researchTreeDrawer(); // @TODO: Should be a global object
   if (INPUT.keyboard.SPACE.execute())     turnManager.advance();
   //Mouse
   if (INPUT.mouse.mainWindowClicked) this.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);

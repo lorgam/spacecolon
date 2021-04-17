@@ -88,4 +88,21 @@ while (pending.length > 0) {
 
 }
 
-console.log(researchTree.root);
+let texPerLevel = []; //Number of technologies per level
+for (idx = 0; idx <= researchTree.root.level; idx++) texPerLevel[idx] = 0;
+
+pending = [researchTree.root];
+let visited = [], child;
+
+while (pending.length > 0) {
+  current = pending.shift();
+  visited.push(current);
+
+  current.levelPos = texPerLevel[current.level]++;
+
+  for (idx in current.children) {
+    child = current.children[idx];
+    if (!visited.includes(child) && !pending.includes(child)) pending.push(child);
+  }
+}
+
