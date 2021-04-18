@@ -12,6 +12,19 @@ function researchTreeDrawer(options, parent){
 researchTreeDrawer.prototype = Object.create(BaseState.prototype);
 
 researchTreeDrawer.prototype.update = function() {
+  if (INPUT.keyboard.ARROW_LEFT.execute())  this.moveLeft();
+  if (INPUT.keyboard.ARROW_RIGHT.execute()) this.moveRight();
+}
+
+researchTreeDrawer.prototype.moveLeft = function() {
+  this.sx -= 10;
+  if (this.sx < 0) this.sx = 0;
+}
+
+researchTreeDrawer.prototype.moveRight = function() {
+  this.sx += 10;
+  let maxX = textureManager.textures['research']['tree'].width - GLOBALS.mainScreenWidth;
+  if (this.sx > maxX) this.sx = maxX;
 }
 
 researchTreeDrawer.prototype.draw = function() {
