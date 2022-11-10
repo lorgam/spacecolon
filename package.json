@@ -5,7 +5,7 @@
   "private": true,
   "devDependencies": {
     "chai": "^4.3.4",
-    "mocha": "^8.3.2",
+    "mocha": "^10.1.0",
     "serialize-javascript": "^5.0.1",
     "source-map-support": "^0.5.19",
     "webpack": "^5.32.0",
