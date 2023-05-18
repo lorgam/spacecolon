@@ -6,18 +6,22 @@ up:
 stop:
 	docker-compose stop
 
+.PHONY: down
+down:
+	docker-compose down -v
+
 .PHONY: install
 install:
-	docker-compose run node npm install
+	docker-compose run --rm node npm install
 
 .PHONY: update
 update:
-	docker-compose run node npm update
+	docker-compose run --rm node npm update
 
 .PHONY: build
 build:
-	docker-compose run node npm run build
+	docker-compose run --rm node npm run build
 
 .PHONY: test
 test:
-	docker-compose run node npm test
+	docker-compose run --rm node npm test
