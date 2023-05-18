@@ -25,3 +25,11 @@ build:
 .PHONY: test
 test:
 	docker-compose run --rm node npm test
+
+.PHONY: audit
+audit:
+	docker-compose run --rm node npm audit
+
+.PHONY: audit-fix
+audit-fix:
+	docker-compose run --rm node npm audit fix
