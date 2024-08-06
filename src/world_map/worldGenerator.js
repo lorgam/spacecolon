@@ -1,6 +1,6 @@
 import GLOBALS from '../globals/globals.js';
 import textureManager from '../neuron/textureManager.js';
-import PerlinNoise from '../neuron/perlinNoise.js';
+import OpenSimplexNoise from '../neuron/noise/openSimplexNoise.js';
 import naturalResourceManager from '../resources/naturalResourceManager.js';
 import MapTile from './mapTile.js';
 import cityManager from '../resources/city/cityManager.js';
@@ -32,7 +32,7 @@ mapSecContext.fillRect(0, 0, 1000, 750);
   mapCanvas.height  = worldMap.options.height * GLOBALS.maxTileSize();
   var mapContext    = mapCanvas.getContext('2d');
   //Noise function for the map height and humidity
-  var perlinNoise   = new PerlinNoise();
+  var openSimplexNoise   = new OpenSimplexNoise(1);
   //steepness of the terrain. Bigger = more steepness
   var heightStep    = 0.04 + Math.random() * 0.05;
   var humidityStep  = 0.075 + Math.random() * 0.05;
@@ -61,8 +61,8 @@ mapSecContext.fillRect(0, 0, 1000, 750);
     zHumidity = humidityStep * cos + worldMap.options.humiditySeedZ;
 
     for (var h = 0; h < worldMap.options.height; h++){
-      tileHeight  = perlinNoise.noise(xHeight, h * heightStep + worldMap.options.heightSeedY, zHeight);
-      tileHumidity  = perlinNoise.noise(xHumidity, h * humidityStep + worldMap.options.humiditySeedY, zHumidity);
+      tileHeight  = openSimplexNoise.noise3D(xHeight, h * heightStep + worldMap.options.heightSeedY, zHeight);
+      tileHumidity  = openSimplexNoise.noise3D(xHumidity, h * humidityStep + worldMap.options.humiditySeedY, zHumidity);
 
       mapTile   = new MapTile(worldMap, tileHeight, tileHumidity, w, h);
       map[w][h] = mapTile;
