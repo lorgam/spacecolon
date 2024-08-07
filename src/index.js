@@ -17,10 +17,17 @@ window.onload = function(){
   GLOBALS.context = canvas.getContext('2d');
 
   INPUT.init();
-  document.onkeydown  =       function(e){INPUT.keyDown(e.keyCode);}
-  canvas.addEventListener('click',
-                    function(e){INPUT.mouseClick(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);},
-              false);
+  document.onkeydown = function(e){INPUT.keyDown(e.keyCode);}
+
+  canvas.addEventListener('mousedown', e => {
+    INPUT.mouseDown(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+  });
+  canvas.addEventListener('mouseup', e => {
+    INPUT.mouseUp(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+  });
+  canvas.addEventListener('mousemove', e => {
+    INPUT.mouseMove(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+  });
 
   ScreenStack.addScreen(new MainMenuScreen());
   //Start the loop
