@@ -1,35 +1,41 @@
+ifneq ($(shell docker compose version 2>/dev/null),)
+  DOCKER_COMPOSE=docker compose
+else
+  DOCKER_COMPOSE=docker-compose -f compose.yaml
+endif
+
 .PHONY: up
 up:
-	docker compose up -d
+	$(DOCKER_COMPOSE) up -d
 
 .PHONY: stop
 stop:
-	docker compose stop
+	$(DOCKER_COMPOSE) stop
 
 .PHONY: down
 down:
-	docker compose down -v
+	$(DOCKER_COMPOSE) down -v
 
 .PHONY: install
 install:
-	docker compose run --rm node npm install
+	$(DOCKER_COMPOSE) run --rm node npm install
 
 .PHONY: update
 update:
-	docker compose run --rm node npm update
+	$(DOCKER_COMPOSE) run --rm node npm update
 
 .PHONY: build
 build:
-	docker compose run --rm node npm run build
+	$(DOCKER_COMPOSE) run --rm node npm run build
 
 .PHONY: test
 test:
-	docker compose run --rm node npm test
+	$(DOCKER_COMPOSE) run --rm node npm test
 
 .PHONY: audit
 audit:
-	docker compose run --rm node npm audit
+	$(DOCKER_COMPOSE) run --rm node npm audit
 
 .PHONY: audit-fix
 audit-fix:
-	docker compose run --rm node npm audit fix
+	$(DOCKER_COMPOSE) run --rm node npm audit fix
