@@ -33,7 +33,7 @@ function getUserResourcesTextures(){
   let textures = [], canvas;
 
   canvas = createCanvas(textureManager.tileSize, textureManager.tileSize);
-  addTriangle(canvas, textureManager.tileSize, "#FF0");
+  addPolygon(canvas, textureManager.tileSize, 6, "#FF0");
   textures['construction'] = canvas;
 
   return textures;
@@ -176,6 +176,24 @@ function addTriangleInverse(canvas, size, color){
   ctx.moveTo(0,size);
   ctx.lineTo(size/2, 0);
   ctx.lineTo(size, size);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function addPolygon(canvas, size, sides, color){
+  const radius = size/2;
+  const step = Math.PI * 2 / sides;
+
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(radius * 2, radius);
+
+  for (let i = 1; i < sides; i++) {
+    const angle = step * i;
+    ctx.lineTo(radius + Math.cos(angle) * radius, radius + Math.sin(angle) * radius);
+  }
+
   ctx.closePath();
   ctx.fill();
 }
