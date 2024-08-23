@@ -65,7 +65,7 @@ function getGeneralTextures(){
   let textures = [], canvas;
 
   canvas = createCanvas(textureManager.tileSize, textureManager.tileSize);
-  addTriangleInverse(canvas, textureManager.tileSize, "#0FF");
+  addStar(canvas, textureManager.tileSize, 5, "#0FF");
   textures['city'] = canvas;
 
   return textures;
@@ -192,6 +192,27 @@ function addPolygon(canvas, size, sides, color){
   for (let i = 1; i < sides; i++) {
     const angle = step * i;
     ctx.lineTo(radius + Math.cos(angle) * radius, radius + Math.sin(angle) * radius);
+  }
+
+  ctx.closePath();
+  ctx.fill();
+}
+
+function addStar(canvas, size, sides, color){
+  const externalRadius = size/2;
+  const internalRadius = size/4;
+  const step = Math.PI * 2 / sides;
+
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(externalRadius * 2, externalRadius);
+
+  for (let i = 0; i < sides; i++) {
+    let angle = step * i;
+    ctx.lineTo(externalRadius + Math.cos(angle) * externalRadius, externalRadius + Math.sin(angle) * externalRadius);
+    angle += step / 2;
+    ctx.lineTo(externalRadius + Math.cos(angle) * internalRadius, externalRadius + Math.sin(angle) * internalRadius);
   }
 
   ctx.closePath();
