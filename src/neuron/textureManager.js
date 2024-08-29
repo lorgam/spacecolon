@@ -72,42 +72,62 @@ function getGeneralTextures(){
 }
 
 function getResearchTextures(){
-  let textures = [], i, canvas, x, y, current, child;
-  let columnWidth = 300, boxMargin = 15;
-  let boxWidth = columnWidth -boxMargin * 2, boxHeight = 100;
+  const padding = 50;
+  const height = padding + (researchTree.root.level + 1) * (researchTree.iconSize + padding);
+  const width = padding + researchTree.maxWidth() * (researchTree.iconSize + padding);
 
-  let root = researchTree.root;
-  let levels = root.level + 1;
+  let textures = [];
+  let canvas = createCanvas(width, height), canvasIcons = createCanvas(width, height), canvasLines = createCanvas(width, height);
+  let ctx = canvas.getContext('2d'), ctxIcons = canvasIcons.getContext('2d'), ctxLines = canvasLines.getContext('2d');
+  // Background
+  ctx.fillStyle = "#CB8F1E";
+  ctx.fillRect(0, 0, width, height);
+  // Line colors
+  ctxLines.fillStyle = "#FFF";
 
-  canvas = createCanvas(levels * columnWidth, GLOBALS.mainScreenHeight);
-  let ctx = canvas.getContext('2d');
-  ctx.font = GLOBALS.buttonFont;
+  let pending = [researchTree.root], visited = [];
+  while (pending.length > 0) {
+    let current = pending.shift();
+    const techsPerLevel = researchTree.techPerLevel[current.level];
+    const margin = (width - (padding + researchTree.iconSize) * techsPerLevel) / 2;
+    // Position the current tech
+    const x = margin + current.levelPos * (padding + researchTree.iconSize);
+    const y = padding + (researchTree.root.level - current.level) * (padding + researchTree.iconSize);
+    current.pos = {x:x, y:y}
 
-  for (i = 0; i < levels; i++){
-    ctx.fillStyle = (i % 2 ? "#CB8F1E" : "#FFCF75");
-    ctx.fillRect(i * columnWidth, 0, columnWidth, GLOBALS.mainScreenHeight);
+    let icon = getIconForTech(current.icon);
+    textures[current.name] = icon;
+
+    //Draw the icon
+    ctxIcons.drawImage(icon, x, y, researchTree.iconSize, researchTree.iconSize);
+
+    for (let i in current.children) {
+      let child = current.children[i];
+      if (!visited.includes(child) && !pending.includes(child)) pending.push(child);
+    }
+
   }
 
-  let pending = [root], visited = [];
+  pending = [researchTree.root], visited = [];
   while (pending.length > 0) {
-    current = pending.shift();
-    visited.push(current);
-
-    x = (levels - current.level - 1) * columnWidth + boxMargin;
-    y = current.levelPos * ( boxHeight + boxMargin);
-    ctx.fillStyle = "#FFF";
-    ctx.fillRect(x, y, boxWidth, boxHeight);
-    ctx.fillStyle = "#000";
-    ctx.fillText(current.name, x + 5, y + 20);
-
-    for (i in current.children) {
-      child = current.children[i];
+    let current = pending.shift();
+    // Draw the lines that connects this tech with its parents
+    current.parents.forEach((parent) => {
+      ctxLines.beginPath();
+      ctxLines.moveTo(parent.pos.x + researchTree.iconSize / 2, parent.pos.y + researchTree.iconSize / 2);
+      ctxLines.lineTo(current.pos.x + researchTree.iconSize / 2, current.pos.y + researchTree.iconSize / 2);
+      ctxLines.stroke();
+    });
+    for (let i in current.children) {
+      let child = current.children[i];
       if (!visited.includes(child) && !pending.includes(child)) pending.push(child);
     }
   }
 
-  textures['tree'] = canvas;
+  ctx.drawImage(canvasLines, 0, 0, width, height);
+  ctx.drawImage(canvasIcons, 0, 0, width, height);
 
+  textures['tree'] = canvas;
   return textures;
 }
 //////////////// Drawings ////////////////
@@ -217,6 +237,24 @@ function addStar(canvas, size, sides, color){
 
   ctx.closePath();
   ctx.fill();
+}
+
+function getIconForTech(icon){
+  const size = textureManager.tileSize;
+  let canvas = createCanvas(size, size);
+  let ctx = canvas.getContext('2d');
+  switch (icon.type){
+    case "polygon":
+      addPolygon(canvas, size, icon.sides, icon.color);
+      break;
+    case "star":
+      addStar(canvas, size, icon.sides, icon.color);
+      break;
+    default:
+      ctx.fillStyle = "#FFF";
+      ctx.fillRect(0, 0 , size, size);
+  }
+  return canvas;
 }
 
 export default textureManager;

@@ -1,4 +1,7 @@
-const researchTree = {}
+const researchTree = {
+  iconSize: 50,
+  techPerLevel: []
+}
 
 researchTree.reset = () => {
   let pending = [researchTree.root];
@@ -18,6 +21,8 @@ researchTree.reset = () => {
   }
 }
 
+researchTree.maxWidth = () => Math.max(...researchTree.techPerLevel) + 1;
+
 export default researchTree;
 
 //////////////// Individual technologies ////////////////
@@ -26,35 +31,64 @@ const firstTechnology = {
   name: "initial_technology",
   cost: 10,
   completed: () => {console.log("first technology", this);},
-  parents: []
+  parents: [],
+  icon: {
+    type: "star",
+    sides: 4,
+    color: "#F00"
+  }
 }
 
 const mineralTechnology = {
   name: "mineral_technology",
   cost: 20,
   completed: () => {console.log("mineral technology", this);},
-  parents: [firstTechnology]
+  parents: [firstTechnology],
+  icon: {
+    type: "polygon",
+    sides: 3,
+    color: "#F00"
+  }
+
 }
 
 const advancedmineralTechnology = {
   name: "adv_mineral_technology",
   cost: 50,
   completed: () => {console.log("advanced mineral technology", this);},
-  parents: [mineralTechnology]
+  parents: [mineralTechnology],
+  icon: {
+    type: "polygon",
+    sides: 6,
+    color: "#FF0"
+  }
+
 }
 
 const robotsTechnology = {
   name: "robots_technology",
   cost: 50,
   completed: () => {console.log("robots technology", this);},
-  parents: [firstTechnology]
+  parents: [firstTechnology],
+  icon: {
+    type: "star",
+    sides: 5,
+    color: "#FF0"
+  }
+
 }
 
 const finalTechnology = {
   name: "final_technology",
   cost: 100,
   completed: () => {console.log("final technology", this);},
-  parents: [advancedmineralTechnology, robotsTechnology]
+  parents: [advancedmineralTechnology, robotsTechnology],
+  icon: {
+    type: "star",
+    sides: 12,
+    color: "#FFF"
+  }
+
 }
 
 researchTree.root = firstTechnology;
@@ -66,14 +100,13 @@ let endTree = researchTree.end;
 endTree.children = [];
 endTree.level = 0; // Maximum generations till the end, useful for positioning the nodes
 let pending = [endTree];
-let current, idx, parent, pos;
+let current, idx, parent;
 
 while (pending.length > 0) {
   current = pending.shift();
 
   for (idx in current.parents) {
     parent = current.parents[idx];
-    pos = current.position + 1;
 
     if (!parent.children) {
       parent.children = [current];
@@ -85,11 +118,9 @@ while (pending.length > 0) {
       if (parent.level < current.level + 1) parent.level = current.level + 1;
     }
   }
-
 }
 
-let texPerLevel = []; //Number of technologies per level
-for (idx = 0; idx <= researchTree.root.level; idx++) texPerLevel[idx] = 0;
+researchTree.techPerLevel = Array(researchTree.root.level + 1).fill(0);
 
 pending = [researchTree.root];
 let visited = [], child;
@@ -98,7 +129,7 @@ while (pending.length > 0) {
   current = pending.shift();
   visited.push(current);
 
-  current.levelPos = texPerLevel[current.level]++;
+  current.levelPos = researchTree.techPerLevel[current.level]++;
 
   for (idx in current.children) {
     child = current.children[idx];
