@@ -74,7 +74,7 @@ function getGeneralTextures(){
 function getResearchTextures(){
   const padding = 50;
   const height = padding + (researchTree.root.level + 1) * (researchTree.iconSize + padding);
-  const width = padding + researchTree.maxWidth() * (researchTree.iconSize + padding);
+  const width = padding + researchTree.maxWidth * (researchTree.iconSize + padding);
 
   let textures = [];
   let canvas = createCanvas(width, height), canvasIcons = createCanvas(width, height), canvasLines = createCanvas(width, height);

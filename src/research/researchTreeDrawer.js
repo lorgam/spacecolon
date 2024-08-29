@@ -12,8 +12,8 @@ function researchTreeDrawer(options, parent){
 researchTreeDrawer.prototype = Object.create(BaseState.prototype);
 
 researchTreeDrawer.prototype.update = function() {
-  if (INPUT.keyboard.ARROW_LEFT.execute())  this.moveLeft();
-  if (INPUT.keyboard.ARROW_RIGHT.execute()) this.moveRight();
+  /*if (INPUT.keyboard.ARROW_LEFT.execute())  this.moveLeft();
+  if (INPUT.keyboard.ARROW_RIGHT.execute()) this.moveRight();*/
 }
 
 /*researchTreeDrawer.prototype.moveLeft = function() {

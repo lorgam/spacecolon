@@ -1,6 +1,7 @@
 const researchTree = {
   iconSize: 50,
-  techPerLevel: []
+  techPerLevel: [],
+  maxWidth: 0
 }
 
 researchTree.reset = () => {
@@ -20,8 +21,6 @@ researchTree.reset = () => {
     visited.push(current);
   }
 }
-
-researchTree.maxWidth = () => Math.max(...researchTree.techPerLevel) + 1;
 
 export default researchTree;
 
@@ -137,3 +136,4 @@ while (pending.length > 0) {
   }
 }
 
+researchTree.maxWidth = Math.max(...researchTree.techPerLevel) + 1; // Maximum number of technologies in a level
