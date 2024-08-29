@@ -48,7 +48,6 @@ const mineralTechnology = {
     sides: 3,
     color: "#F00"
   }
-
 }
 
 const advancedmineralTechnology = {
@@ -61,7 +60,6 @@ const advancedmineralTechnology = {
     sides: 6,
     color: "#FF0"
   }
-
 }
 
 const robotsTechnology = {
@@ -74,20 +72,54 @@ const robotsTechnology = {
     sides: 5,
     color: "#FF0"
   }
+}
 
+const nanoTech = {
+  name: "nano_technology",
+  cost: 75,
+  completed: () => {console.log("preFinal technology", this);},
+  parents: [advancedmineralTechnology, robotsTechnology],
+  icon: {
+    type: "star",
+    sides: 10,
+    color: "#FF0"
+  }
+}
+
+const darkTechnology = {
+  name: "dark_technology",
+  cost: 75,
+  completed: () => {console.log("preFinal technology", this);},
+  parents: [nanoTech],
+  icon: {
+    type: "star",
+    sides: 10,
+    color: "#000"
+  }
+}
+
+const preFinalTechnology = {
+  name: "pre_final_technology",
+  cost: 75,
+  completed: () => {console.log("preFinal technology", this);},
+  parents: [nanoTech, darkTechnology],
+  icon: {
+    type: "star",
+    sides: 10,
+    color: "#0F0"
+  }
 }
 
 const finalTechnology = {
   name: "final_technology",
   cost: 100,
   completed: () => {console.log("final technology", this);},
-  parents: [advancedmineralTechnology, robotsTechnology],
+  parents: [preFinalTechnology],
   icon: {
     type: "star",
     sides: 12,
     color: "#FFF"
   }
-
 }
 
 researchTree.root = firstTechnology;
@@ -111,11 +143,13 @@ while (pending.length > 0) {
       parent.children = [current];
       parent.level = current.level + 1;
 
-      pending.push(parent);
     } else {
       parent.children.push(current);
-      if (parent.level < current.level + 1) parent.level = current.level + 1;
+      if (parent.level < current.level + 1) {
+        parent.level = current.level + 1;
+      }
     }
+    if (!pending.includes(parent)) pending.push(parent);
   }
 }
 
