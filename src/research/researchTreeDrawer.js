@@ -3,10 +3,12 @@ import INPUT from '../globals/input.js';
 import BaseState from '../neuron/baseState.js';
 import textureManager from '../neuron/textureManager.js';
 import researchTree from './researchTree.js';
+import ResearchMenu from '../game_menu/researchMenu.js';
 
 function researchTreeDrawer(parent){
   BaseState.call(this);
   this.parent = parent;
+  this.clickedTech = null;
 }
 
 researchTreeDrawer.prototype = Object.create(BaseState.prototype);
@@ -24,12 +26,11 @@ researchTreeDrawer.prototype.update = function() {
 
   if (INPUT.keyboard.T.execute())  this.nextState = this.parent;
 
-  if (INPUT.mouse.mainWindowClicked) this.mouseClick(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight);
+  if (INPUT.mouse.isClicked) this.mouseClick();
 }
 
-researchTreeDrawer.prototype.mouseClick = function(x, y) {
-  let clickedTech = getClickedTechnology(x, y);
-  if (clickedTech) console.log(clickedTech);
+researchTreeDrawer.prototype.mouseClick = function() {
+  this.clickedTech = getClickedTechnology(INPUT.mouse.x, INPUT.mouse.y - GLOBALS.topMenuHeight, this.sx, this.sy);
 }
 
 researchTreeDrawer.prototype.moveLeft = function() {
@@ -51,7 +52,7 @@ researchTreeDrawer.prototype.moveUp = function() {
 }
 
 researchTreeDrawer.prototype.moveDown = function() {
-  let maxY = textureManager.textures['research']['tree'].height - GLOBALS.mainScreenHeight;
+  let maxY = textureManager.textures['research']['tree'].height - GLOBALS.height + GLOBALS.topMenuHeight;
   if (maxY < 0) return;
 
   this.sy += 10;
@@ -61,17 +62,27 @@ researchTreeDrawer.prototype.moveDown = function() {
 researchTreeDrawer.prototype.draw = function() {
   const ctx = GLOBALS.context;
 
-  this.parent.draw();
-  ctx.drawImage(textureManager.textures['research']['tree'], this.sx, this.sy, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight, 0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.mainScreenHeight);
+  //this.parent.draw();
+  ctx.drawImage(textureManager.textures['research']['tree'], this.sx, this.sy, GLOBALS.mainScreenWidth, GLOBALS.height - GLOBALS.topMenuHeight, 0, GLOBALS.topMenuHeight, GLOBALS.mainScreenWidth, GLOBALS.height - GLOBALS.topMenuHeight);
+
+  if (this.clickedTech) {
+    const texture = textureManager.textures['research'][this.clickedTech.name];
+    ctx.filter = "brightness(1)";
+    ctx.drawImage(texture, 0, 0, texture.width, texture.height,
+      this.clickedTech.pos.x - this.sx, GLOBALS.topMenuHeight + this.clickedTech.pos.y - this.sy, researchTree.iconSize, researchTree.iconSize);
+    ctx.filter = null;
+  }
+
+  ResearchMenu.draw(this.clickedTech, textureManager.textures['research']['tree'].width);
 }
 
-function getClickedTechnology(x,y){
+function getClickedTechnology(x, y, sx, sy){
   let pending = [researchTree.root], visited = [], current;
   while (pending.length > 0) {
     current = pending.shift();
     visited.push(current);
 
-    if (x > current.pos.x && x < current.pos.x + researchTree.iconSize && y > current.pos.y && y < current.pos.y + researchTree.iconSize) return current;
+    if (x + sx > current.pos.x && x + sx < current.pos.x + researchTree.iconSize && y +sy > current.pos.y && y +sy < current.pos.y + researchTree.iconSize) return current;
 
     for (let idx in current.children) {
       let child = current.children[idx];

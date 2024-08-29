@@ -73,6 +73,7 @@ const INPUT = {
   mouseClick : function(x, y){
     INPUT.mouse.x = x;
     INPUT.mouse.y = y;
+    INPUT.mouse.isClicked = true;
 
     // @TODO: MOve this logic to the worldMap
     if (INPUT.mouse.x < GLOBALS.mainScreenWidth){

@@ -77,7 +77,7 @@ const robotsTechnology = {
 const nanoTech = {
   name: "nano_technology",
   cost: 75,
-  completed: () => {console.log("preFinal technology", this);},
+  completed: () => {console.log("nano technology", this);},
   parents: [advancedmineralTechnology, robotsTechnology],
   icon: {
     type: "star",
@@ -94,7 +94,19 @@ const darkTechnology = {
   icon: {
     type: "star",
     sides: 10,
-    color: "#000"
+    color: "#999"
+  }
+}
+
+const ultimaTechnology = {
+  name: "ultima_technology",
+  cost: 75,
+  completed: () => {console.log("ultima technology", this);},
+  parents: [darkTechnology],
+  icon: {
+    type: "star",
+    sides: 10,
+    color: "#0FF"
   }
 }
 
@@ -102,10 +114,10 @@ const preFinalTechnology = {
   name: "pre_final_technology",
   cost: 75,
   completed: () => {console.log("preFinal technology", this);},
-  parents: [nanoTech, darkTechnology],
+  parents: [ultimaTechnology],
   icon: {
     type: "star",
-    sides: 10,
+    sides: 11,
     color: "#0F0"
   }
 }

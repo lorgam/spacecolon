@@ -125,7 +125,9 @@ function getResearchTextures(){
   }
 
   ctx.drawImage(canvasLines, 0, 0, width, height);
+  ctx.filter = "brightness(0.75)";
   ctx.drawImage(canvasIcons, 0, 0, width, height);
+  ctx.filter = null;
 
   textures['tree'] = canvas;
   return textures;
