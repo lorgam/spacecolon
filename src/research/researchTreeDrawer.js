@@ -77,20 +77,8 @@ researchTreeDrawer.prototype.draw = function() {
 }
 
 function getClickedTechnology(x, y, sx, sy){
-  let pending = [researchTree.root], visited = [], current;
-  while (pending.length > 0) {
-    current = pending.shift();
-    visited.push(current);
-
-    if (x + sx > current.pos.x && x + sx < current.pos.x + researchTree.iconSize && y +sy > current.pos.y && y +sy < current.pos.y + researchTree.iconSize) return current;
-
-    for (let idx in current.children) {
-      let child = current.children[idx];
-      if (!visited.includes(child) && !pending.includes(child)) pending.push(child);
-    }
-  }
-
-  return null;
+  let value = researchTree.applyFunctionToAll(node => {if (x + sx > node.pos.x && x + sx < node.pos.x + researchTree.iconSize && y +sy > node.pos.y && y +sy < node.pos.y + researchTree.iconSize) return node;});
+  return (typeof value === "undefined" ? null : value);
 }
 
 export default researchTreeDrawer;

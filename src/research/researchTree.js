@@ -4,23 +4,18 @@ const researchTree = {
   maxWidth: 0
 }
 
-researchTree.reset = () => {
-  let pending = [researchTree.root];
-  let visited = [];
-  let current, i, child;
-
+researchTree.applyFunctionToAll = function(f) {
+  var pending = [researchTree.root], visited = [];
   while (pending.length > 0) {
-    current = pending.shift();
-    current.completion = 0;
-
-    for (i in current.children) {
-      child = current.children[i];
-      if (!visited.includes(child)) pending.push(child);
-    }
-
+    let current = pending.shift();
+    let result = f(current);
+    if (typeof result !== "undefined") return result;
+    current.children.forEach(child => {if (!visited.includes(child) && !pending.includes(child)) pending.push(child);});
     visited.push(current);
   }
 }
+
+researchTree.reset = () => researchTree.applyFunctionToAll(node => {node.completion = 0;})
 
 export default researchTree;
 
@@ -143,43 +138,25 @@ let endTree = researchTree.end;
 endTree.children = [];
 endTree.level = 0; // Maximum generations till the end, useful for positioning the nodes
 let pending = [endTree];
-let current, idx, parent;
 
 while (pending.length > 0) {
-  current = pending.shift();
-
-  for (idx in current.parents) {
-    parent = current.parents[idx];
-
+  let current = pending.shift();
+  current.parents.forEach(parent => {
     if (!parent.children) {
       parent.children = [current];
       parent.level = current.level + 1;
 
     } else {
       parent.children.push(current);
-      if (parent.level < current.level + 1) {
-        parent.level = current.level + 1;
-      }
+      if (parent.level < current.level + 1) parent.level = current.level + 1;
     }
     if (!pending.includes(parent)) pending.push(parent);
-  }
+  });
 }
 
 researchTree.techPerLevel = Array(researchTree.root.level + 1).fill(0);
 
-pending = [researchTree.root];
-let visited = [], child;
-
-while (pending.length > 0) {
-  current = pending.shift();
-  visited.push(current);
-
-  current.levelPos = researchTree.techPerLevel[current.level]++;
-
-  for (idx in current.children) {
-    child = current.children[idx];
-    if (!visited.includes(child) && !pending.includes(child)) pending.push(child);
-  }
-}
+researchTree.applyFunctionToAll(node => {node.levelPos = researchTree.techPerLevel[node.level]++;}); // Calculate how many techs there are per level
 
 researchTree.maxWidth = Math.max(...researchTree.techPerLevel) + 1; // Maximum number of technologies in a level
+

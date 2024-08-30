@@ -76,7 +76,7 @@ function getResearchTextures(){
   const height = padding + (researchTree.root.level + 1) * (researchTree.iconSize + padding);
   const width = padding + researchTree.maxWidth * (researchTree.iconSize + padding);
 
-  let textures = [];
+  var textures = [];
   let canvas = createCanvas(width, height), canvasIcons = createCanvas(width, height), canvasLines = createCanvas(width, height);
   let ctx = canvas.getContext('2d'), ctxIcons = canvasIcons.getContext('2d'), ctxLines = canvasLines.getContext('2d');
   // Background
@@ -85,44 +85,29 @@ function getResearchTextures(){
   // Line colors
   ctxLines.fillStyle = "#FFF";
 
-  let pending = [researchTree.root], visited = [];
-  while (pending.length > 0) {
-    let current = pending.shift();
-    const techsPerLevel = researchTree.techPerLevel[current.level];
+  researchTree.applyFunctionToAll(node => {
+    const techsPerLevel = researchTree.techPerLevel[node.level];
     const margin = (width - (padding + researchTree.iconSize) * techsPerLevel) / 2;
     // Position the current tech
-    const x = margin + current.levelPos * (padding + researchTree.iconSize);
-    const y = padding + (researchTree.root.level - current.level) * (padding + researchTree.iconSize);
-    current.pos = {x:x, y:y}
+    const x = margin + node.levelPos * (padding + researchTree.iconSize);
+    const y = padding + (researchTree.root.level - node.level) * (padding + researchTree.iconSize);
+    node.pos = {x:x, y:y}
 
-    let icon = getIconForTech(current.icon);
-    textures[current.name] = icon;
+    let icon = getIconForTech(node.icon);
+    textures[node.name] = icon;
 
     //Draw the icon
     ctxIcons.drawImage(icon, x, y, researchTree.iconSize, researchTree.iconSize);
+  });
 
-    for (let i in current.children) {
-      let child = current.children[i];
-      if (!visited.includes(child) && !pending.includes(child)) pending.push(child);
-    }
-
-  }
-
-  pending = [researchTree.root], visited = [];
-  while (pending.length > 0) {
-    let current = pending.shift();
-    // Draw the lines that connects this tech with its parents
-    current.parents.forEach((parent) => {
+  researchTree.applyFunctionToAll(node => {
+    node.parents.forEach((parent) => {
       ctxLines.beginPath();
       ctxLines.moveTo(parent.pos.x + researchTree.iconSize / 2, parent.pos.y + researchTree.iconSize / 2);
-      ctxLines.lineTo(current.pos.x + researchTree.iconSize / 2, current.pos.y + researchTree.iconSize / 2);
+      ctxLines.lineTo(node.pos.x + researchTree.iconSize / 2, node.pos.y + researchTree.iconSize / 2);
       ctxLines.stroke();
     });
-    for (let i in current.children) {
-      let child = current.children[i];
-      if (!visited.includes(child) && !pending.includes(child)) pending.push(child);
-    }
-  }
+  });
 
   ctx.drawImage(canvasLines, 0, 0, width, height);
   ctx.filter = "brightness(0.75)";
