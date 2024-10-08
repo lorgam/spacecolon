@@ -28,7 +28,10 @@ const texts = {
       mine : "Mine",
       cancel : "Cancel",
       robots : "Robot",
-      construction : "Construction robot"
+      construction : "Construction robot",
+      investigateBtn : "Investigate"
+    },
+    technologies : {
     }
   },
   es : {
@@ -58,9 +61,11 @@ const texts = {
       mine : "Mina",
       cancel : "Cancelar",
       robots : "Robot",
-      construction : "Robot de construccion"
+      construction : "Robot de construccion",
+      investigateBtn : "Investigar"
+    },
+    technologies : {
     }
-
   }
 }
 

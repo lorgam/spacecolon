@@ -30,7 +30,11 @@ BaseButton.prototype.drawEnabled = function(){
 }
 
 BaseButton.prototype.isClicked = function(){
-  if (this.enabled && collision2d.pointInRectangle(INPUT.mouse, this.control.getRect())) this.click();
+  if (this.enabled && collision2d.pointInRectangle(INPUT.mouse, this.control.getRect())) {
+    this.click();
+    return true;
+  }
+  return false;
 }
 
 BaseButton.prototype.click = function(){}
